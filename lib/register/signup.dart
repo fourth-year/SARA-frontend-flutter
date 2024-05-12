@@ -7,8 +7,8 @@ import 'package:sara_front/components/colors.dart';
 import 'package:sara_front/components/defaultButton.dart';
 import 'package:sara_front/components/text.dart';
 import 'package:sara_front/components/textfromfilde.dart';
-import 'package:sara_front/cubits_register/cubit.dart';
-import 'package:sara_front/cubits_register/states.dart';
+import 'package:sara_front/cubits/register/cubit.dart';
+import 'package:sara_front/cubits/register/states.dart';
 import '../components/textButton.dart';
 import 'signin.dart';
 

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/models/LoginModel.dart';
 import 'package:sara_front/models/SignupModel.dart';
 import 'package:sara_front/network/dio_helper.dart';
-import '../../network/end_point.dart';
+import '../../../network/end_point.dart';
 import 'states.dart';
 
 class registerCubit extends Cubit<registerSates>{

@@ -5,10 +5,12 @@ import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/register/reset_password.dart';
 import 'package:sara_front/register/signup.dart';
+import 'package:sara_front/screen/layout.dart';
 
 import 'bloc_observer.dart';
-import 'cubits_register/cubit.dart';
+import 'package:sara_front/cubits/register/cubit.dart';
 
+import 'cubits/cubits_animals/cubit.dart';
 void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer=MyBlocObserver();
@@ -27,6 +29,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) =>registerCubit()),
+        BlocProvider(create: (BuildContext context) =>AnimalCubit()),
 
 
       ],
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color1),
           useMaterial3: true,
         ),
-        home: signup(),
+        home: Layout(),
       ),
     );
   }
