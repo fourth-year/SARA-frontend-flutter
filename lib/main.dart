@@ -5,6 +5,7 @@ import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/register/reset_password.dart';
 import 'package:sara_front/register/signup.dart';
+import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/layout.dart';
 
 import 'bloc_observer.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color1),
           useMaterial3: true,
         ),
-        home: Layout(),
+        home: AddAnimal(),
       ),
     );
   }
