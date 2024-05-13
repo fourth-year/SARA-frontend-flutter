@@ -15,3 +15,6 @@ class TypeAnimalState   extends AnimalStates{}
 class DepAnimalState   extends AnimalStates{}
 
 class DateAnimalState   extends AnimalStates{}
+
+class UpdateAnimalSuccessState extends AnimalStates{}
+class UpdateAnimalErrorState   extends AnimalStates{}

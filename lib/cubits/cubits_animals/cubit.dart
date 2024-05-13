@@ -66,6 +66,40 @@ class AnimalCubit extends Cubit<AnimalStates> {
   }
 
 
+  ////////////////////////////////////update/3
+  //update
+
+void UpdateAnimal({
+  required id,
+    required name,
+    required age,
+    required date,
+    required type,
+     required Dep,
+    required photo,
+
+  }){
+    emit(AnimalLoadingState());
+    DioHelper.postData(
+        url: baseurl+'/animal/update/${id}',
+        data: {
+          'name':name,
+          'age':age,
+          'entry_date':date,
+          'animaltype_id':type,
+          'department_id':Dep,
+          'photo':photo,
+        }
+    ).then((value) {
+      print(value.data);
+      emit(AddAnimalSuccessState());
+    }).catchError((error){
+      print(error.toString());
+
+      emit(AddAnimalErrorState());
+    });
+  }
+
   /////////////// gat all animal
   AllAnimals? allanimals;
 
