@@ -28,7 +28,7 @@ class Datum {
   int id;
   String name;
   int age;
-  String photo;
+  String? photo;
   DateTime entryDate;
   DateTime createdAt;
   DateTime updatedAt;

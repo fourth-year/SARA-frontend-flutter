@@ -21,6 +21,8 @@ class AnimalCubit extends Cubit<AnimalStates> {
     required date,
     required type,
      required Dep,
+    required photo,
+
   }){
     emit(AnimalLoadingState());
     DioHelper.postData(
@@ -31,7 +33,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
           'entry_date':date,
           'animaltype_id':type,
           'department_id':Dep,
-          'photo':"zxcvbnm,jhgfdsdfghj",
+          'photo':photo,
         }
     ).then((value) {
       print(value.data);
@@ -72,7 +74,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
   {
     emit(AnimalLoadingState());
     DioHelper.getData(
-      url: baseurl+"/animal/getall",
+      url: baseurl+"/animals/getall",
     ).then((value){
       allanimals = AllAnimals.fromJson(value.data);
       print(allanimals?.success);
@@ -107,8 +109,18 @@ class AnimalCubit extends Cubit<AnimalStates> {
 
   }
 
+///////////////////// masege error
+bool error=false;
+  void m_error(bool merror){
+    error=merror;
 
+  }
 
+  bool errorD=false;
+  void m_errorD(bool merror){
+    errorD=merror;
+
+  }
 
 
 /////////////////////

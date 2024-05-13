@@ -17,6 +17,8 @@ class textfromfilde extends StatelessWidget {
       this.validate,
       this.suffix,
       this.prefix,
+      this.ontap,
+      this.readonly = false,
       this.suffixPressed})
       : super(key: key);
 
@@ -35,10 +37,14 @@ class textfromfilde extends StatelessWidget {
   TextEditingController? controller;
   IconData? suffix;
   Icon? prefix;
-
+  bool readonly;
+  Function()? ontap;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction, // Add this line
+
+      onTap: ontap,
       controller: controller,
       keyboardType: type,
       obscureText: obscure,
