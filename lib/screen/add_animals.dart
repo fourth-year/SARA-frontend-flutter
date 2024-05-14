@@ -147,11 +147,14 @@ class _AddAnimalState extends State<AddAnimal> {
                         height: 18,
                       ),
 
-                      textfromfilde(hint: "Date",controller: Date,
+                      textfromfilde(hint: "Date",
+
+                        readonly: true,
+
+                        controller: Date,
                       ontap: (){
                         _selectDateTime(context);
                       },
-                        readonly: true,
                         color: ColorApp.color3,
                         prefix:  Icon(Icons.calendar_today),
                         validate: (value) {
@@ -161,6 +164,8 @@ class _AddAnimalState extends State<AddAnimal> {
                           else return null;
                         },
                       ),
+
+
 
 
                       // TextField(

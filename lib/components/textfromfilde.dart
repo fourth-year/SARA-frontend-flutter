@@ -43,7 +43,7 @@ class textfromfilde extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction, // Add this line
-
+readOnly: readonly,
       onTap: ontap,
       controller: controller,
       keyboardType: type,
