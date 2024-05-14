@@ -256,7 +256,7 @@ class _AddAnimalState extends State<AddAnimal> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             text(
-                              text1: 'this field must contain at least 8 characters',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
+                              text1: 'this field is required',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
                             ),
                           ],
                         ),
@@ -324,7 +324,7 @@ class _AddAnimalState extends State<AddAnimal> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             text(
-                              text1: 'this field must contain at least 8 characters',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
+                              text1: 'this field is required',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
                             ),
                           ],
                         ),
