@@ -14,12 +14,13 @@ import 'bloc_observer.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
 
 import 'cubits/cubits_animals/cubit.dart';
-void main()  async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer=MyBlocObserver();
+  Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CachHelper.init();
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,26 +28,21 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (BuildContext context) =>registerCubit()),
-        BlocProvider(create: (BuildContext context) =>AnimalCubit()),
-
-
+        BlocProvider(create: (BuildContext context) => registerCubit()),
+        BlocProvider(create: (BuildContext context) => AnimalCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-
           colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color1),
           useMaterial3: true,
         ),
-        home: Layout(),
+        home: signup(),
       ),
     );
   }
 }
-
