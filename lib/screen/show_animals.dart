@@ -53,16 +53,17 @@ class _Show_AnimalsState extends State<Show_Animals> with SingleTickerProviderSt
                 child: Scaffold(
                   backgroundColor: ColorApp.color,
                   appBar: AppBar(
-                    backgroundColor: ColorApp.color2,
+                    backgroundColor: ColorApp.color4,
                     bottom: TabBar(tabs: [
                       Tab(child: Text("All"),),
                       Tab(child: Text("Cats"),),
                       Tab(child: Text("Dogs"),),
                       Tab(child: Text("Birds"),),
                       Tab(child: Text("Horses"),),
-                    ],
-                        labelColor:ColorApp.colorback,
+                    ],unselectedLabelColor:Colors.grey[500],
+                        labelColor:ColorApp.color2,
                         controller: _tabController,
+
 
                         onTap: (index) {
                           if (index == 0) {
@@ -168,7 +169,8 @@ class _Show_AnimalsState extends State<Show_Animals> with SingleTickerProviderSt
                   ],labelColor:Colors.yellow,controller: _tabController,
                   ),),
                 body: Center(
-                  child: text(text1: "loading.....",size: 30,),
+                  child :CircularProgressIndicator(),
+                      // : text(text1: "loading.....",size: 30,),
                 ));
         });
   }
