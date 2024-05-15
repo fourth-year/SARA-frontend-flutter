@@ -87,12 +87,15 @@ class _Update_AnimalState extends State<Update_Animal> {
           return Scaffold(
             backgroundColor: ColorApp.colorback,
             appBar: AppBar(
-              backgroundColor: ColorApp.color2,
+              backgroundColor: ColorApp.colorback,
               title: Center(
-                child: text(
-                  text1: 'Update the animal info',
-                  size: 20,
-                  color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: text(
+                    text1: 'Update the animal info',
+                    size: 25,
+                    color: ColorApp.color2,
+                  ),
                 ),
               ),
             ),
@@ -105,20 +108,42 @@ class _Update_AnimalState extends State<Update_Animal> {
                   child: Column(
                     children: [
                       Center(
-                        child: TextButton(
-                          onPressed: () {
+                        child: InkWell(
+                          onTap: () {
                             _openImagePicker();
                           },
                           child: _image == null
-                              ? CircleAvatar(
-                                  radius: 70.0,
-                                  backgroundImage:
-                                      AssetImage('assets/images/camera.jpg'),
-                                )
-                              : CircleAvatar(
-                                  radius: 60.0,
-                                  backgroundImage:
-                                      FileImage(File(_image!.path)),
+                              ? Stack(children: [
+                                  Container(
+                                    width: 150,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorApp.color3,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 110,
+                                    left: 55,
+                                    child: Icon(
+                                      Icons.camera_alt_outlined,
+                                      size: 35,
+                                      color: ColorApp.color2,
+                                    ),
+                                  ),
+                                ])
+                              : Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: ColorApp.color3,
+                                  ),
+                                  child: CircleAvatar(
+                                    radius: 60.0,
+                                    backgroundImage:
+                                        FileImage(File(_image!.path)),
+                                  ),
                                 ),
                         ),
                       ),

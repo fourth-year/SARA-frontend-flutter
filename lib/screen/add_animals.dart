@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:sara_front/components/defaultButton.dart';
@@ -18,17 +20,14 @@ class AddAnimal extends StatefulWidget {
 }
 
 class _AddAnimalState extends State<AddAnimal> {
-
-
-  bool Dep_Error=false;
-  bool Type_Error=false;
-
+  bool Dep_Error = false;
+  bool Type_Error = false;
 
   TextEditingController name = new TextEditingController();
   TextEditingController age = new TextEditingController();
   TextEditingController Date = new TextEditingController();
 
-  var formkay =GlobalKey<FormState>();
+  var formkay = GlobalKey<FormState>();
 
   // String date = '';
   var selected_type;
@@ -37,15 +36,15 @@ class _AddAnimalState extends State<AddAnimal> {
   String? selectdate;
   final _picker = ImagePicker();
   File? _image;
-  late String image64='';
+  late String image64 = '';
 
   @override
   Widget build(BuildContext context) {
-
     ////////////////////// function image
     Future<void> _openImagePicker() async {
-      final XFile? pickedImage = await _picker.pickImage(source: ImageSource.gallery);
-      if (pickedImage != null ) {
+      final XFile? pickedImage =
+          await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
         setState(() {
           _image = File(pickedImage.path);
           var bytes = _image?.readAsBytesSync();
@@ -80,44 +79,72 @@ class _AddAnimalState extends State<AddAnimal> {
           return Scaffold(
             backgroundColor: ColorApp.colorback,
             appBar: AppBar(
-              backgroundColor: ColorApp.color2,
+              backgroundColor: ColorApp.colorback,
               title: Center(
-                child: text(
-                  text1: 'Add an animal',
-                  size: 20,
-                  color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: text(
+                    text1: 'Add an animal',
+                    size: 25,
+                    color: ColorApp.color2,
+                  ),
                 ),
               ),
             ),
             body: SingleChildScrollView(
               child: Padding(
                 padding:
-                    const EdgeInsets.only(left: 18.0, right: 18.0, top: 28),
+                    const EdgeInsets.only(left: 10.0, right: 18.0, top: 28),
                 child: Form(
                   key: formkay,
                   child: Column(
                     children: [
-
                       Center(
-                        child: TextButton(
-                          onPressed: () {
+                        child: InkWell(
+                          onTap: () {
                             _openImagePicker();
                           },
                           child: _image == null
-                              ? CircleAvatar(
-                            radius: 70.0,
-                            backgroundImage: AssetImage(
-                                'assets/images/camera.jpg'),
-                          )
-                              : CircleAvatar(
-                            radius: 60.0,
-                            backgroundImage:
-                            FileImage(File(_image!.path)),
-                          ),
+                              ? Stack(children: [
+                                  Container(
+                                    width: 150,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorApp.color3,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 110,
+                                    left: 55,
+                                    child: Icon(
+                                      Icons.camera_alt_outlined,
+                                      size: 35,
+                                      color: ColorApp.color2,
+                                    ),
+                                  ),
+                                ])
+                              : Container(
+                                  width: 150,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: ColorApp.color3,
+                                  
+                                  ),
+                                  child: CircleAvatar(
+                                    radius: 60.0,
+                                    backgroundImage:
+                                        FileImage(File(_image!.path)),
+                                  ),
+                                ),
+                         
                         ),
                       ),
 
-                      SizedBox(height: 28,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       textfromfilde(
                         hint: 'Enter the name of the animal',
                         controller: name,
@@ -147,26 +174,22 @@ class _AddAnimalState extends State<AddAnimal> {
                         height: 18,
                       ),
 
-                      textfromfilde(hint: "Date",
-
+                      textfromfilde(
+                        hint: "Date",
                         readonly: true,
-
                         controller: Date,
-                      ontap: (){
-                        _selectDateTime(context);
-                      },
+                        ontap: () {
+                          _selectDateTime(context);
+                        },
                         color: ColorApp.color3,
-                        prefix:  Icon(Icons.calendar_today),
+                        prefix: Icon(Icons.calendar_today),
                         validate: (value) {
                           if (value == null || value.isEmpty) {
                             return "Please enter the date";
-                        }
-                          else return null;
+                          } else
+                            return null;
                         },
                       ),
-
-
-
 
                       // TextField(
                       //   controller: Date,
@@ -201,12 +224,11 @@ class _AddAnimalState extends State<AddAnimal> {
                         child: DropdownButtonFormField(
                             hint: Text(
                               'Choose the type of the animal',
-                              style:
-                                  TextStyle(color: ColorApp.color1, fontSize: 15),
+                              style: TextStyle(
+                                  color: ColorApp.color1, fontSize: 15),
                             ),
                             iconSize: 40,
                             icon: Icon(Icons.arrow_drop_down_rounded),
-
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.only(
                                     left: 30, top: 10, bottom: 10, right: 20),
@@ -245,23 +267,29 @@ class _AddAnimalState extends State<AddAnimal> {
                               AnimalCubit.get(context).Select_type(value);
                               selected_type = AnimalCubit.get(context).type_num;
                               value = selected_type;
-                              Type_Error=false;
+                              Type_Error = false;
                             }),
                       ),
 
-                     Type_Error
+                      Type_Error
                           ? Padding(
-                        padding: const EdgeInsets.only(left: 40.0,bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            text(
-                              text1: 'this field is required',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
+                              padding:
+                                  const EdgeInsets.only(left: 40.0, bottom: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  text(
+                                    text1: 'this field is required',
+                                    color: ColorApp.color2,
+                                    size: 12,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                ],
+                              ),
+                            )
+                          : SizedBox(
+                              height: 10,
                             ),
-                          ],
-                        ),
-                      )
-                          :SizedBox(height: 10,),
 
                       Padding(
                         padding: const EdgeInsets.only(top: 18),
@@ -312,25 +340,30 @@ class _AddAnimalState extends State<AddAnimal> {
                             AnimalCubit.get(context).Select_Dep(value);
                             selected_Dep = AnimalCubit.get(context).Dep_num;
                             value = selected_Dep;
-                            Dep_Error=false;
+                            Dep_Error = false;
                           },
                         ),
                       ),
 
-                     Dep_Error
+                      Dep_Error
                           ? Padding(
-                        padding: const EdgeInsets.only(left: 40.0,bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            text(
-                              text1: 'this field is required',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
+                              padding:
+                                  const EdgeInsets.only(left: 40.0, bottom: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  text(
+                                    text1: 'this field is required',
+                                    color: ColorApp.color2,
+                                    size: 12,
+                                    fontWeight: FontWeight.w100,
+                                  ),
+                                ],
+                              ),
+                            )
+                          : SizedBox(
+                              height: 10,
                             ),
-                          ],
-                        ),
-                      )
-                          :SizedBox(height: 10,),
-
 
                       Padding(
                         padding: const EdgeInsets.only(top: 40),
@@ -339,62 +372,41 @@ class _AddAnimalState extends State<AddAnimal> {
                             print(selected_Dep);
                             print(selected_type);
 
-
-
-
-
                             if (selected_type != null) {
                               Type_Error = false;
                               AnimalCubit.get(context).m_error(Type_Error);
-                              Type_Error = AnimalCubit
-                                  .get(context)
-                                  .error;
+                              Type_Error = AnimalCubit.get(context).error;
                             } else {
                               Type_Error = true;
                               AnimalCubit.get(context).m_error(Type_Error);
-                              Type_Error = AnimalCubit
-                                  .get(context)
-                                  .error;
+                              Type_Error = AnimalCubit.get(context).error;
                             }
-
 
                             if (selected_Dep != null) {
                               Dep_Error = false;
                               AnimalCubit.get(context).m_errorD(Dep_Error);
-                              Dep_Error = AnimalCubit
-                                  .get(context)
-                                  .errorD;
+                              Dep_Error = AnimalCubit.get(context).errorD;
                             } else {
                               Dep_Error = true;
                               AnimalCubit.get(context).m_errorD(Dep_Error);
-                              Dep_Error = AnimalCubit
-                                  .get(context)
-                                  .errorD;
+                              Dep_Error = AnimalCubit.get(context).errorD;
                             }
-
-
 
                             if (formkay.currentState!.validate()) {
                               if (selected_Dep != null) {
                                 Dep_Error = false;
                                 AnimalCubit.get(context).m_error(Dep_Error);
-                                Dep_Error = AnimalCubit
-                                    .get(context)
-                                    .error;
+                                Dep_Error = AnimalCubit.get(context).error;
                               } else {
                                 Dep_Error = true;
                                 AnimalCubit.get(context).m_error(Dep_Error);
-                                Dep_Error = AnimalCubit
-                                    .get(context)
-                                    .error;
+                                Dep_Error = AnimalCubit.get(context).error;
                               }
                               if (formkay.currentState!.validate() &&
                                   selected_type != null &&
                                   selected_Dep != null) {
                                 AnimalCubit.get(context).addAnimal(
-                                    date: AnimalCubit
-                                        .get(context)
-                                        .selectDate,
+                                    date: AnimalCubit.get(context).selectDate,
                                     name: name.text,
                                     age: int.parse(age.text),
                                     type: selected_type,
@@ -402,9 +414,6 @@ class _AddAnimalState extends State<AddAnimal> {
                                     photo: image64.toString());
                               }
                             }
-
-
-
 
                             print(AnimalCubit.get(context).selectDate);
                           },
