@@ -1,15 +1,15 @@
-class GetCats {
+class GetAnimal_Type {
   bool status;
   String message;
   List<Datum> data;
 
-  GetCats({
+  GetAnimal_Type({
     required this.status,
     required this.message,
     required this.data,
   });
 
-  factory GetCats.fromJson(Map<String, dynamic> json) => GetCats(
+  factory GetAnimal_Type.fromJson(Map<String, dynamic> json) => GetAnimal_Type(
     status: json["status"],
     message: json["message"],
     data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),

@@ -34,4 +34,6 @@ class SignupErrorState extends registerSates{}
 
 
  class ChangeIsPasswordd extends registerSates{}
+class ChangeIsPasswordd_c extends registerSates{}
+
 class ChangeGender extends registerSates{}

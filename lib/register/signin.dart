@@ -10,7 +10,9 @@ import 'package:sara_front/cubits/register/cubit.dart';
 import 'package:sara_front/cubits/register/states.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/register/signup.dart';
-
+import 'package:sara_front/screen/home.dart';
+import 'package:sara_front/screen/layout.dart';
+import '../network/end_point.dart';
 import 'forget.dart';
 
 class signin extends StatelessWidget {
@@ -26,8 +28,11 @@ class signin extends StatelessWidget {
       listener: ( context,  state) {
             if (state is LoginSuccessState){
               CachHelper.savetoken(key: 'token', value: state.loginModel.token.toString()).then((value) {
+                token=CachHelper.gettoken(key: "token");
                 print ('save token');
-                // Navigator.push(context,MaterialPageRoute(builder: (context) => home(),));
+                CachHelper.saveData(key: "role_id", value: state.loginModel.user.role.toString());
+                role_id=CachHelper.getData(key: "role_id");
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
 
             }
               );}
@@ -71,13 +76,13 @@ class signin extends StatelessWidget {
                   SizedBox(height: 20,),
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 18.0),
-                    child: textfromfilde(hint:'Your Email or Your Phone ',
+                    child: textfromfilde(hint:'Your Email or Phone ',
                       controller:emailcontroller ,
                       color: ColorApp.color,
                       prefix: Icon(Icons.person),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your email or your phone";
+                          return "please enter your email or phone";
                         }
                         return null;
                       },

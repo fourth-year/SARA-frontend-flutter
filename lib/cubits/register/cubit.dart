@@ -13,7 +13,7 @@ class registerCubit extends Cubit<registerSates>{
   late  LoginModels loginModels;
   late  SignupModel signupModels;
 
-
+///////////////////////// sign up
   void usersignup({
     required  email,
     required  password,
@@ -48,6 +48,7 @@ class registerCubit extends Cubit<registerSates>{
     });
   }
 
+///////////////////////// sign in
   void userlogin({
     required String email,
     required String password
@@ -69,6 +70,7 @@ class registerCubit extends Cubit<registerSates>{
     });
   }
 
+///////////////////////// forget password
   void forgetpaassword({
     required String email,
   }){
@@ -87,7 +89,7 @@ class registerCubit extends Cubit<registerSates>{
     });
   }
 
-
+///////////////////////// code
   void codecheke({
     required String code,
 }){
@@ -105,6 +107,7 @@ class registerCubit extends Cubit<registerSates>{
   }
 
 
+  /////////////////////// reset password
   void resetpassword({
     required String code,
     required String password,
@@ -126,7 +129,7 @@ class registerCubit extends Cubit<registerSates>{
     });
   }
 
-
+///////////////////////// show password
   IconData suffix = Icons.visibility_off_outlined;
   bool ispassword = true;
   void changpassword(){
@@ -135,6 +138,17 @@ class registerCubit extends Cubit<registerSates>{
    emit(ChangeIsPasswordd());
   }
 
+
+  IconData suffix_c = Icons.visibility_off_outlined;
+  bool ispassword_c = true;
+  void changpassword_c(){
+    ispassword_c=!ispassword_c;
+    suffix_c =ispassword_c? Icons.visibility_off_outlined:Icons.visibility_outlined;
+    emit(ChangeIsPasswordd_c());
+  }
+
+
+///////////////////////// select gender
 String gender= "male";
  Color m_gender=Colors.black38;
  Color f_gender=Colors.black38;

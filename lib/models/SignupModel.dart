@@ -1,5 +1,4 @@
 
-import 'dart:convert';
 
 class SignupModel {
    late User user;

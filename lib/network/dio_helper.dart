@@ -17,7 +17,7 @@ class DioHelper {
     dio.options.headers = {
       'Accept': 'application/json',
       'Authorization':
-          'Bearer 1|pUmfNO3HwzZhWcIJR7AqKwJRoCU04eydIhGTfBLPc4c67943'
+          'Bearer $token'
     };
 
     return await dio.post(url, data: data);
@@ -30,7 +30,7 @@ class DioHelper {
     dio.options.headers = {
       'Accept': 'application/json',
       'Authorization':
-          'Bearer 1|pUmfNO3HwzZhWcIJR7AqKwJRoCU04eydIhGTfBLPc4c67943'
+          'Bearer $token'
     };
     return await dio.get(url);
   }

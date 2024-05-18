@@ -4,8 +4,9 @@ import 'package:sara_front/models/AllAnimalmodel.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
 
-import '../../models/GetCat.dart';
+import '../../models/GetAnimalByType.dart';
 import '../../screen/add_animals.dart';
+import '../../screen/home.dart';
 import '../../screen/show_animals.dart';
 import 'states.dart';
 
@@ -14,7 +15,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
   AnimalCubit() :super(AnimalInitialState());
   static AnimalCubit get(context) => BlocProvider.of(context);
 
-
+/////////////////////// add animals
   void addAnimal({
     required name,
     required age,
@@ -44,7 +45,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
       emit(AddAnimalErrorState());
     });
   }
-
+//////////////////// select Dep ,Type ,Date.
   int type_num=1;
   void Select_type (dynamic type){
     type_num=type;
@@ -124,16 +125,16 @@ void UpdateAnimal({
 
 ////////////////////// get animal by type
 
-  GetCats? catsanimals;
+  GetAnimal_Type? get_animal_type;
 
-  Future<void> getAllCats()async
+  Future<void> getanimal_Type( int type)async
   {
     emit(AnimalLoadingState());
     DioHelper.getData(
-      url: baseurl+"/animal-types/getType/1",
+      url: baseurl+"/animal-types/getType/$type",
     ).then((value){
-      catsanimals = GetCats.fromJson(value.data);
-      print(catsanimals?.status);
+      get_animal_type = GetAnimal_Type.fromJson(value.data);
+      print(get_animal_type?.status);
       emit(GetCatsSuccessState());
 
     }).catchError((erroe){
@@ -157,26 +158,19 @@ bool error=false;
   }
 
 
-/////////////////////
+///////////////////// Layout.
   int curentindex=0;
-
-
-
   List<Widget> screen = [
     Show_Animals(),
-
     AddAnimal(),
-    Show_Animals(),
+    Home(),
     AddAnimal(),
 
   ];
 
-
   void changBottom(int index) {
     curentindex = index;
   }
-
-
 
 
 }

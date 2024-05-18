@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sara_front/cubits/cubits_animals/cubit.dart';
+import 'package:sara_front/network/end_point.dart';
 
 class Layout extends StatefulWidget {
   const Layout({super.key});
@@ -24,23 +25,46 @@ class _LayoutState extends State<Layout> {
            });
 
          },
-         items: [
+         items:
+
+         role_id=="2"?
+       [
            BottomNavigationBarItem(
-               icon:Icon(Icons.grid_view_rounded,),
+               icon: Icon(Icons.grid_view_rounded,),
                label: 'Animals'
            ),
            BottomNavigationBarItem(
-               icon:Icon(Icons.home_filled,),
+               icon: Icon(Icons.home_filled,),
                label: 'Add'
            ),
            BottomNavigationBarItem(
-               icon:Icon(Icons.watch_later_outlined,),
+               icon: Icon(Icons.home_filled,),
                label: 'home'),
-          BottomNavigationBarItem(
-          icon:Icon(Icons.watch_later_outlined,),
-          label: 'home'
-           )
-         ]
+
+         BottomNavigationBarItem(
+             icon: Icon(Icons.medical_services,),
+             label: 'emergencies'),
+
+         ] :
+
+
+
+               [
+                 BottomNavigationBarItem(
+                     icon: Icon(Icons.grid_view_rounded,),
+                     label: 'Animals'
+                 ),
+                 BottomNavigationBarItem(
+                     icon: Icon(Icons.home_filled,),
+                     label: 'Home'
+                 ),
+                 BottomNavigationBarItem(
+                     icon: Icon(Icons.medical_services,),
+                     label: 'emergencies'),
+
+               ]
+
+
      ),
 
 body:   AnimalCubit.get(context).screen[AnimalCubit.get(context).curentindex],

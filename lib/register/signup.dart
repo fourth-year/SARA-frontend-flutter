@@ -10,6 +10,9 @@ import 'package:sara_front/components/textfromfilde.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
 import 'package:sara_front/cubits/register/states.dart';
 import '../components/textButton.dart';
+import '../network/cach_helper.dart';
+import '../network/end_point.dart';
+import '../screen/layout.dart';
 import 'signin.dart';
 
 class signup extends StatefulWidget {
@@ -54,11 +57,15 @@ class _signupState extends State<signup> {
     return BlocConsumer<registerCubit, registerSates>(
       listener: (context, state) {
         if (state is SignupSuccessState) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => signin(),
-              ));
+          CachHelper.savetoken(key: 'token', value: state.signupModel.accessToken.toString()).then((value) {
+            token=CachHelper.gettoken(key: "token");
+            print ('save token');
+            CachHelper.saveData(key: "role_id", value: 1.toString());
+            role_id=CachHelper.getData(key: "role_id");
+            Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
+
+          }
+          );
         }
       },
       builder: (context, state) {
@@ -227,11 +234,11 @@ class _signupState extends State<signup> {
                       color: ColorApp.color,
                       prefix: Icon(Icons.lock_rounded),
                       type: TextInputType.visiblePassword,
-                      obscure: registerCubit.get(context).ispassword,
+                      obscure: registerCubit.get(context).ispassword_c,
                       suffixPressed: () {
-                        registerCubit.get(context).changpassword();
+                        registerCubit.get(context).changpassword_c();
                       },
-                      suffix: registerCubit.get(context).suffix,
+                      suffix: registerCubit.get(context).suffix_c,
                       validate: (value) {
                         if (value == null || value.isEmpty) {
                           return "please enter your password";
