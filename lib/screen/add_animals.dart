@@ -25,6 +25,7 @@ class _AddAnimalState extends State<AddAnimal> {
 
   TextEditingController name = new TextEditingController();
   TextEditingController age = new TextEditingController();
+  TextEditingController health = new TextEditingController();
   TextEditingController Date = new TextEditingController();
 
   var formkay = GlobalKey<FormState>();
@@ -130,7 +131,6 @@ class _AddAnimalState extends State<AddAnimal> {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     color: ColorApp.color3,
-                                  
                                   ),
                                   child: CircleAvatar(
                                     radius: 60.0,
@@ -138,7 +138,6 @@ class _AddAnimalState extends State<AddAnimal> {
                                         FileImage(File(_image!.path)),
                                   ),
                                 ),
-                         
                         ),
                       ),
 
@@ -173,7 +172,21 @@ class _AddAnimalState extends State<AddAnimal> {
                       SizedBox(
                         height: 18,
                       ),
-
+                      
+                      textfromfilde(
+                        hint: 'Enter the health info of the animal',
+                        controller: health,
+                        type: TextInputType.name,
+                        color: ColorApp.color,
+                        validate: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Please enter the helth info";
+                          }
+                        },
+                      ),
+ SizedBox(
+                        height: 20,
+                      ),
                       textfromfilde(
                         hint: "Date",
                         readonly: true,
@@ -411,6 +424,7 @@ class _AddAnimalState extends State<AddAnimal> {
                                     age: int.parse(age.text),
                                     type: selected_type,
                                     Dep: selected_Dep,
+                                    health: 'healthy',
                                     photo: image64.toString());
                               }
                             }

@@ -10,7 +10,6 @@ import 'package:sara_front/cubits/register/cubit.dart';
 import 'package:sara_front/cubits/register/states.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/register/signup.dart';
-import 'package:sara_front/screen/home.dart';
 import 'package:sara_front/screen/layout.dart';
 import '../network/end_point.dart';
 import 'forget.dart';

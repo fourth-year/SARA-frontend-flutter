@@ -11,7 +11,7 @@ import 'package:sara_front/register/signup.dart';
 import 'package:sara_front/screen/add_animals.dart';
 
 import 'package:sara_front/screen/layout.dart';
-
+import 'package:sara_front/screen/show_animals.dart';
 
 import 'bloc_observer.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
@@ -24,12 +24,11 @@ void main() async {
   DioHelper.init();
   await CachHelper.init();
   Widget widget;
-  if(CachHelper.gettoken(key: "token")==null){
-    widget=signin();
-  }
-  else {
-    token=CachHelper.gettoken(key: "token");
-    role_id=CachHelper.getData(key: "role_id");
+  if (CachHelper.gettoken(key: "token") == null) {
+    widget = signin();
+  } else {
+    token = CachHelper.gettoken(key: "token");
+    role_id = CachHelper.getData(key: "role_id");
     print(token);
     print(role_id);
 
@@ -39,14 +38,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({required this.startwidget});
+  MyApp({required this.startwidget});
   Widget startwidget;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => registerCubit()),
@@ -59,8 +56,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color2),
           useMaterial3: true,
         ),
-
-       home: startwidget,
+        home: startwidget,
       ),
     );
   }

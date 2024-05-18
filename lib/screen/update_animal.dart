@@ -24,10 +24,9 @@ class _Update_AnimalState extends State<Update_Animal> {
   bool Type_Error = false;
 
   TextEditingController name = new TextEditingController();
-
   TextEditingController age = new TextEditingController();
-
   TextEditingController Date = new TextEditingController();
+  TextEditingController health = new TextEditingController();
 
   var formkay = GlobalKey<FormState>();
 
@@ -420,6 +419,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                                     date: AnimalCubit.get(context).selectDate,
                                     type: selected_type,
                                     Dep: selected_Dep,
+                                    health: "unhealthy",
                                     photo: image64.toString());
                               }
                             }
