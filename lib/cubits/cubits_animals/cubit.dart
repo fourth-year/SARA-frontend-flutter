@@ -39,6 +39,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
     }).catchError((error) {
       print(error.toString());
 
+
       emit(AddAnimalErrorState());
     });
   }
@@ -76,7 +77,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
     required health,
   }) {
     emit(AnimalLoadingState());
-    DioHelper.postData(url: baseurl + '/animal/update/2', data: {
+    DioHelper.postData(url: baseurl + '/animal/update/1', data: {
       'name': name,
       'age': age,
       'entry_date': date,

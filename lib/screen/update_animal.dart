@@ -413,7 +413,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                                   selected_type != null &&
                                   selected_Dep != null) {
                                 AnimalCubit.get(context).UpdateAnimal(
-                                    id: 'id',
+                                    id: 2,
                                     name: name.text,
                                     age: int.parse(age.text),
                                     date: AnimalCubit.get(context).selectDate,

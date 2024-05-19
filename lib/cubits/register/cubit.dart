@@ -62,6 +62,7 @@ class registerCubit extends Cubit<registerSates>{
         }
     ).then((value) {
       print(value.data);
+
       loginModels=LoginModels.fromJson(value.data);
       emit(LoginSuccessState(loginModels));
     }).catchError((error){

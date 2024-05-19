@@ -424,7 +424,7 @@ class _AddAnimalState extends State<AddAnimal> {
                                     age: int.parse(age.text),
                                     type: selected_type,
                                     Dep: selected_Dep,
-                                    health: 'healthy',
+                                    health: 'under treatment',
                                     photo: image64.toString());
                               }
                             }
