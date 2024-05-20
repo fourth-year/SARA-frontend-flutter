@@ -262,6 +262,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/cubits/cubits_animals/cubit.dart';
 import 'package:sara_front/cubits/cubits_animals/states.dart';
+import 'package:sara_front/screen/animal_details.dart';
 import '../components/colors.dart';
 import '../components/text.dart';
 
@@ -508,6 +509,14 @@ class _Show_AnimalsState extends State<Show_Animals>
         child: GestureDetector(
           onTap: () {
             print(model.id);
+            Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AnimalDetails(id:model.id)),
+                                
+                                //id:model.id,
+                          ); 
+                          AnimalCubit.get(context).getanimal_Byid(model.id);
           },
           child: Container(
             decoration: BoxDecoration(

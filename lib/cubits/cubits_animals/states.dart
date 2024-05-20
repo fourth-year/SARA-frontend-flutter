@@ -17,19 +17,13 @@ class AddAnimalSuccessState extends AnimalStates {}
 
 class AddAnimalErrorState extends AnimalStates {}
 
-class DeleteAnimalSuccessState extends AnimalStates {
-  String? message;
-  DeleteAnimalSuccessState({
-    required this.message,
-  });
-}
+class DeleteAnimalSuccessState extends AnimalStates {}
 
-class DeleteAnimalErrorState extends AnimalStates {
-  String? message;
-  DeleteAnimalErrorState({
-    required this.message,
-  });
-}
+class DeleteAnimalErrorState extends AnimalStates {}
+
+class GetAnimalByIdSuccessState extends AnimalStates {}
+
+class GetAnimalByIdErrorState extends AnimalStates {}
 
 class TypeAnimalState extends AnimalStates {}
 

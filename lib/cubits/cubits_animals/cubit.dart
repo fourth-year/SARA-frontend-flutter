@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/models/AllAnimalmodel.dart';
+import 'package:sara_front/models/getAnimal_id.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
 import 'package:sara_front/screen/update_animal.dart';
@@ -39,7 +40,6 @@ class AnimalCubit extends Cubit<AnimalStates> {
     }).catchError((error) {
       print(error.toString());
 
-
       emit(AddAnimalErrorState());
     });
   }
@@ -77,7 +77,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
     required health,
   }) {
     emit(AnimalLoadingState());
-    DioHelper.postData(url: baseurl + '/animal/update/1', data: {
+    DioHelper.postData(url: baseurl + '/animal/update/${id}', data: {
       'name': name,
       'age': age,
       'entry_date': date,
@@ -87,11 +87,11 @@ class AnimalCubit extends Cubit<AnimalStates> {
       'health': health,
     }).then((value) {
       print(value.data);
-      emit(AddAnimalSuccessState());
+      emit(UpdateAnimalSuccessState());
     }).catchError((error) {
       print(error.toString());
 
-      emit(AddAnimalErrorState());
+      emit(UpdateAnimalErrorState());
     });
   }
 
@@ -103,12 +103,28 @@ class AnimalCubit extends Cubit<AnimalStates> {
     DioHelper.DeleteData(
       url: baseurl + '/animal/delete/${id}',
     ).then((value) {
-      print(value.statusMessage);
-      emit(DeleteAnimalSuccessState(message: value.statusMessage));
+      emit(DeleteAnimalSuccessState());
     }).catchError((error) {
       print(error.toString());
 
-      emit(DeleteAnimalErrorState(message: error.toString()));
+      emit(DeleteAnimalErrorState());
+    });
+  }
+
+//////////////////////////////////////////////////////////
+  GetAnimal_byid_Model? get_Animal_By_id;
+
+  Future<void> getanimal_Byid(int id) async {
+    emit(AnimalLoadingState());
+    DioHelper.getData(
+      url: baseurl + "/animal/get/$id",
+    ).then((value) {
+      get_Animal_By_id = GetAnimal_byid_Model.fromJson(value.data);
+      print(get_animal_type?.status);
+      emit(GetAnimalByIdSuccessState());
+    }).catchError((erroe) {
+      print(erroe.toString());
+      emit(GetAnimalByIdErrorState());
     });
   }
 
@@ -164,7 +180,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
   List<Widget> screen = [
     Show_Animals(),
     AddAnimal(),
-    Update_Animal(),
+    AddAnimal(),
     AddAnimal(),
   ];
 

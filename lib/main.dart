@@ -9,6 +9,7 @@ import 'package:sara_front/register/reset_password.dart';
 import 'package:sara_front/register/signin.dart';
 import 'package:sara_front/register/signup.dart';
 import 'package:sara_front/screen/add_animals.dart';
+import 'package:sara_front/screen/animal_details.dart';
 
 import 'package:sara_front/screen/layout.dart';
 import 'package:sara_front/screen/show_animals.dart';
