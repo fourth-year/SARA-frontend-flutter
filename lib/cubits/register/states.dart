@@ -33,7 +33,14 @@ class SignupSuccessState extends registerSates{
 class SignupErrorState extends registerSates{}
 
 
- class ChangeIsPasswordd extends registerSates{}
+class UpdateLoadingState extends registerSates{}
+class UpdateSuccessState extends registerSates{}
+class UpdateErrorState extends registerSates{}
+
+class ChangeIsPasswordd extends registerSates{}
 class ChangeIsPasswordd_c extends registerSates{}
 
 class ChangeGender extends registerSates{}
+
+class LogoutSuccessState extends registerSates{}
+class LogoutErrorState extends registerSates{}

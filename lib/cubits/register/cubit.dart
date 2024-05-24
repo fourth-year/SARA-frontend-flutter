@@ -4,6 +4,7 @@ import 'package:sara_front/models/LoginModel.dart';
 import 'package:sara_front/models/SignupModel.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import '../../../network/end_point.dart';
+import '../../network/cach_helper.dart';
 import 'states.dart';
 
 class registerCubit extends Cubit<registerSates>{
@@ -14,14 +15,14 @@ class registerCubit extends Cubit<registerSates>{
   late  SignupModel signupModels;
 
 ///////////////////////// sign up
-  void usersignup({
+  void SignUp({
     required  email,
     required  password,
     required  c_password,
     required  address,
     required  name,
     required  phone,
-    required  photo,
+    required String? photo,
     required  gender,
 
   }){
@@ -129,6 +130,56 @@ class registerCubit extends Cubit<registerSates>{
 
     });
   }
+  //////////////////////////update profile
+
+  void UpDate({
+    required  email,
+    required  address,
+    required  name,
+    required  phone,
+    required  photo,
+    required  gender,
+    required id
+
+  }){
+    emit(UpdateLoadingState());
+    DioHelper.postData(
+        url: baseurl+'/user/update/${id}',
+        data: {
+          'email':email,
+          'address':address,
+          'name':name,
+          'phone':phone,
+          'gender':gender,
+          'photo':photo,
+        }
+    ).then((value) {
+      print(value.data);
+      emit(UpdateSuccessState());
+    }).catchError((error){
+      print(error.toString());
+      emit(UpdateErrorState());
+    });
+  }
+
+
+///////////////////////// log out
+  void Log_out (){
+    emit(LoginLoadingState());
+    DioHelper.postData(url: baseurl+"/user/logout" ).then((value) {
+      CachHelper.removeData(key: "token");
+      print(value.data);
+      emit(LogoutSuccessState());
+    }).catchError((error){
+      emit(LogoutErrorState());});
+
+
+
+
+
+  }
+
+
 
 ///////////////////////// show password
   IconData suffix = Icons.visibility_off_outlined;

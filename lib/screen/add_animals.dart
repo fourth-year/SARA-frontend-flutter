@@ -34,6 +34,8 @@ class _AddAnimalState extends State<AddAnimal> {
   // String date = '';
   var selected_type;
   var selected_Dep;
+  var selected_Health;
+
   DateTime? selectedDate;
   String? selectdate;
   final _picker = ImagePicker();
@@ -173,7 +175,8 @@ class _AddAnimalState extends State<AddAnimal> {
                               ),
                               child: CircleAvatar(
                                 radius: 60.0,
-                                backgroundImage: FileImage(File(_image!.path)),
+                                backgroundImage:
+                                FileImage(File(_image!.path)),
                               ),
                             ),
                     ),
@@ -225,36 +228,41 @@ class _AddAnimalState extends State<AddAnimal> {
                         return null;
                     },
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 18),
-                  //   child: DropdownButtonFormField(
-                  //       hint: Text(
-                  //         'Choose the health status of the animal',
-                  //         style:
-                  //             TextStyle(color: ColorApp.color1, fontSize: 15),
-                  //       ),
-                  //       iconSize: 40,
-                  //       icon: Icon(Icons.arrow_drop_down_rounded),
-                  //       decoration: InputDecoration(
-                  //           contentPadding: EdgeInsets.only(
-                  //               left: 30, top: 10, bottom: 10, right: 20),
-                  //           filled: true,
-                  //           fillColor: ColorApp.color,
-                  //           border: OutlineInputBorder(
-                  //               borderRadius:
-                  //                   BorderRadius.all(Radius.circular(30)),
-                  //               borderSide: BorderSide.none)),
-                  //       value: selected_type,
-                  //       dropdownColor: ColorApp.colorback,
-                  //       borderRadius: BorderRadius.all(Radius.circular(30)),
-                  //       items: ["healthy", "unhealthy", "under treatment"]
-                  //           .map((e) => DropdownMenuItem(
-                  //                 child: Text("$e"),
-                  //                 value: e,
-                  //               ))
-                  //           .toList(),
-                  //       onChanged: (value) {}),
-                  // ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 18),
+                    child: DropdownButtonFormField(
+                        hint: Text(
+                          'Choose the health status of the animal',
+                          style:
+                              TextStyle(color: ColorApp.color1, fontSize: 15),
+                        ),
+                        iconSize: 40,
+                        icon: Icon(Icons.arrow_drop_down_rounded),
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(
+                                left: 30, top: 10, bottom: 10, right: 20),
+                            filled: true,
+                            fillColor: ColorApp.color,
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide.none)),
+                        value: selected_Health,
+                        dropdownColor: ColorApp.colorback,
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        items: ["healthy", "unhealthy", "under treatment"]
+                            .map((e) => DropdownMenuItem(
+                                  child: Text("$e"),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          AnimalCubit.get(context).selecthealth(value);
+                        selected_Health = AnimalCubit.get(context).selectHealth;
+                        value = selected_Health;
+                        Type_Error = false;
+                        }),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 13),
                     child: DropdownButtonFormField(

@@ -31,22 +31,23 @@ class _LayoutState extends State<Layout> {
                         Icons.grid_view_rounded,
                       ),
                       label: 'Animals'),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.home_filled,
-                      ),
-                      label: 'Add'),
-                  BottomNavigationBarItem(
+                     BottomNavigationBarItem(
                       icon: Icon(
                         Icons.home_filled,
                       ),
                       label: 'home'),
-                  BottomNavigationBarItem(
+                     BottomNavigationBarItem(
                       icon: Icon(
                         Icons.medical_services,
                       ),
                       label: 'emergencies'),
-                ]
+                      BottomNavigationBarItem(
+                      icon: Icon(
+                        Icons.home_filled,
+                      ),
+                      label: 'Jops'),
+
+          ]
               : [
                   BottomNavigationBarItem(
                       icon: Icon(

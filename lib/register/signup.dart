@@ -375,7 +375,7 @@ class _signupState extends State<signup> {
                                     showError = false;
                                   });
                                   gender = registerCubit.get(context).gender;
-                                  registerCubit.get(context).usersignup(
+                                  registerCubit.get(context).SignUp(
                                       email: emailcontroller.text,
                                       password: passwordcontroller.text,
                                       c_password: password1controller.text,

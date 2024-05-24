@@ -7,7 +7,9 @@ import 'package:sara_front/network/end_point.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
 import '../../models/GetAnimalByType.dart';
+import '../../screen/Jops.dart';
 import '../../screen/add_animals.dart';
+import '../../screen/home.dart';
 import '../../screen/show_animals.dart';
 import 'states.dart';
 
@@ -61,6 +63,14 @@ class AnimalCubit extends Cubit<AnimalStates> {
   void selectdate(dynamic s_date) {
     selectDate = s_date;
     emit(DateAnimalState());
+  }
+
+
+
+  String selectHealth = "";
+  void selecthealth(dynamic s_health) {
+    selectHealth = s_health;
+    emit(HealthAnimalState());
   }
 
   ////////////////////////////////////update/3
@@ -179,9 +189,9 @@ class AnimalCubit extends Cubit<AnimalStates> {
   int curentindex = 0;
   List<Widget> screen = [
     Show_Animals(),
+    Home(),
     AddAnimal(),
-    AddAnimal(),
-    AddAnimal(),
+    Jops(),
   ];
 
   void changBottom(int index) {

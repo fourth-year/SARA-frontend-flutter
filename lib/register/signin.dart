@@ -19,10 +19,13 @@ class signin extends StatelessWidget {
   var emailcontroller=TextEditingController();
   var passwordcontroller=TextEditingController();
   var formkay =GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> scaffoldekey= new GlobalKey<ScaffoldState>();
 
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size;
+
     return BlocConsumer<registerCubit,registerSates>(
       listener: ( context,  state) {
             if (state is LoginSuccessState){
@@ -31,13 +34,28 @@ class signin extends StatelessWidget {
                 print ('save token');
                 CachHelper.saveData(key: "role_id", value: state.loginModel.user.role.toString());
                 role_id=CachHelper.getData(key: "role_id");
-                Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
+                CachHelper.savetoken(key: 'name', value: state.loginModel.user.name.toString());
+                  CachHelper.savetoken(key: 'address', value: state.loginModel.user.address.toString());
+                    CachHelper.savetoken(key: 'phone', value: state.loginModel.user.phone.toString());
+                      CachHelper.savetoken(key: 'email', value: state.loginModel.user.email.toString());
+                        CachHelper.savetoken(key: 'photo', value: state.loginModel.user.photo.toString());
+                        CachHelper.savetoken(key: 'id', value: state.loginModel.user.id.toString());
+
+                CachHelper.savetoken(key: 'gender', value: state.loginModel.user.gender.toString());
+
+
+
+
+
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
 
             }
               );}
       },
-      builder: ( context, state) { return  Scaffold(
-        body: SingleChildScrollView(
+      builder: ( context, state) {
+        return  Scaffold(
+          key: scaffoldekey,
+          body: SingleChildScrollView(
           child: Container(
             height: 750,
             decoration: BoxDecoration(
@@ -54,7 +72,7 @@ class signin extends StatelessWidget {
                     clipper: containerclipper(),
                     child: Container(
                       height: 250,
-                      width:600,
+                      width:screenWidth.width,
                       constraints: BoxConstraints(),
                       decoration: BoxDecoration(
 

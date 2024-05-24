@@ -255,16 +255,26 @@
 //   }
 // }
 
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sara_front/components/defaultButton.dart';
+import 'package:sara_front/components/textfromfilde.dart';
 import 'package:sara_front/cubits/cubits_animals/cubit.dart';
 import 'package:sara_front/cubits/cubits_animals/states.dart';
+import 'package:sara_front/cubits/register/cubit.dart';
+import 'package:sara_front/network/cach_helper.dart';
+import 'package:sara_front/register/signin.dart';
+import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/animal_details.dart';
+import 'package:sara_front/screen/edit_profile.dart';
 import '../components/colors.dart';
 import '../components/text.dart';
+import '../components/textButton.dart';
+import '../network/end_point.dart';
 
 class Show_Animals extends StatefulWidget {
   @override
@@ -273,8 +283,8 @@ class Show_Animals extends StatefulWidget {
 
 class _Show_AnimalsState extends State<Show_Animals>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
+    late TabController _tabController;
+    GlobalKey<ScaffoldState> scaffoldekey= new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -298,7 +308,8 @@ class _Show_AnimalsState extends State<Show_Animals>
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AnimalCubit, AnimalStates>(
+    final screenWidth = MediaQuery.of(context).size;
+        return BlocConsumer<AnimalCubit, AnimalStates>(
         listener: (context, state) {},
         builder: (context, state) {
           //state is GetAnimalSuccessState||state is GetCatsSuccessState
@@ -308,6 +319,7 @@ class _Show_AnimalsState extends State<Show_Animals>
             return DefaultTabController(
                 length: 5,
                 child: Scaffold(
+                  key: scaffoldekey,
                   backgroundColor: ColorApp.color,
                   appBar: AppBar(
                     title: Center(
@@ -318,6 +330,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                       ),
                     ),
                     backgroundColor: Colors.white,
+                    // actions: [IconButton(onPressed: (){scaffoldekey.currentState!.openDrawer();}, icon: Icon(Icons.add))],
                     bottom: TabBar(
                         tabs: [
                           Tab(
@@ -347,6 +360,65 @@ class _Show_AnimalsState extends State<Show_Animals>
                             AnimalCubit.get(context).getanimal_Type(index);
                         }),
                   ),
+                 drawer: Drawer(
+                   width: 400,
+                        backgroundColor:ColorApp.colorback ,
+                       child: Padding(
+                         padding: const EdgeInsets.all(25.0),
+                         child: Column(children: [
+                           defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "profile",
+                             icon:Icons.edit,
+                             color: ColorApp.color3,
+                           textColor: ColorApp.color1,),
+                           SizedBox(height: 10,),
+                           defaultButton(onTap: () { Navigator.push(
+                               context,
+                               MaterialPageRoute(builder: (context) => Edit_Profile()));  },r: 30,h: 40,w:screenWidth.width, text: "Edit profile",
+                             color: ColorApp.color3,
+                             icon:Icons.edit,
+                             textColor: ColorApp.color1,),SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Settings",
+                             color: ColorApp.color3,
+                             icon:Icons.settings,
+
+                             textColor: ColorApp.color1,),
+                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Adoption",
+                             color: ColorApp.color3,
+                             textColor: ColorApp.color1,),
+                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Sponserships",
+                             color: ColorApp.color3,
+
+                             textColor: ColorApp.color1,),
+                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Donate",
+                             color: ColorApp.color3,
+
+                             textColor: ColorApp.color1,),
+                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Join",
+                             color: ColorApp.color3,
+                             textColor: ColorApp.color1,),
+
+                           SizedBox(height: 10,),
+                           defaultButton(onTap: () { openlogoutDialog(context); },r: 30,h: 40,w:screenWidth.width, text: "Logout",
+                             color: ColorApp.color3,
+                             textColor: ColorApp.color1,),
+                        ],),
+                       ),
+                  ),
+
+                  floatingActionButton:FloatingActionButton(
+                    child: role_id=="2"? Icon(Icons.add,size: 30,)
+                 : Icon(Icons.search_rounded,size: 30,),
+                    onPressed: () {
+                      role_id=="2"?
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) =>  AddAnimal()))
+                      :Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) =>  AddAnimal()));},
+
+),
                   body: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TabBarView(controller: _tabController, children: [
@@ -527,22 +599,28 @@ class _Show_AnimalsState extends State<Show_Animals>
                 Padding(
                     padding:
                         const EdgeInsets.only(top: 8.0, bottom: 8, left: 10),
-                    child: Container(
-                      width: 500,
-                      height: 75,
+                    child:
+                    Container(
+                      constraints: BoxConstraints(
+                        minWidth: 500,
+                        minHeight: 75,
+                      ),
+                      child: model.photo != null
+                          ? Image(height: 75,width: 500,fit: BoxFit.fill,
+                      image: MemoryImage(base64Decode(model.photo)),
+                      )
+                          : Container(),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: ColorApp.color2),
-                    )
-
-                    // CircleAvatar(radius: 50, backgroundColor: ColorApp.color2
-                    //   // NetworkImage(model!.data[index]!.photo.toString()),
-                    //
-                    //   // MemoryImage(base64Decode(model!.data[index]!.photo)),
-                    // ),
+                        color: ColorApp.color3,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
+
+          ),
+
+
                 SizedBox(
-                  width: 30.0,
+                  height: 30.0,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, right: 8, bottom: 8),
@@ -596,11 +674,71 @@ class _Show_AnimalsState extends State<Show_Animals>
                     ],
                   ),
                 )
-              ],
+                ],
             ),
           ),
         ),
       ),
     );
   }
+
+
+  ///////////////////////////////////
+    openlogoutDialog(BuildContext context) {
+      return showGeneralDialog(
+        context: context,
+        barrierDismissible: false,
+        barrierLabel: '',
+        transitionDuration: Duration(milliseconds: 300),
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return Container();
+        },
+        transitionBuilder: (context, a1, a2, child) {
+          return ScaleTransition(
+            scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
+            child: AlertDialog(
+              backgroundColor: ColorApp.colorback,
+              title: Row(
+                children: [
+                  // Padding(
+                  //   padding: const EdgeInsets.only(bottom: 5, right: 5),
+                  //   child: Icon(
+                  //     Icons.logou,
+                  //     color: ColorApp.color2,
+                  //     size: 18,
+                  //   ),
+                  // ),
+                  Center(child: text(text1: 'Confirmation')),
+                ],
+              ),
+              content: Text('Are you sure you want to logout?'),
+              shape: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide.none),
+              actions: [
+                textButton(
+                    text: 'Cancel',
+                    onTap: () {
+                      Navigator.pop(context);
+                    }),
+                textButton(
+                    text: 'logout',
+                    color: ColorApp.color2,
+                    onTap: () {
+                      registerCubit.get(context).Log_out();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => signin()),
+                      );
+                    })
+              ],
+            ),
+          );
+        },
+      );
+    }
+
+
+
+
 }

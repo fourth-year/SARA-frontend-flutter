@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -78,7 +80,11 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Image(
+                    child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
+                        ? Image(height: 75,width: 500,fit: BoxFit.cover,
+                      image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
+                    )
+                        : Image(
                       image: AssetImage('assets/images/sara.png'),
                       fit: BoxFit.fill,
                     ),
@@ -138,12 +144,64 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               width: 10,
                             ),
                             Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId}',
+                              AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==1?
+                              'Cat'
+                              :  AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==2?
+                              "Dog"
+                               : AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==3?
+                              "Bird"
+                                  : "Horse"
+                              ,
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w400),
                             )
                           ],
                         ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        role_id=="2"?
+                        Row(
+                          children: [
+                            text(
+                              text1: ' Department :',
+                              color: ColorApp.color2,
+                              size: 20,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==1?
+                              'Department_1'
+                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==2?
+                              "Department_2"
+                                  : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==3?
+                              "Department_3"
+                                  : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==4?
+                              'Department_4'
+                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==5?
+                              "Department_5"
+                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==6?
+                              'Department_6'
+                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==7?
+                              "Department_7":
+                              AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==8?
+                              'Department_8'
+                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==9?
+                              "Department_9"
+                                  : "Department_10"
+                              ,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        )
+                            :SizedBox(),
+
+
+
+
                         SizedBox(
                           height: 25,
                         ),
@@ -178,7 +236,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               width: 10,
                             ),
                             Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate}',
+                              '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.year}-'
+                                  '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.month}-'
+                                  '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.day}',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w400),
                             )
