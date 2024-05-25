@@ -23,7 +23,7 @@ class User {
   String phone;
   String address;
   String gender;
-  String photo;
+  String? photo;
   String role;
   DateTime createdAt;
   DateTime updatedAt;
