@@ -65,8 +65,6 @@ class AnimalCubit extends Cubit<AnimalStates> {
     emit(DateAnimalState());
   }
 
-
-
   String selectHealth = "";
   void selecthealth(dynamic s_health) {
     selectHealth = s_health;
@@ -96,6 +94,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
       'photo': photo,
       'health': health,
     }).then((value) {
+      print("ok");
       print(value.data);
       emit(UpdateAnimalSuccessState());
     }).catchError((error) {

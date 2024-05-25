@@ -24,21 +24,9 @@ class _Update_AnimalState extends State<Update_Animal> {
 
   bool Type_Error = false;
 
-  TextEditingController name = new TextEditingController();
-  TextEditingController age = new TextEditingController();
-  TextEditingController Date = new TextEditingController();
-  TextEditingController health = new TextEditingController();
-
   var formkay = GlobalKey<FormState>();
 
   // String date = '';
-  var selected_type;
-
-  var selected_Dep;
-
-  DateTime? selectedDate;
-
-  String? selectdate;
 
   final _picker = ImagePicker();
 
@@ -48,6 +36,27 @@ class _Update_AnimalState extends State<Update_Animal> {
 
   @override
   Widget build(BuildContext context) {
+    var model = AnimalCubit.get(context).get_Animal_By_id?.data;
+
+    var selected_Health = model?.health;
+
+    var selected_type = model?.animaltypeId;
+
+    var selected_Dep = model?.departmentId;
+
+    DateTime? selectedDate;
+
+    String? selectdate;
+
+    TextEditingController name = new TextEditingController(text: model?.name);
+    TextEditingController age =
+        new TextEditingController(text: "${model?.age}");
+    TextEditingController Date = new TextEditingController(
+        text: '${model?.entryDate.year}-'
+            '${model?.entryDate.month}-'
+            '${model?.entryDate.day}');
+
+
     ////////////////////// function image
     Future<void> _openImagePicker() async {
       final XFile? pickedImage =
@@ -264,7 +273,42 @@ class _Update_AnimalState extends State<Update_Animal> {
                   //           .toList(),
                   //       onChanged: (value) {}),
                   // ),
-                  
+                  Padding(
+                    padding: const EdgeInsets.only(top: 18),
+                    child: DropdownButtonFormField(
+                        hint: Text(
+                          'Choose the health status of the animal',
+                          style:
+                              TextStyle(color: ColorApp.color1, fontSize: 15),
+                        ),
+                        iconSize: 40,
+                        icon: Icon(Icons.arrow_drop_down_rounded),
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(
+                                left: 30, top: 10, bottom: 10, right: 20),
+                            filled: true,
+                            fillColor: ColorApp.color,
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                                borderSide: BorderSide.none)),
+                        value: selected_Health,
+                        dropdownColor: ColorApp.colorback,
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        items: ["healthy", "unhealthy", "under treatment"]
+                            .map((e) => DropdownMenuItem(
+                                  child: Text("$e"),
+                                  value: e,
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          AnimalCubit.get(context).selecthealth(value);
+                          selected_Health =
+                              AnimalCubit.get(context).selectHealth;
+                          value = selected_Health;
+                          Type_Error = false;
+                        }),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 18),
                     child: DropdownButtonFormField(
@@ -457,7 +501,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                                 date: AnimalCubit.get(context).selectDate,
                                 type: selected_type,
                                 Dep: selected_Dep,
-                                health: "unhealthy",
+                                health: selected_Health,
                                 photo: image64.toString());
                           }
                         }

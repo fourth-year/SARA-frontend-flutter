@@ -26,7 +26,6 @@ class _AddAnimalState extends State<AddAnimal> {
 
   TextEditingController name = new TextEditingController();
   TextEditingController age = new TextEditingController();
-  TextEditingController health = new TextEditingController();
   TextEditingController Date = new TextEditingController();
 
   var formkay = GlobalKey<FormState>();
@@ -449,7 +448,7 @@ class _AddAnimalState extends State<AddAnimal> {
                                 age: int.parse(age.text),
                                 type: selected_type,
                                 Dep: selected_Dep,
-                                health: 'under treatment',
+                                health: selected_Health,
                                 photo: image64.toString());
                           }
                         }

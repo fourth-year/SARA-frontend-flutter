@@ -81,7 +81,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
-                        ? Image(height: 75,width: 500,fit: BoxFit.cover,
+                        ? Image(height: 75,width: 500,fit: BoxFit.fill,
                       image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
                     )
                         : Image(
@@ -133,6 +133,27 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         SizedBox(
                           height: 25,
                         ),
+                       
+                        Row(
+                          children: [
+                            text(
+                              text1: 'health :',
+                              color: ColorApp.color2,
+                              size: 20,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
                         Row(
                           children: [
                             text(
@@ -150,7 +171,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               "Dog"
                                : AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==3?
                               "Bird"
-                                  : "Horse"
+                                  :AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==4?
+                              "Horse"
+                                  :  "Donkey"
                               ,
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w400),
@@ -199,32 +222,6 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         )
                             :SizedBox(),
 
-
-
-
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Row(
-                          children: [
-                            text(
-                              text1: 'health :',
-                              color: ColorApp.color2,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 25,
-                        ),
                         Row(
                           children: [
                             text(

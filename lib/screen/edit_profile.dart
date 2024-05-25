@@ -87,7 +87,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
               children: [
                 SizedBox(height: 30,),
                 text(
-                  text1: 'UpDate Profile',
+                  text1: 'Update Profile',
                   size: 35,
                   font: "title",
                   fontWeight: FontWeight.w100,

@@ -283,8 +283,8 @@ class Show_Animals extends StatefulWidget {
 
 class _Show_AnimalsState extends State<Show_Animals>
     with SingleTickerProviderStateMixin {
-    late TabController _tabController;
-    GlobalKey<ScaffoldState> scaffoldekey= new GlobalKey<ScaffoldState>();
+  late TabController _tabController;
+  GlobalKey<ScaffoldState> scaffoldekey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -309,7 +309,7 @@ class _Show_AnimalsState extends State<Show_Animals>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size;
-        return BlocConsumer<AnimalCubit, AnimalStates>(
+    return BlocConsumer<AnimalCubit, AnimalStates>(
         listener: (context, state) {},
         builder: (context, state) {
           //state is GetAnimalSuccessState||state is GetCatsSuccessState
@@ -360,65 +360,241 @@ class _Show_AnimalsState extends State<Show_Animals>
                             AnimalCubit.get(context).getanimal_Type(index);
                         }),
                   ),
-                 drawer: Drawer(
-                   width: 400,
-                        backgroundColor:ColorApp.colorback ,
-                       child: Padding(
-                         padding: const EdgeInsets.all(25.0),
-                         child: Column(children: [
-                           defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "profile",
-                             icon:Icons.edit,
-                             color: ColorApp.color3,
-                           textColor: ColorApp.color1,),
-                           SizedBox(height: 10,),
-                           defaultButton(onTap: () { Navigator.push(
-                               context,
-                               MaterialPageRoute(builder: (context) => Edit_Profile()));  },r: 30,h: 40,w:screenWidth.width, text: "Edit profile",
-                             color: ColorApp.color3,
-                             icon:Icons.edit,
-                             textColor: ColorApp.color1,),SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Settings",
-                             color: ColorApp.color3,
-                             icon:Icons.settings,
-
-                             textColor: ColorApp.color1,),
-                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Adoption",
-                             color: ColorApp.color3,
-                             textColor: ColorApp.color1,),
-                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Sponserships",
-                             color: ColorApp.color3,
-
-                             textColor: ColorApp.color1,),
-                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Donate",
-                             color: ColorApp.color3,
-
-                             textColor: ColorApp.color1,),
-                           SizedBox(height: 10,), defaultButton(onTap: () {  },r: 30,h: 40,w:screenWidth.width, text: "Join",
-                             color: ColorApp.color3,
-                             textColor: ColorApp.color1,),
-
-                           SizedBox(height: 10,),
-                           defaultButton(onTap: () { openlogoutDialog(context); },r: 30,h: 40,w:screenWidth.width, text: "Logout",
-                             color: ColorApp.color3,
-                             textColor: ColorApp.color1,),
-                        ],),
-                       ),
+                  drawer: Drawer(
+                    width: 250,
+                    backgroundColor: ColorApp.colorback,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, top: 20, right: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: Container(
+                                    width: 120,
+                                    height: 120,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorApp.color3,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, bottom: 10),
+                                  child: Text(
+                                    'Rawan Asa\'ad',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            color: ColorApp.color2,
+                            height: 20,
+                            thickness: 2,
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          textButton(
+                              text: 'Profile',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Edit_Profile()));
+                              }),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          textButton(
+                              text: 'Settings',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {}),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          textButton(
+                              text: 'Adoption',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {}),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          textButton(
+                              text: 'Sponserships',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {}),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          textButton(
+                              text: 'Donate',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {}),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          textButton(
+                              text: 'Join to us',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {}),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          textButton(
+                              text: 'Log out',
+                              font: 'text normal',
+                              size: 18,
+                              onTap: () {
+                                openlogoutDialog(context);
+                              }),
+                          /*defaultButton(
+                            onTap: () {},
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "profile",
+                            //icon: Icons.edit,
+                            color: ColorApp.color3,
+                            textColor: ColorApp.color1,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          // defaultButton(
+                          //   onTap: () {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => Edit_Profile()));
+                          //   },
+                          //   r: 30,
+                          //   h: 40,
+                          //   w: screenWidth.width,
+                          //   text: "Edit profile",
+                          //   color: ColorApp.color3,
+                          //   icon: Icons.edit,
+                          //   textColor: ColorApp.color1,
+                          // ),
+                          // SizedBox(
+                          //   height: 10,
+                          // ),
+                          defaultButton(
+                            onTap: () {},
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "Settings",
+                            color: ColorApp.color3,
+                            //icon: Icons.settings,
+                            textColor: ColorApp.color1,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultButton(
+                            onTap: () {},
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "Adoption",
+                            color: ColorApp.color3,
+                            textColor: ColorApp.color1,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultButton(
+                            onTap: () {},
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "Sponserships",
+                            color: ColorApp.color3,
+                            textColor: ColorApp.color1,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultButton(
+                            onTap: () {},
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "Donate",
+                            color: ColorApp.color3,
+                            textColor: ColorApp.color1,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultButton(
+                            onTap: () {},
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "Join to us",
+                            color: ColorApp.color3,
+                            textColor: ColorApp.color1,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultButton(
+                            onTap: () {
+                              openlogoutDialog(context);
+                            },
+                            r: 30,
+                            h: 40,
+                            w: screenWidth.width,
+                            text: "Logout",
+                            color: ColorApp.color3,
+                            textColor: ColorApp.color1,
+                          ),
+                        */
+                        ],
+                      ),
+                    ),
                   ),
-
-                  floatingActionButton:FloatingActionButton(
-                    child: role_id=="2"? Icon(Icons.add,size: 30,)
-                 : Icon(Icons.search_rounded,size: 30,),
+                  floatingActionButton: FloatingActionButton(
+                    child: role_id == "2"
+                        ? Icon(
+                            Icons.add,
+                            size: 30,
+                          )
+                        : Icon(
+                            Icons.search_rounded,
+                            size: 30,
+                          ),
                     onPressed: () {
-                      role_id=="2"?
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                        builder: (context) =>  AddAnimal()))
-                      :Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                      builder: (context) =>  AddAnimal()));},
-
-),
+                      role_id == "2"
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddAnimal()))
+                          : Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddAnimal()));
+                    },
+                  ),
                   body: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TabBarView(controller: _tabController, children: [
@@ -566,115 +742,115 @@ class _Show_AnimalsState extends State<Show_Animals>
   ////////////////////
 
   Widget builditem(dynamic model, context, index) {
-    return Card(
-      elevation: 3.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      // shadowColor:Colors.black,
-      surfaceTintColor: ColorApp.color2,
+    return Container(
+      height: 400,
+      width: 520,
+      child: Card(
+        elevation: 3.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        // shadowColor:Colors.black,
+        surfaceTintColor: ColorApp.color2,
 
-      borderOnForeground: false,
+        borderOnForeground: false,
 
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: GestureDetector(
-          onTap: () {
-            print(model.id);
-            Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AnimalDetails(id:model.id)),
-                                
-                                //id:model.id,
-                          ); 
-                          AnimalCubit.get(context).getanimal_Byid(model.id);
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                color: ColorApp.colorback,
-                borderRadius: BorderRadius.circular(20)),
-            child: Column(
-              children: [
-                Padding(
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: GestureDetector(
+            onTap: () {
+              print(model.id);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AnimalDetails(id: model.id)),
+
+                //id:model.id,
+              );
+              AnimalCubit.get(context).getanimal_Byid(model.id);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: ColorApp.colorback,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Column(
+                children: [
+                  Padding(
                     padding:
-                        const EdgeInsets.only(top: 8.0, bottom: 8, left: 10),
-                    child:
-                    Container(
+                        const EdgeInsets.only(top: 8.0, left: 10, right: 10),
+                    child: Container(
                       constraints: BoxConstraints(
-                        minWidth: 500,
-                        minHeight: 75,
+                        minWidth: 400,
+                        minHeight: 180,
                       ),
                       child: model.photo != null
-                          ? Image(height: 75,width: 500,fit: BoxFit.fill,
-                      image: MemoryImage(base64Decode(model.photo)),
-                      )
+                          ? Image(
+                              height: 180,
+                              width: 400,
+                              fit: BoxFit.fill,
+                              image: MemoryImage(base64Decode(model.photo)),
+                            )
                           : Container(),
                       decoration: BoxDecoration(
                         color: ColorApp.color3,
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-
-          ),
-
-
-                SizedBox(
-                  height: 30.0,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 8, bottom: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      text(
-                        text1: "Name : ${model!.name}",
-                        size: 20,
-                        fontWeight: FontWeight.w200,
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      if (model!.animaltypeId == 1)
-                        text(
-                          text1: "Type : Cat",
-                          size: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      if (model!.animaltypeId == 2)
-                        text(
-                          text1: "Type : Dog",
-                          size: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      if (model!.animaltypeId == 3)
-                        text(
-                          text1: "Type : Bird",
-                          size: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      if (model!.animaltypeId == 4)
-                        text(
-                          text1: "Type : Horse",
-                          size: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      if (model!.animaltypeId == 5)
-                        text(
-                          text1: "Type : Donkey",
-                          size: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      // SizedBox(height: 5,),
-                      text(
-                        text1: " Age : ${model.age}",
-                        size: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ],
                   ),
-                )
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, right: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        text(
+                          text1: "Name : ${model!.name}",
+                          size: 20,
+                          fontWeight: FontWeight.w200,
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        if (model!.animaltypeId == 1)
+                          text(
+                            text1: "Type : Cat",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        if (model!.animaltypeId == 2)
+                          text(
+                            text1: "Type : Dog",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        if (model!.animaltypeId == 3)
+                          text(
+                            text1: "Type : Bird",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        if (model!.animaltypeId == 4)
+                          text(
+                            text1: "Type : Horse",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        if (model!.animaltypeId == 5)
+                          text(
+                            text1: "Type : Donkey",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        // SizedBox(height: 5,),
+                        text(
+                          text1: " Age : ${model.age}",
+                          size: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
+              ),
             ),
           ),
         ),
@@ -682,63 +858,58 @@ class _Show_AnimalsState extends State<Show_Animals>
     );
   }
 
-
   ///////////////////////////////////
-    openlogoutDialog(BuildContext context) {
-      return showGeneralDialog(
-        context: context,
-        barrierDismissible: false,
-        barrierLabel: '',
-        transitionDuration: Duration(milliseconds: 300),
-        pageBuilder: (context, animation, secondaryAnimation) {
-          return Container();
-        },
-        transitionBuilder: (context, a1, a2, child) {
-          return ScaleTransition(
-            scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
-            child: AlertDialog(
-              backgroundColor: ColorApp.colorback,
-              title: Row(
-                children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.only(bottom: 5, right: 5),
-                  //   child: Icon(
-                  //     Icons.logou,
-                  //     color: ColorApp.color2,
-                  //     size: 18,
-                  //   ),
-                  // ),
-                  Center(child: text(text1: 'Confirmation')),
-                ],
-              ),
-              content: Text('Are you sure you want to logout?'),
-              shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide.none),
-              actions: [
-                textButton(
-                    text: 'Cancel',
-                    onTap: () {
-                      Navigator.pop(context);
-                    }),
-                textButton(
-                    text: 'logout',
-                    color: ColorApp.color2,
-                    onTap: () {
-                      registerCubit.get(context).Log_out();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => signin()),
-                      );
-                    })
+  openlogoutDialog(BuildContext context) {
+    return showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierLabel: '',
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Container();
+      },
+      transitionBuilder: (context, a1, a2, child) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
+          child: AlertDialog(
+            backgroundColor: ColorApp.colorback,
+            title: Row(
+              children: [
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 5, right: 5),
+                //   child: Icon(
+                //     Icons.logou,
+                //     color: ColorApp.color2,
+                //     size: 18,
+                //   ),
+                // ),
+                Center(child: text(text1: 'Confirmation')),
               ],
             ),
-          );
-        },
-      );
-    }
-
-
-
-
+            content: Text('Are you sure you want to logout?'),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none),
+            actions: [
+              textButton(
+                  text: 'Cancel',
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
+              textButton(
+                  text: 'logout',
+                  color: ColorApp.color2,
+                  onTap: () {
+                    registerCubit.get(context).Log_out();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => signin()),
+                    );
+                  })
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
