@@ -323,12 +323,10 @@ class _Show_AnimalsState extends State<Show_Animals>
                   key: scaffoldekey,
                   backgroundColor: ColorApp.color,
                   appBar: AppBar(
-                    title: Center(
-                      child: text(
-                        text1: 'Animals',
-                        color: ColorApp.color2,
-                        size: 25,
-                      ),
+                    title: text(
+                      text1: 'Animals',
+                      color: ColorApp.color2,
+                      size: 25,
                     ),
                     backgroundColor: Colors.white,
                     // actions: [IconButton(onPressed: (){scaffoldekey.currentState!.openDrawer();}, icon: Icon(Icons.add))],
@@ -364,216 +362,218 @@ class _Show_AnimalsState extends State<Show_Animals>
                   drawer: Drawer(
                     width: 250,
                     backgroundColor: ColorApp.colorback,
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, top: 20, right: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10),
-                                  child: Container(
-                                    width: 120,
-                                    height: 120,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: ColorApp.color3,
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10, top: 20, right: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Container(
+                                      width: 120,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: ColorApp.color3,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, bottom: 10),
-                                  child: Text(
-                                    'Rawan Asa\'ad',
-                                    style: TextStyle(fontSize: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, bottom: 10),
+                                    child: Text(
+                                      "${CachHelper.getData(key: "name")}",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          Divider(
-                            color: ColorApp.color2,
-                            height: 20,
-                            thickness: 2,
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          textButton(
-                              text: 'Profile',
-                              font: 'text normal',
-                              size: 18,
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Edit_Profile()));
-                              }),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          textButton(
-                              text: 'Settings',
-                              font: 'text normal',
-                              size: 18,
-                              onTap: () {  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SettingsPage()));}),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          textButton(
-                              text: 'Adoption',
-                              font: 'text normal',
-                              size: 18,
-                              onTap: () {}),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          textButton(
-                              text: 'Sponserships',
-                              font: 'text normal',
-                              size: 18,
-                              onTap: () {}),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          textButton(
-                              text: 'Donate',
-                              font: 'text normal',
-                              size: 18,
-                              onTap: () {}),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          textButton(
-                              text: 'Join to us',
-                              font: 'text normal',
-                              size: 18,
-                              onTap: () {}),
-                          SizedBox(
-                            height: 18,
-                          ),
-                          textButton(
-                              text: 'Log out',
-                              font: 'text normal',
-                              size: 18,
+                            Divider(
+                              color: ColorApp.color2,
+                              height: 20,
+                              thickness: 2,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            textButton(
+                                text: 'Profile',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Edit_Profile()));
+                                }),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            textButton(
+                                text: 'Settings',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SettingsPage()));}),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            textButton(
+                                text: 'Adoption',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {}),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            textButton(
+                                text: 'Sponserships',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {}),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            textButton(
+                                text: 'Donate',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {}),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            textButton(
+                                text: 'Join to us',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {}),
+                            SizedBox(
+                              height: 18,
+                            ),
+                            textButton(
+                                text: 'Log out',
+                                font: 'text normal',
+                                size: 18,
+                                onTap: () {
+                                  openlogoutDialog(context);
+                                }),
+                            /*defaultButton(
+                              onTap: () {},
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "profile",
+                              //icon: Icons.edit,
+                              color: ColorApp.color3,
+                              textColor: ColorApp.color1,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            // defaultButton(
+                            //   onTap: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) => Edit_Profile()));
+                            //   },
+                            //   r: 30,
+                            //   h: 40,
+                            //   w: screenWidth.width,
+                            //   text: "Edit profile",
+                            //   color: ColorApp.color3,
+                            //   icon: Icons.edit,
+                            //   textColor: ColorApp.color1,
+                            // ),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            defaultButton(
+                              onTap: () {},
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "Settings",
+                              color: ColorApp.color3,
+                              //icon: Icons.settings,
+                              textColor: ColorApp.color1,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            defaultButton(
+                              onTap: () {},
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "Adoption",
+                              color: ColorApp.color3,
+                              textColor: ColorApp.color1,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            defaultButton(
+                              onTap: () {},
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "Sponserships",
+                              color: ColorApp.color3,
+                              textColor: ColorApp.color1,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            defaultButton(
+                              onTap: () {},
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "Donate",
+                              color: ColorApp.color3,
+                              textColor: ColorApp.color1,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            defaultButton(
+                              onTap: () {},
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "Join to us",
+                              color: ColorApp.color3,
+                              textColor: ColorApp.color1,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            defaultButton(
                               onTap: () {
                                 openlogoutDialog(context);
-                              }),
-                          /*defaultButton(
-                            onTap: () {},
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "profile",
-                            //icon: Icons.edit,
-                            color: ColorApp.color3,
-                            textColor: ColorApp.color1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          // defaultButton(
-                          //   onTap: () {
-                          //     Navigator.push(
-                          //         context,
-                          //         MaterialPageRoute(
-                          //             builder: (context) => Edit_Profile()));
-                          //   },
-                          //   r: 30,
-                          //   h: 40,
-                          //   w: screenWidth.width,
-                          //   text: "Edit profile",
-                          //   color: ColorApp.color3,
-                          //   icon: Icons.edit,
-                          //   textColor: ColorApp.color1,
-                          // ),
-                          // SizedBox(
-                          //   height: 10,
-                          // ),
-                          defaultButton(
-                            onTap: () {},
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "Settings",
-                            color: ColorApp.color3,
-                            //icon: Icons.settings,
-                            textColor: ColorApp.color1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          defaultButton(
-                            onTap: () {},
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "Adoption",
-                            color: ColorApp.color3,
-                            textColor: ColorApp.color1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          defaultButton(
-                            onTap: () {},
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "Sponserships",
-                            color: ColorApp.color3,
-                            textColor: ColorApp.color1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          defaultButton(
-                            onTap: () {},
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "Donate",
-                            color: ColorApp.color3,
-                            textColor: ColorApp.color1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          defaultButton(
-                            onTap: () {},
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "Join to us",
-                            color: ColorApp.color3,
-                            textColor: ColorApp.color1,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          defaultButton(
-                            onTap: () {
-                              openlogoutDialog(context);
-                            },
-                            r: 30,
-                            h: 40,
-                            w: screenWidth.width,
-                            text: "Logout",
-                            color: ColorApp.color3,
-                            textColor: ColorApp.color1,
-                          ),
-                        */
-                        ],
+                              },
+                              r: 30,
+                              h: 40,
+                              w: screenWidth.width,
+                              text: "Logout",
+                              color: ColorApp.color3,
+                              textColor: ColorApp.color1,
+                            ),
+                          */
+                          ],
+                        ),
                       ),
                     ),
                   ),

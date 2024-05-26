@@ -184,6 +184,7 @@ class _AddAnimalState extends State<AddAnimal> {
                     height: 20,
                   ),
                   textfromfilde(
+                    size: 13,
                     hint: 'Enter the name of the animal',
                     controller: name,
                     type: TextInputType.name,
@@ -198,7 +199,7 @@ class _AddAnimalState extends State<AddAnimal> {
                     height: 18,
                   ),
                   textfromfilde(
-                    hint: 'Enter the age of the animal ',
+                    hint: 'Enter the age of the animal ',  size: 13,
                     controller: age,
                     type: TextInputType.number,
                     color: ColorApp.color,
@@ -213,6 +214,7 @@ class _AddAnimalState extends State<AddAnimal> {
                   ),
                   textfromfilde(
                     hint: "Date",
+                    size: 13,
                     readonly: true,
                     controller: Date,
                     ontap: () {
@@ -233,7 +235,7 @@ class _AddAnimalState extends State<AddAnimal> {
                         hint: Text(
                           'Choose the health status of the animal',
                           style:
-                              TextStyle(color: ColorApp.color1, fontSize: 15),
+                              TextStyle(color: ColorApp.color1, fontSize: 13),
                         ),
                         iconSize: 40,
                         icon: Icon(Icons.arrow_drop_down_rounded),
@@ -268,7 +270,7 @@ class _AddAnimalState extends State<AddAnimal> {
                         hint: Text(
                           'Choose the type of the animal',
                           style:
-                              TextStyle(color: ColorApp.color1, fontSize: 15),
+                              TextStyle(color: ColorApp.color1, fontSize: 13),
                         ),
                         iconSize: 40,
                         icon: Icon(Icons.arrow_drop_down_rounded),
@@ -337,7 +339,7 @@ class _AddAnimalState extends State<AddAnimal> {
                     child: DropdownButtonFormField(
                       hint: Text(
                         'Choose the Departement',
-                        style: TextStyle(color: ColorApp.color1, fontSize: 15),
+                        style: TextStyle(color: ColorApp.color1, fontSize: 13),
                       ),
                       iconSize: 40,
                       icon: Icon(Icons.arrow_drop_down_rounded),
