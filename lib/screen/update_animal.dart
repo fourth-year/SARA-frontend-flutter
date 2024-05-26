@@ -56,16 +56,10 @@ class _Update_AnimalState extends State<Update_Animal> {
             '${model?.entryDate.month}-'
             '${model?.entryDate.day}');
 
-
-
     selectdate=AnimalCubit.get(context).selectDate;
     AnimalCubit.get(context).selectdate('${model?.entryDate.year}-'
         '${model?.entryDate.month}-'
         '${model?.entryDate.day}');
-
-
-
-
 
     ////////////////////// function image
     Future<void> _openImagePicker() async {

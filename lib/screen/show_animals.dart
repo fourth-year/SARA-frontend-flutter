@@ -268,6 +268,7 @@ import 'package:sara_front/cubits/cubits_animals/states.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/register/signin.dart';
+import 'package:sara_front/screen/Settings.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/animal_details.dart';
 import 'package:sara_front/screen/edit_profile.dart';
@@ -422,7 +423,10 @@ class _Show_AnimalsState extends State<Show_Animals>
                               text: 'Settings',
                               font: 'text normal',
                               size: 18,
-                              onTap: () {}),
+                              onTap: () {  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SettingsPage()));}),
                           SizedBox(
                             height: 18,
                           ),
