@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -27,7 +28,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
         if (state is DeleteAnimalSuccessState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              'Deleted successfully',
+              'Deleted successfully'.tr(),
               style: TextStyle(
                 color: Colors.black,
                 fontFamily: 'Inter',
@@ -45,7 +46,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
         if (state is DeleteAnimalErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              'Delete failed',
+              'Delete failed'.tr(),
               style: TextStyle(
                 color: ColorApp.color2,
                 fontFamily: 'Inter',
@@ -96,7 +97,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
-                              text1: 'Name :',
+                              text1: 'Name :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -116,7 +117,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
-                              text1: 'Age :',
+                              text1: 'Age :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -137,7 +138,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
-                              text1: 'health :',
+                              text1: 'health :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -157,7 +158,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
-                              text1: 'type :',
+                              text1: 'type :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -166,14 +167,14 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                             ),
                             Text(
                               AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==1?
-                              'Cat'
+                              'Cats'.tr()
                               :  AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==2?
-                              "Dog"
+                              "Dogs".tr()
                                : AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==3?
-                              "Bird"
-                                  :AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==4?
-                              "Horse"
-                                  :  "Donkey"
+                              "Birds".tr()
+                                
+                             : "Horses".tr()
+                                
                               ,
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w400),
@@ -187,7 +188,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
-                              text1: ' Department :',
+                              text1: ' Department :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -196,15 +197,15 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                             ),
                             Text(
                               AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==1?
-                              'Department_1'
+                              'Department_1'.tr()
                                   :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==2?
-                              "Department_2"
+                              "Department_2".tr()
                                   : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==3?
-                              "Department_3"
+                              "Department_3".tr()
                                   : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==4?
-                              'Department_4'
+                              'Department_4'.tr()
                                   :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==5?
-                              "Department_5"
+                              "Department_5".tr()
                                   :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==6?
                               'Department_6'
                                   :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==7?
@@ -225,7 +226,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
-                              text1: 'Date :',
+                              text1: 'Date :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -261,7 +262,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                                 .id)),
                                   );
                                 },
-                                text: 'Update',
+                                text: 'Update'.tr(),
                                 color: ColorApp.color3,
                                 textColor: ColorApp.color2,
                               ),
@@ -272,7 +273,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                 onTap: () {
                                   _openAnimatedDialog(context);
                                 },
-                                text: 'Delete',
+                                text: 'Delete'.tr(),
                                 color: ColorApp.color3,
                                 textColor: ColorApp.color2,
                               )
@@ -290,7 +291,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                   //           )),
                                   // );
                                 },
-                                text: 'k',
+                                text: 'k'.tr(),
                                 color: ColorApp.color3,
                                 textColor: ColorApp.color2,
                               ),
@@ -299,7 +300,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               ),
                               defaultButton(
                                 onTap: () {},
-                                text: 'f',
+                                text: 'f'.tr(),
                                 color: ColorApp.color3,
                                 textColor: ColorApp.color2,
                               )
@@ -345,21 +346,21 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                     size: 18,
                   ),
                 ),
-                text(text1: 'Confirmation'),
+                text(text1: 'Confirmation'.tr()),
               ],
             ),
-            content: Text('Are you sure you want to delete this animal?'),
+            content: Text('Are you sure you want to delete this animal?'.tr()),
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none),
             actions: [
               textButton(
-                  text: 'Cancel',
+                  text: 'Cancel'.tr(),
                   onTap: () {
                     Navigator.pop(context);
                   }),
               textButton(
-                  text: 'Delete',
+                  text: 'Delete'.tr(),
                   color: ColorApp.color2,
                   onTap: () {
                     AnimalCubit.get(context).DeleteAnimal(

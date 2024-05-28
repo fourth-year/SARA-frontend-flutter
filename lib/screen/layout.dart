@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sara_front/cubits/cubits_animals/cubit.dart';
 import 'package:sara_front/network/end_point.dart';
@@ -30,24 +31,23 @@ class _LayoutState extends State<Layout> {
                       icon: Icon(
                         Icons.grid_view_rounded,
                       ),
-                      label: 'Animals'),
-                     BottomNavigationBarItem(
+                      label: 'Animals'.tr()),
+                  BottomNavigationBarItem(
                       icon: Icon(
                         Icons.home_filled,
                       ),
-                      label: 'home'),
-                     BottomNavigationBarItem(
+                      label: 'Home'.tr()),
+                  BottomNavigationBarItem(
                       icon: Icon(
                         Icons.medical_services,
                       ),
-                      label: 'emergencies'),
-                      BottomNavigationBarItem(
+                      label: 'Emergencies'.tr()),
+                  BottomNavigationBarItem(
                       icon: Icon(
                         Icons.home_filled,
                       ),
-                      label: 'Jops'),
-
-          ]
+                      label: 'Jobs'.tr()),
+                ]
               : [
                   BottomNavigationBarItem(
                       icon: Icon(

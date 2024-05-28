@@ -1,13 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
+import 'package:sara_front/cubits/cubit/app_cubit.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
 import 'package:sara_front/register/reset_password.dart';
 import 'package:sara_front/register/signin.dart';
 import 'package:sara_front/register/signup.dart';
+import 'package:sara_front/screen/Settings.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/animal_details.dart';
 
@@ -21,6 +24,7 @@ import 'cubits/cubits_animals/cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CachHelper.init();
@@ -35,7 +39,13 @@ void main() async {
 
     widget = Layout();
   }
-  runApp(MyApp(startwidget: widget));
+  runApp(
+    EasyLocalization(
+        supportedLocales: [Locale('ar')],
+        path: 'assets/translation',
+        fallbackLocale: Locale('en'),
+        child: MyApp(startwidget: widget)),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -49,6 +59,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (BuildContext context) => registerCubit()),
         BlocProvider(create: (BuildContext context) => AnimalCubit()),
+        BlocProvider(create: (BuildContext context) => AppCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -57,6 +68,9 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color2),
           useMaterial3: true,
         ),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         home: startwidget,
       ),
     );

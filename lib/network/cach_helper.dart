@@ -41,6 +41,20 @@ class CachHelper {
     return await sharedPreferences.setString(key, value);
   }
 
+   static Future<bool?> saveLanguage({
+    required String key,
+    required String value,
+  }) async
+  {
+    return await sharedPreferences.setString(key, value);
+  }
+
+static dynamic getLanguage({
+    required String key,
+  }) {
+    return sharedPreferences.getString(key);
+  }
+
   static dynamic gettoken({
     required String key,
   }) {

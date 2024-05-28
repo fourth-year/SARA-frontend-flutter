@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -75,7 +76,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
               child: Column(
                 children: [
                   text(
-                    text1: 'Update Profile',
+                    text1: 'Update Profile'.tr(),
                     size: 35,
                     font: "title",
                     fontWeight: FontWeight.w100,
@@ -135,13 +136,13 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 18.0),
                     child: textfromfilde(
-                      hint: 'Full Name',
+                      hint: 'Full Name'.tr(),
                       controller: namecontroller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.person),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your name ";
+                          return "please enter your name ".tr();
                         }
                         return null;
                       },
@@ -151,14 +152,14 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 18.0),
                     child: textfromfilde(
-                      hint: 'Your Email',
+                      hint: 'Your Email'.tr(),
                       controller: emailcontroller,
                       color: ColorApp.color,
                       type: TextInputType.emailAddress,
                       prefix: Icon(Icons.email_rounded),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your email ";
+                          return "please enter your email ".tr();
                         }
                         return null;
                       },
@@ -171,7 +172,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                       bottom: 18.0,
                     ),
                     child: textfromfilde(
-                      hint: 'Address',
+                      hint: 'Address'.tr(),
                       controller: addresscontroller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.location_on_sharp),
@@ -181,7 +182,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 10.0),
                     child: textfromfilde(
-                      hint: 'Your Phone ',
+                      hint: 'Your Phone'.tr(),
                       count: 10,
                       controller: phonecontroller,
                       type: TextInputType.phone,
@@ -189,7 +190,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                       prefix: Icon(Icons.phone),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your phone";
+                          return "please enter your phone".tr();
                         }
                         return null;
                       },
@@ -219,7 +220,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                                       .type_gender("female");
                                 },
                                 w: 140,
-                                text: "female",
+                                text: "female".tr(),
                                 textColor: registerCubit.get(context).f_gender,
                                 color: ColorApp.color4),
                             SizedBox(width: 10),
@@ -228,7 +229,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                                 registerCubit.get(context).type_gender("male");
                                 gender = "female";
                               },
-                              text: "male",
+                              text: "male".tr(),
                               textColor: registerCubit.get(context).m_gender,
                               color: ColorApp.color4,
                               w: 140,
@@ -256,7 +257,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                                   );
                             }
                           },
-                          text: "Edit",
+                          text: "Edit".tr(),
                           w: 150,
                           h: 45,
                           r: 10,
@@ -270,7 +271,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       text(
-                        text1: "reset password?",
+                        text1: "reset password?".tr(),
                         size: 14,
                       ),
                     ],

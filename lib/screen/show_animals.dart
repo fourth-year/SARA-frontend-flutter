@@ -257,6 +257,7 @@
 
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -324,7 +325,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                   backgroundColor: ColorApp.color,
                   appBar: AppBar(
                     title: text(
-                      text1: 'Animals',
+                      text1: 'Animals'.tr(),
                       color: ColorApp.color2,
                       size: 25,
                     ),
@@ -333,19 +334,19 @@ class _Show_AnimalsState extends State<Show_Animals>
                     bottom: TabBar(
                         tabs: [
                           Tab(
-                            child: Text("All"),
+                            child: Text("All".tr()),
                           ),
                           Tab(
-                            child: Text("Cats"),
+                            child: Text("Cats".tr()),
                           ),
                           Tab(
-                            child: Text("Dogs"),
+                            child: Text("Dogs".tr()),
                           ),
                           Tab(
-                            child: Text("Birds"),
+                            child: Text("Birds".tr()),
                           ),
                           Tab(
-                            child: Text("Horses"),
+                            child: Text("Horses".tr()),
                           ),
                         ],
                         unselectedLabelColor: Colors.grey[500],
@@ -406,7 +407,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 15,
                             ),
                             textButton(
-                                text: 'Profile',
+                                text: 'Profile'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {
@@ -419,7 +420,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 18,
                             ),
                             textButton(
-                                text: 'Settings',
+                                text: 'Settings'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {  Navigator.push(
@@ -430,7 +431,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 18,
                             ),
                             textButton(
-                                text: 'Adoption',
+                                text: 'Adoption'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {}),
@@ -438,7 +439,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 18,
                             ),
                             textButton(
-                                text: 'Sponserships',
+                                text: 'Sponserships'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {}),
@@ -446,7 +447,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 18,
                             ),
                             textButton(
-                                text: 'Donate',
+                                text: 'Donate'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {}),
@@ -454,7 +455,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 18,
                             ),
                             textButton(
-                                text: 'Join to us',
+                                text: 'join us'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {}),
@@ -462,7 +463,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                               height: 18,
                             ),
                             textButton(
-                                text: 'Log out',
+                                text: 'Log out'.tr(),
                                 font: 'text normal',
                                 size: 18,
                                 onTap: () {
@@ -717,19 +718,19 @@ class _Show_AnimalsState extends State<Show_Animals>
                   bottom: TabBar(
                     tabs: [
                       Tab(
-                        child: Text("All"),
+                        child: Text("All".tr()),
                       ),
                       Tab(
-                        child: Text("Cat"),
+                        child: Text("Cat".tr()),
                       ),
                       Tab(
-                        child: Text("Dog"),
+                        child: Text("Dog".tr()),
                       ),
                       Tab(
-                        child: Text("Birds"),
+                        child: Text("Birds".tr()),
                       ),
                       Tab(
-                        child: Text("Horses"),
+                        child: Text("Horses".tr()),
                       ),
                     ],
                     labelColor: Colors.yellow,
@@ -887,21 +888,21 @@ class _Show_AnimalsState extends State<Show_Animals>
                 //     size: 18,
                 //   ),
                 // ),
-                Center(child: text(text1: 'Confirmation')),
+                Center(child: text(text1: 'Confirmation'.tr())),
               ],
             ),
-            content: Text('Are you sure you want to logout?'),
+            content: Text('Are you sure you want to logout?'.tr()),
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none),
             actions: [
               textButton(
-                  text: 'Cancel',
+                  text: 'Cancel'.tr(),
                   onTap: () {
                     Navigator.pop(context);
                   }),
               textButton(
-                  text: 'logout',
+                  text: 'Log out'.tr(),
                   color: ColorApp.color2,
                   onTap: () {
                     registerCubit.get(context).Log_out();
