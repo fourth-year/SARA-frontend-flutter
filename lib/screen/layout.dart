@@ -25,7 +25,7 @@ class _LayoutState extends State<Layout> {
               AnimalCubit.get(context).changBottom(index);
             });
           },
-          items: role_id == "2"
+          items: role_id == "2"||role_id == "4"
               ? [
                   BottomNavigationBarItem(
                       icon: Icon(

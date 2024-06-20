@@ -27,3 +27,13 @@ class HealthAnimalState extends AnimalStates {}
 
 class UpdateAnimalSuccessState extends AnimalStates {}
 class UpdateAnimalErrorState extends AnimalStates {}
+
+
+
+class FeedingSuccessState extends AnimalStates {}
+class  FeedingErrorState extends AnimalStates {}
+
+class CanFeedingSuccessState extends AnimalStates {}
+class  CanFeedingErrorState extends AnimalStates {}
+class CheckState extends AnimalStates {}
+

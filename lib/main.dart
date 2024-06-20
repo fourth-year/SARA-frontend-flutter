@@ -41,9 +41,10 @@ void main() async {
   }
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('ar')],
+        supportedLocales: [Locale('en')],
         path: 'assets/translation',
         fallbackLocale: Locale('en'),
+
         child: MyApp(startwidget: widget)),
   );
 }

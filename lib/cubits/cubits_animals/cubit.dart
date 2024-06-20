@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/models/AllAnimalmodel.dart';
+import 'package:sara_front/models/GetFeeding.dart';
 import 'package:sara_front/models/getAnimal_id.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
@@ -120,7 +121,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
     });
   }
 
-//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////  get_Animal
   GetAnimal_byid_Model? get_Animal_By_id;
 
   Future<void> getanimal_Byid(int id) async {
@@ -196,4 +197,65 @@ class AnimalCubit extends Cubit<AnimalStates> {
   void changBottom(int index) {
     curentindex = index;
   }
+
+  ///////////////////////// Feeding
+  Get_Feeding? feeding_modle;
+  Future<void>feedingAnimal()async{
+  emit(AnimalLoadingState());
+  DioHelper.getData(
+    url: baseurl + "/user/unfed-departments",
+  ).then((value) {
+    feeding_modle = Get_Feeding.fromJson(value.data);
+    print(feeding_modle!.data);
+    emit( FeedingSuccessState());
+  }).catchError((erroe) {
+    print(erroe.toString());
+
+    emit( FeedingErrorState());
+  });
+
+}
+  // List<bool> _isChecked=[];
+  //
+  // void check(int index, bool value) {
+  //   _isChecked[index] = value;
+  //   emit(CheckState()); // notify the UI to rebuild
+  // }
+  //
+  // bool getIsChecked(int index) => _isChecked[index];
+
+
+  bool ischeck=false;
+  void check (dynamic is_check){
+    ischeck=is_check;
+    emit(CheckState());
+
+  }
+
+  void Can_Feeding(
+    {required id_dep,
+    required id}
+      ){
+
+    emit(AnimalLoadingState());
+    DioHelper.postData(url: baseurl + '/user/employee/feeding/add', data: {
+      'user_id': id,
+      'department_id': id_dep,
+    }).then((value) {
+      print("ok");
+      print(value.data);
+      emit(CanFeedingSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+
+      emit(CanFeedingErrorState());
+    });
+
+
+
+
+  }
+
+
+
 }

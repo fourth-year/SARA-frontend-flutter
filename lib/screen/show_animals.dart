@@ -579,7 +579,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                     ),
                   ),
                   floatingActionButton: FloatingActionButton(
-                    child: role_id == "2"
+                    child: role_id == "2"||role_id == "4"
                         ? Icon(
                             Icons.add,
                             size: 30,

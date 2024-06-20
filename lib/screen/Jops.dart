@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sara_front/components/defaultButton.dart';
 import 'package:sara_front/screen/add_animals.dart';
+import 'package:sara_front/screen/feeding.dart';
 
 import '../components/colors.dart';
 import '../components/text.dart';
+import '../cubits/cubits_animals/cubit.dart';
 
 class Jops extends StatelessWidget {
 
@@ -39,7 +41,10 @@ class Jops extends StatelessWidget {
                     surfaceTintColor: ColorApp.color2,
 
                     borderOnForeground: false,
-                    child: defaultButton(onTap: (){Navigator.push(context, MaterialPageRoute(builder:(context)=> AddAnimal()));},text: "Feedings",
+                    child: defaultButton(onTap: (){
+
+                    Navigator.push(context, MaterialPageRoute(builder:(context)=> Feeding()));},
+                      text: "Feedings",
                       w:screenWidth.width,
                       h: 50,s: 20,
                       color: ColorApp.color3,textColor: ColorApp.color1,)),
