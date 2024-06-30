@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
+import 'package:sara_front/cubits/Posts_cubit/cubit/posts_cubit.dart';
 import 'package:sara_front/cubits/cubit/app_cubit.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/network/dio_helper.dart';
@@ -13,6 +14,7 @@ import 'package:sara_front/register/signup.dart';
 import 'package:sara_front/screen/Settings.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/animal_details.dart';
+import 'package:sara_front/screen/home.dart';
 
 import 'package:sara_front/screen/layout.dart';
 import 'package:sara_front/screen/show_animals.dart';
@@ -61,6 +63,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => registerCubit()),
         BlocProvider(create: (BuildContext context) => AnimalCubit()),
         BlocProvider(create: (BuildContext context) => AppCubit()),
+        BlocProvider(create: (BuildContext context) => PostsCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
