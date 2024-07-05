@@ -35,5 +35,26 @@ class  FeedingErrorState extends AnimalStates {}
 
 class CanFeedingSuccessState extends AnimalStates {}
 class  CanFeedingErrorState extends AnimalStates {}
+
+
+class vaccinationSuccessState extends AnimalStates {}
+class  vaccinationErrorState extends AnimalStates {}
+
+class CanvaccinationSuccessState extends AnimalStates {}
+class  CanvaccinationErrorState extends AnimalStates {}
+
 class CheckState extends AnimalStates {}
 
+
+class adoptionsLoadingState extends AnimalStates {}
+class adoptionsSuccessState extends AnimalStates {}
+class adoptionsErrorState extends AnimalStates {}
+
+
+class sponcershipLoadingState extends AnimalStates {}
+class sponcershipSuccessState extends AnimalStates {}
+class sponcershipErrorState extends AnimalStates {
+  late dynamic error;
+  sponcershipErrorState(this.error);
+
+}

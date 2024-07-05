@@ -26,7 +26,7 @@ class textfromfilde extends StatelessWidget {
   void Function()? suffixPressed;
   Color? color;
   Color? color1;
-  String hint;
+  dynamic hint;
   int? count;
   IconData? icon;
   double? r;

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sara_front/components/defaultButton.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/feeding.dart';
+import 'package:sara_front/screen/vaccination.dart';
 
 import '../components/colors.dart';
 import '../components/text.dart';
@@ -10,14 +11,19 @@ import '../cubits/cubits_animals/cubit.dart';
 
 class Jops extends StatelessWidget {
 
-  GlobalKey<ScaffoldState> scaffoldekey= new GlobalKey<ScaffoldState>();
+  // GlobalKey<ScaffoldState> scaffoldekey= new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size;
 
     return Scaffold(
-      key: scaffoldekey,
+      // appBar: AppBar(title: Padding(
+      //   padding: const EdgeInsets.only(left: 60.0,right: 60),
+      //   child: text(text1: 'Task',color: ColorApp.color2,
+      //     size: 25,),
+      // ),backgroundColor:ColorApp.colorback,),
+      // key: scaffoldekey,
       backgroundColor: ColorApp.colorback,
       // appBar: AppBar(title: Center(child: text(text1: 'task',color: ColorApp.color2,
       //   size: 35,),heightFactor: 100,)),
@@ -57,7 +63,10 @@ class Jops extends StatelessWidget {
                     surfaceTintColor: ColorApp.color2,
 
                     borderOnForeground: false,
-                    child: defaultButton(onTap: (){},text: "vaccinations",
+                    child: defaultButton(onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder:(context)=> vaccination()));
+
+                    },text: "vaccinations",
                       w:screenWidth.width,
                       h: 50,s: 20,
                       color: ColorApp.color3,textColor: ColorApp.color1,))

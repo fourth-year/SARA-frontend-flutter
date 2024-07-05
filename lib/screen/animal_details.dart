@@ -14,13 +14,16 @@ import 'package:sara_front/screen/layout.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
 class AnimalDetails extends StatefulWidget {
-  AnimalDetails({super.key, required int id});
+  AnimalDetails({super.key,required this.id});
+  int id;
 
   @override
-  State<AnimalDetails> createState() => _AnimalDetailsState();
+  State<AnimalDetails> createState() => _AnimalDetailsState( id: id);
 }
 
 class _AnimalDetailsState extends State<AnimalDetails> {
+  _AnimalDetailsState({required this.id});
+    int id ;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AnimalCubit, AnimalStates>(
@@ -60,13 +63,24 @@ class _AnimalDetailsState extends State<AnimalDetails> {
             backgroundColor: ColorApp.colorback,
           ));
         }
+
+        if (state is adoptionsSuccessState){
+          adoptionSuccessDialog(context,id);
+        }
       },
       builder: (context, state) {
         return Builder(builder: (context) {
           if (state is GetAnimalByIdSuccessState) {
             return Scaffold(
               backgroundColor: ColorApp.color4,
-              appBar: AppBar(
+              appBar: AppBar( leading: IconButton(
+                onPressed: () {
+
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) => Layout()),
+                  );
+                }, icon: Icon(Icons.arrow_back_ios),),
                 backgroundColor: ColorApp.color4,
               ),
               body: Column(
@@ -247,7 +261,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60, top: 40),
-                    child: role_id == "2"
+                    child: role_id == "2"||role_id == "4"
                         ? Row(
                             children: [
                               defaultButton(
@@ -279,19 +293,15 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               )
                             ],
                           )
-                        : Row(
+                        : AnimalCubit.get(context).get_Animal_By_id!.data.adoptions.isEmpty?
+                    Row(
                             children: [
                               defaultButton(
                                 onTap: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //       builder: (context) => Update_Animal(
-                                  //             id: 3,
-                                  //           )),
-                                  // );
+                                  AnimalCubit.get(context).adoptions
+                                    (animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id);
                                 },
-                                text: 'k'.tr(),
+                                text: 'adoptions'.tr(),
                                 color: ColorApp.color3,
                                 textColor: ColorApp.color2,
                               ),
@@ -299,13 +309,29 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                 width: 30,
                               ),
                               defaultButton(
-                                onTap: () {},
-                                text: 'f'.tr(),
+                                onTap: () {
+                                  print(' ffffffffffff');
+                                  AnimalCubit.get(context).sponcership(
+                                      animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id, balance: 150000);
+                                },
+                                text: 'sponcerships'.tr(),
                                 color: ColorApp.color3,
                                 textColor: ColorApp.color2,
                               )
                             ],
-                          ),
+                          )
+                          :  defaultButton(
+                          onTap: () {
+                            AnimalCubit.get(context).sponcership(
+                                animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
+                                , balance: 150000);
+
+
+                          },
+                          text: 'sponcerships'.tr(),
+                          color: ColorApp.color3,
+                          textColor: ColorApp.color2,
+                          )
                   ),
                 ],
               ),
@@ -376,4 +402,92 @@ class _AnimalDetailsState extends State<AnimalDetails> {
       },
     );
   }
+
+  sponcershipDialog(BuildContext context, dynamic animal_id) {
+    return showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierLabel: '',
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Container();
+      },
+      transitionBuilder: (context, a1, a2, child) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
+          child: AlertDialog(
+            backgroundColor: ColorApp.colorback,
+            title: Row(
+              children: [
+
+              ],
+            ),
+            content: Text('Are you sure you want to delete this animal?'.tr()),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none),
+            actions: [
+              textButton(
+                  text: 'Cancel'.tr(),
+                  onTap: () {
+                    Navigator.pop(context);
+                  }),
+              textButton(
+                  text: 'done'.tr(),
+                  color: ColorApp.color2,
+                  onTap: () {
+                    AnimalCubit.get(context).getanimal_Byid(id);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>AnimalDetails (id: id,)),);
+
+
+
+                  })
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  adoptionSuccessDialog(BuildContext context,int id ) {
+    return showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierLabel: '',
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Container();
+      },
+      transitionBuilder: (context, a1, a2, child) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
+          child: AlertDialog(
+            backgroundColor: ColorApp.colorback,
+            content: Text('Your request has been registered. We will contact you to complete the procedures'),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none),
+            actions: [
+              Center(
+                child: textButton(
+                    text: 'OK'.tr(),
+                    onTap: () {
+                      AnimalCubit.get(context).getanimal_Byid(id);
+
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>AnimalDetails (id: id,)),);
+                    }),
+              ),
+
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }

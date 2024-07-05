@@ -8,6 +8,7 @@ import 'package:sara_front/network/end_point.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
 import '../../models/GetAnimalByType.dart';
+import '../../models/GetVaccination.dart';
 import '../../screen/Jops.dart';
 import '../../screen/add_animals.dart';
 import '../../screen/home.dart';
@@ -250,12 +251,80 @@ class AnimalCubit extends Cubit<AnimalStates> {
 
       emit(CanFeedingErrorState());
     });
+  }
 
-
-
+  ///////////////////////////// vaccination
+  Vaccination? vaccination_modle;
+  Future<void>vaccinationAnimal()async{
+    emit(AnimalLoadingState());
+    DioHelper.getData(
+      url: baseurl + "/user/unVac-departments",
+    ).then((value) {
+      vaccination_modle = Vaccination.fromJson(value.data);
+      print(vaccination_modle!.data);
+      emit( vaccinationSuccessState());
+    }).catchError((erroe) {
+      print(erroe.toString());
+      emit( vaccinationErrorState());
+    });
 
   }
 
 
+  void Can_vaccination(
+      {required id_dep}
+      ){
+
+    emit(AnimalLoadingState());
+    DioHelper.postData(url: baseurl + '/user/employee/vaccination/add', data: {
+      'department_id': id_dep,
+    }).then((value) {
+      print(value.data);
+      emit(CanvaccinationSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      print(" kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+      // print(s);
+      emit(CanvaccinationErrorState());
+    });
+  }
+
+//////////////////////////////// adoptions
+void adoptions({
+    required animal_id
+}){
+  emit(adoptionsLoadingState());
+  DioHelper.postData(url: baseurl + '/user/adoption/Req', data: {
+    'animal_id': animal_id,
+  }).then((value) {
+    print(value.data);
+    emit(adoptionsSuccessState());
+  }).catchError((error) {
+    print(error.toString());
+
+    emit(adoptionsErrorState());
+
+  });
+  }
+
+  //////////////////////////////// sponcership
+  void sponcership({
+    required animal_id,
+    required balance
+  }){
+    emit(sponcershipLoadingState());
+    DioHelper.postData(url: baseurl + '/user/sponcership/req', data: {
+      'animal_id': animal_id,
+      'balance':balance
+    }).then((value) {
+      print(value.data);
+      emit(sponcershipSuccessState());
+    }).catchError((error) {
+      print(error.toString());
+      emit(sponcershipErrorState(error.hashCode));
+    });
+
+
+  }
 
 }

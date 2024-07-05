@@ -9,20 +9,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import '../components/colors.dart';
 import '../components/text.dart';
+import 'layout.dart';
 
 
-class Feeding extends StatefulWidget {
+class vaccination extends StatefulWidget {
 
 
   @override
-  State<Feeding> createState() => _FeedingState();
+  State<vaccination> createState() => _vaccinationState();
 }
 
-class _FeedingState extends State<Feeding> {
+class _vaccinationState extends State<vaccination> {
+  // GlobalKey<FormState> _scaffoldKey = GlobalKey<FormState>();
+  // GlobalKey<ScaffoldState> _scaffoldKeyVac = GlobalKey<ScaffoldState>();
+  // GlobalKey<ScaffoldState> _scaffoldKeyElse = GlobalKey<ScaffoldState>(); // new key
+
 
   void initState() {
     super.initState();
-    AnimalCubit.get(context).feedingAnimal();
+    AnimalCubit.get(context).vaccinationAnimal();
 
   }
 
@@ -33,69 +38,74 @@ class _FeedingState extends State<Feeding> {
 
     return  BlocConsumer<AnimalCubit, AnimalStates>(
       listener: (context, state) {
-if(state is CanFeedingErrorState){
-  print('error feed');
+        if(state is CanvaccinationErrorState){
+          print('error feed');
         }
-if(state is CanFeedingSuccessState){
-  AnimalCubit.get(context).feedingAnimal();
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => Feeding()),
-  );
-}
+        if(state is CanvaccinationSuccessState){
+          AnimalCubit.get(context).vaccinationAnimal();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => vaccination()),
+          );
+        }
 
       },
       builder: (context,  state) {
 
-        if( AnimalCubit.get(context).feeding_modle!=null && state is FeedingSuccessState){
-          print('feed');
+        if( AnimalCubit.get(context).vaccination_modle!=null && state is vaccinationSuccessState){
+          print('vaccination');
           return    Scaffold(
+            // key: _scaffoldKeyVac,
             appBar: AppBar(
-              leading: IconButton(onPressed: () {
-                Navigator.push(
+              leading: IconButton(
+                onPressed: () {
+
+                Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Jops()),
+                  MaterialPageRoute(builder: (BuildContext context) => Layout()),
                 );
               }, icon: Icon(Icons.arrow_back_ios),),
               backgroundColor: ColorApp.colorback,
-              title: Center(child: text(text1: 'Feeding',),),
+              title: Center(child: text(text1: 'Vaccination',),),
             ),
-          body: Column(
-            children: [
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 1,
-                  childAspectRatio: 2,
-                  children: List.generate(
-                    AnimalCubit.get(context)
-                        .feeding_modle!
-                        .data
-                        .length,
-                        (index) => builditem(
-                        AnimalCubit.get(context)
-                            .feeding_modle!
-                            .data[index],
-                        context,
-                        index),
+            body: Column(
+              children: [
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 1,
+                    childAspectRatio: 2,
+                    children: List.generate(
+                      AnimalCubit.get(context)
+                          .vaccination_modle!
+                          .data
+                          .length,
+                          (index) => builditem(
+                          AnimalCubit.get(context)
+                              .vaccination_modle!
+                              .data[index],
+                          context,
+                          index),
+                    ),
                   ),
                 ),
-              ),
-            ],
-                    ),
+              ],
+            ),
           );}
         else {
-          print('not feed');
+          print('not vaccination');
           return Scaffold(
-            appBar:AppBar(
-              leading: IconButton(onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Jops()),
-                );
-              }, icon: Icon(Icons.arrow_back_ios),),
-              backgroundColor: ColorApp.colorback,
-              title: text(text1: 'Feeding',),
-            ),
+              // key: _scaffoldKeyElse,
+
+              appBar:AppBar(
+                leading: IconButton(onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Layout()),
+                  );
+                }, icon: Icon(Icons.arrow_back_ios),),
+                backgroundColor: ColorApp.colorback,
+                title: text(text1: 'Vaccination',),
+              ),
               body: Center(
                 child: CircularProgressIndicator(),
 
@@ -148,7 +158,7 @@ if(state is CanFeedingSuccessState){
                             SizedBox(
                               height: 5.0,
                             ),
-                          text(
+                            text(
                               text1: " Dep : ${model.number}",
                               size: 16,
                               fontWeight: FontWeight.normal,
@@ -179,7 +189,7 @@ if(state is CanFeedingSuccessState){
 
 
 
-                      openFeedingDialog(context, dep);
+                     openFeedingDialog(context, dep);
                       print(model.name);
 
                     },
@@ -252,9 +262,8 @@ if(state is CanFeedingSuccessState){
                   text: 'yes',
                   color: ColorApp.color2,
                   onTap: () {
-                    int id =int.parse(CachHelper.getData(key: "id"));
-                    AnimalCubit.get(context).Can_Feeding(id: id , id_dep:i  );
-                    // Navigator.push(context, MaterialPageRoute(builder:(context)=> Feeding()));
+                    AnimalCubit.get(context).Can_vaccination(id_dep:i );
+                    // Navigator.push(context, MaterialPageRoute(builder:(context)=> vaccination()));
 
                   })
             ],

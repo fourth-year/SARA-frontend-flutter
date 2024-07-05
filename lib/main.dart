@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ import 'package:sara_front/screen/show_animals.dart';
 import 'bloc_observer.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
 
+import 'cubits/User/cubit.dart';
 import 'cubits/cubits_animals/cubit.dart';
 
 void main() async {
@@ -64,6 +67,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => AnimalCubit()),
         BlocProvider(create: (BuildContext context) => AppCubit()),
         BlocProvider(create: (BuildContext context) => PostsCubit()),
+        BlocProvider(create: (BuildContext context) => UserCubit()),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

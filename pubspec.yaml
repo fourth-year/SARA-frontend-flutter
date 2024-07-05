@@ -43,6 +43,7 @@ dependencies:
   easy_localization: ^3.0.7
   readmore: ^3.0.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

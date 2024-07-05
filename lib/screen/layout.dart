@@ -4,16 +4,21 @@ import 'package:sara_front/cubits/cubits_animals/cubit.dart';
 import 'package:sara_front/network/end_point.dart';
 
 class Layout extends StatefulWidget {
-  const Layout({super.key});
+
 
   @override
   State<Layout> createState() => _LayoutState();
 }
 
 class _LayoutState extends State<Layout> {
+  // final _layoutScaffoldKey  = GlobalKey<ScaffoldState>();
+  // GlobalKey<FormState> _layoutScaffoldKey  = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // key: _layoutScaffoldKey ,
+
       bottomNavigationBar: BottomNavigationBar(
           selectedLabelStyle: TextStyle(fontSize: 14),
           unselectedLabelStyle: TextStyle(fontSize: 13),
