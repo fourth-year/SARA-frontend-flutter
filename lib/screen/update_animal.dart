@@ -56,7 +56,7 @@ class _Update_AnimalState extends State<Update_Animal> {
             '${model?.entryDate.month}-'
             '${model?.entryDate.day}');
 
-    selectdate=AnimalCubit.get(context).selectDate;
+    selectdate = AnimalCubit.get(context).selectDate;
     AnimalCubit.get(context).selectdate('${model?.entryDate.year}-'
         '${model?.entryDate.month}-'
         '${model?.entryDate.day}');
@@ -94,8 +94,7 @@ class _Update_AnimalState extends State<Update_Animal> {
       }
     }
 
-    return BlocConsumer<AnimalCubit, AnimalStates>(
-        listener: (context, state) {
+    return BlocConsumer<AnimalCubit, AnimalStates>(listener: (context, state) {
       if (state is UpdateAnimalSuccessState) {
         Navigator.push(
           context,

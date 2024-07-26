@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
+import 'package:sara_front/network/end_point.dart';
+import 'package:sara_front/screen/join_us_page.dart';
 import '../components/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +17,6 @@ import '../register/signin.dart';
 import 'donation.dart';
 
 class Drawer_Screen extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -24,8 +24,7 @@ class Drawer_Screen extends StatelessWidget {
       backgroundColor: ColorApp.colorback,
       child: SingleChildScrollView(
         child: Padding(
-          padding:
-          const EdgeInsets.only(left: 10, top: 20, right: 10),
+          padding: const EdgeInsets.only(left: 10, top: 20, right: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -47,8 +46,7 @@ class Drawer_Screen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, bottom: 10),
+                      padding: const EdgeInsets.only(left: 10, bottom: 10),
                       child: Text(
                         "${CachHelper.getData(key: "name")}",
                         style: TextStyle(fontSize: 20),
@@ -82,10 +80,12 @@ class Drawer_Screen extends StatelessWidget {
                   text: 'Settings'.tr(),
                   font: 'text normal',
                   size: 18,
-                  onTap: () {  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SettingsPage()));}),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsPage()));
+                  }),
               SizedBox(
                 height: 18,
               ),
@@ -95,11 +95,9 @@ class Drawer_Screen extends StatelessWidget {
                   size: 18,
                   onTap: () {
                     UserCubit.get(context).user_Wallet();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Wallet()));}),
-
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Wallet()));
+                  }),
               SizedBox(
                 height: 18,
               ),
@@ -124,22 +122,9 @@ class Drawer_Screen extends StatelessWidget {
                   font: 'text normal',
                   size: 18,
                   onTap: () {
-
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => donation()));
-
-
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => donation()));
                   }),
-              SizedBox(
-                height: 18,
-              ),
-              textButton(
-                  text: 'join us'.tr(),
-                  font: 'text normal',
-                  size: 18,
-                  onTap: () {}),
               SizedBox(
                 height: 18,
               ),
@@ -150,6 +135,22 @@ class Drawer_Screen extends StatelessWidget {
                   onTap: () {
                     openlogoutDialog(context);
                   }),
+              (role_id == "1")
+                  ? textButton(
+                      text: 'join us'.tr(),
+                      font: 'text normal',
+                      size: 18,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => JoinUsPage(),
+                            ));
+                      })
+                  : SizedBox(),
+              SizedBox(
+                height: 18,
+              ),
               /*defaultButton(
                               onTap: () {},
                               r: 30,

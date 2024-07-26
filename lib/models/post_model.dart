@@ -1,56 +1,59 @@
-class AllPosts {
+class PostByIdModel {
     bool success;
     String message;
-    List<Datum> data;
+    Data data;
 
-    AllPosts({
+    PostByIdModel({
         required this.success,
         required this.message,
         required this.data,
     });
 
-    factory AllPosts.fromJson(Map<String, dynamic> json) => AllPosts(
+    factory PostByIdModel.fromJson(Map<String, dynamic> json) => PostByIdModel(
         success: json["success"],
         message: json["message"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "success": success,
         "message": message,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "data": data.toJson(),
     };
 }
 
-class Datum {
+class Data {
     int id;
     String text;
     int userId;
     DateTime createdAt;
     DateTime updatedAt;
+    bool isOwner;
     bool isLiked;
-    List<Like> likes;
+    List<dynamic> likes;
     List<Comment> comments;
 
-    Datum({
+    Data({
         required this.id,
         required this.text,
         required this.userId,
         required this.createdAt,
         required this.updatedAt,
+        required this.isOwner,
         required this.isLiked,
         required this.likes,
         required this.comments,
     });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
         text: json["text"],
         userId: json["user_id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        isOwner: json["is_owner"],
         isLiked: json["is_liked"],
-        likes: List<Like>.from(json["likes"].map((x) => Like.fromJson(x))),
+        likes: List<dynamic>.from(json["likes"].map((x) => x)),
         comments: List<Comment>.from(json["comments"].map((x) => Comment.fromJson(x))),
     );
 
@@ -60,8 +63,9 @@ class Datum {
         "user_id": userId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
+        "is_owner": isOwner,
         "is_liked": isLiked,
-        "likes": List<dynamic>.from(likes.map((x) => x.toJson())),
+        "likes": List<dynamic>.from(likes.map((x) => x)),
         "comments": List<dynamic>.from(comments.map((x) => x.toJson())),
     };
 }
@@ -103,41 +107,5 @@ class Comment {
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
         "is_owner": isOwner,
-    };
-}
-
-class Like {
-    int id;
-    int userId;
-    int postId;
-    DateTime likeDate;
-    DateTime createdAt;
-    DateTime updatedAt;
-
-    Like({
-        required this.id,
-        required this.userId,
-        required this.postId,
-        required this.likeDate,
-        required this.createdAt,
-        required this.updatedAt,
-    });
-
-    factory Like.fromJson(Map<String, dynamic> json) => Like(
-        id: json["id"],
-        userId: json["user_id"],
-        postId: json["post_id"],
-        likeDate: DateTime.parse(json["like_date"]),
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "id": id,
-        "user_id": userId,
-        "post_id": postId,
-        "like_date": "${likeDate.year.toString().padLeft(4, '0')}-${likeDate.month.toString().padLeft(2, '0')}-${likeDate.day.toString().padLeft(2, '0')}",
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
     };
 }

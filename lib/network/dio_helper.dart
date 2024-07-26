@@ -12,7 +12,7 @@ class DioHelper {
 
   static Future<Response> postData({
     required String url,
-     Map<String, dynamic>? data,
+    dynamic data,
   }) async {
     dio.options.headers = {
       'Accept': 'application/json',
