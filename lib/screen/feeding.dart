@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import '../components/colors.dart';
 import '../components/text.dart';
+import 'layout.dart';
 
 
 class Feeding extends StatefulWidget {
@@ -54,11 +55,12 @@ if(state is CanFeedingSuccessState){
               leading: IconButton(onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Jops()),
+                  MaterialPageRoute(builder: (context) => Layout()),
                 );
               }, icon: Icon(Icons.arrow_back_ios),),
               backgroundColor: ColorApp.colorback,
-              title: Center(child: text(text1: 'Feeding',),),
+              title: Center(child: text(text1: 'Feeding',color: ColorApp.color2,
+                size: 22,),),
             ),
           body: Column(
             children: [

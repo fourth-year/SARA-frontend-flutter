@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sara_front/components/defaultButton.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/feeding.dart';
+import 'package:sara_front/screen/session.dart';
 import 'package:sara_front/screen/vaccination.dart';
 
 import '../components/colors.dart';
@@ -18,7 +19,9 @@ class Jops extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size;
 
     return Scaffold(
-      // appBar: AppBar(title: Padding(
+      appBar: AppBar(),
+      drawer: Drawer(),
+      // (title: Padding(
       //   padding: const EdgeInsets.only(left: 60.0,right: 60),
       //   child: text(text1: 'Task',color: ColorApp.color2,
       //     size: 25,),
@@ -32,7 +35,7 @@ class Jops extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 15.0,right: 15,top: 35,),
             child: text(text1: 'task',color: ColorApp.color2,
-              size: 35,),
+              size: 25,),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 15.0,right: 15,top: 150),

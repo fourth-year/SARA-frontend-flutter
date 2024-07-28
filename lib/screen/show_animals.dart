@@ -500,29 +500,42 @@ class _Show_AnimalsState extends State<Show_Animals>
           } else
             return Scaffold(
                 appBar: AppBar(
-                  backgroundColor: ColorApp.color2,
-                  bottom: TabBar(
-                    tabs: [
-                      Tab(
-                        child: Text("All".tr()),
-                      ),
-                      Tab(
-                        child: Text("Cat".tr()),
-                      ),
-                      Tab(
-                        child: Text("Dog".tr()),
-                      ),
-                      Tab(
-                        child: Text("Birds".tr()),
-                      ),
-                      Tab(
-                        child: Text("Horses".tr()),
-                      ),
-                    ],
-                    labelColor: Colors.yellow,
-                    controller: _tabController,
+                  title: text(
+                    text1: 'Animals'.tr(),
+                    color: ColorApp.color2,
+                    size: 25,
                   ),
+                  backgroundColor: Colors.white,
+                  bottom: TabBar(
+                      tabs: [
+                        Tab(
+                          child: Text("All".tr()),
+                        ),
+                        Tab(
+                          child: Text("Cats".tr()),
+                        ),
+                        Tab(
+                          child: Text("Dogs".tr()),
+                        ),
+                        Tab(
+                          child: Text("Birds".tr()),
+                        ),
+                        Tab(
+                          child: Text("Horses".tr()),
+                        ),
+                      ],
+                      unselectedLabelColor: Colors.grey[500],
+                      labelColor: ColorApp.color2,
+                      controller: _tabController,
+                      isScrollable: true,
+                      onTap: (index) {
+                        if (index == 0) {
+                          AnimalCubit.get(context).getAllAnimal();
+                        } else
+                          AnimalCubit.get(context).getanimal_Type(index);
+                      }),
                 ),
+                drawer: Drawer_Screen(),
                 body: Center(
                   child: CircularProgressIndicator(),
                   // : text(text1: "loading.....",size: 30,),

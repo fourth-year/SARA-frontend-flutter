@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
 import 'package:sara_front/network/end_point.dart';
+import 'package:sara_front/screen/adoption_user.dart';
 import 'package:sara_front/screen/join_us_page.dart';
+import 'package:sara_front/screen/sponcerships_user.dart';
 import '../components/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +107,15 @@ class Drawer_Screen extends StatelessWidget {
                   text: 'Adoption'.tr(),
                   font: 'text normal',
                   size: 18,
-                  onTap: () {}),
+                  onTap: () {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => adoption_user(),
+                        ));
+
+
+                  }),
               SizedBox(
                 height: 18,
               ),
@@ -113,21 +123,47 @@ class Drawer_Screen extends StatelessWidget {
                   text: 'Sponserships'.tr(),
                   font: 'text normal',
                   size: 18,
-                  onTap: () {}),
-              SizedBox(
-                height: 18,
-              ),
-              textButton(
-                  text: 'Donate'.tr(),
-                  font: 'text normal',
-                  size: 18,
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => donation()));
+                    UserCubit.get(context).sponcershipsuser();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => sponcership_user(),
+                        ));
+
                   }),
+              // SizedBox(
+              //   height: 18,
+              // ),
+              // textButton(
+              //     text: 'Donate'.tr(),
+              //     font: 'text normal',
+              //     size: 18,
+              //     onTap: () {
+              //       Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) => donation()));
+              //     }),
               SizedBox(
                 height: 18,
               ),
+              (role_id == "1")
+                  ?
+                  Padding(
+                    padding: const EdgeInsets.only(bottom:18.0),
+                    child: textButton(
+                    text: 'join us'.tr(),
+                    font: 'text normal',
+                    size: 18,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => JoinUsPage(),
+                          ));
+                    }),
+                  )
+                  : SizedBox( ),
+
               textButton(
                   text: 'Log out'.tr(),
                   font: 'text normal',
@@ -135,19 +171,7 @@ class Drawer_Screen extends StatelessWidget {
                   onTap: () {
                     openlogoutDialog(context);
                   }),
-              (role_id == "1")
-                  ? textButton(
-                      text: 'join us'.tr(),
-                      font: 'text normal',
-                      size: 18,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => JoinUsPage(),
-                            ));
-                      })
-                  : SizedBox(),
+
               SizedBox(
                 height: 18,
               ),

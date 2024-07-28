@@ -62,7 +62,20 @@ class _signupState extends State<signup> {
             print ('save token');
             CachHelper.saveData(key: "role_id", value: 1.toString());
             role_id=CachHelper.getData(key: "role_id");
-            Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
+
+
+
+              CachHelper.savetoken(key: 'name', value: state.signupModel.user.name.toString());
+              CachHelper.savetoken(key: 'address', value: state.signupModel.user.address.toString());
+              CachHelper.savetoken(key: 'phone', value: state.signupModel.user.phone.toString());
+              CachHelper.savetoken(key: 'email', value: state.signupModel.user.email.toString());
+              CachHelper.savetoken(key: 'photo', value: state.signupModel.user.photo.toString());
+              CachHelper.savetoken(key: 'id', value: state.signupModel.user.id.toString());
+
+              CachHelper.savetoken(key: 'gender', value: state.signupModel.user.gender.toString());
+
+
+              Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
 
           }
           );

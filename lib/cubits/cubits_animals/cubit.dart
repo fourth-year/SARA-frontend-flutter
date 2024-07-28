@@ -5,6 +5,7 @@ import 'package:sara_front/models/GetFeeding.dart';
 import 'package:sara_front/models/getAnimal_id.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
+import 'package:sara_front/screen/more.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
 import '../../models/GetAnimalByType.dart';
@@ -193,6 +194,13 @@ class AnimalCubit extends Cubit<AnimalStates> {
     Home(),
     AddAnimal(),
     Jops(),
+  ];
+
+  List<Widget> screen_user = [
+    Show_Animals(),
+    Home(),
+    AddAnimal(),
+    more(),
   ];
 
   void changBottom(int index) {

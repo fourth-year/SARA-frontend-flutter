@@ -14,6 +14,7 @@ class defaultButton extends StatelessWidget {
         this.icon,
         this.coloricon=Colors.black87,
         this.sizeIcon=20,
+        this.fontweight=FontWeight.bold,
         this.font='text normal',
       })
       : super(key: key);
@@ -29,6 +30,7 @@ class defaultButton extends StatelessWidget {
   IconData? icon;
   double ?sizeIcon;
   String? font;
+  FontWeight? fontweight;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -65,7 +67,7 @@ class defaultButton extends StatelessWidget {
                   style: TextStyle(
                       fontFamily: font,
                       fontSize: s,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: fontweight,
                       color: textColor),
                 ),
               ],

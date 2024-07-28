@@ -62,7 +62,16 @@ class Wallet extends StatelessWidget {
 
 
       );}
-        return CircularProgressIndicator();
+        return
+          Scaffold(
+            appBar: AppBar(backgroundColor: ColorApp.colorback, leading: IconButton(onPressed: () {
+          Navigator.pop(context);
+
+        }, icon: Icon(Icons.arrow_back_ios),),),
+        body: Center(
+        child: CircularProgressIndicator(),
+        ),
+          );
         },
     );
   }

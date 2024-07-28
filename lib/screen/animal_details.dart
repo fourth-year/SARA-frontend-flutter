@@ -261,7 +261,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 60, top: 40),
-                    child: role_id == "2"||role_id == "4"
+                    child:
+                    role_id == "2"||role_id == "4"
                         ? Row(
                             children: [
                               defaultButton(
@@ -320,18 +321,21 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               )
                             ],
                           )
-                          :  defaultButton(
-                          onTap: () {
-                            AnimalCubit.get(context).sponcership(
-                                animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
-                                , balance: 150000);
+                        :SizedBox(
 
-
-                          },
-                          text: 'sponcerships'.tr(),
-                          color: ColorApp.color3,
-                          textColor: ColorApp.color2,
-                          )
+                    ),
+                          // :  defaultButton(
+                          // onTap: () {
+                          //   AnimalCubit.get(context).sponcership(
+                          //       animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
+                          //       , balance: 150000);
+                          //
+                          //
+                          // },
+                          // text: 'sponcerships'.tr(),
+                          // color: ColorApp.color3,
+                          // textColor: ColorApp.color2,
+                          // )
                   ),
                 ],
               ),

@@ -69,9 +69,19 @@ class _LayoutState extends State<Layout> {
                         Icons.medical_services,
                       ),
                       label: 'emergencies'),
+
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.more_horiz,
+                ),
+                label: 'More'),
+
                 ]),
       body:
-          AnimalCubit.get(context).screen[AnimalCubit.get(context).curentindex],
+
+      role_id == "2"||role_id == "4"?
+          AnimalCubit.get(context).screen[AnimalCubit.get(context).curentindex]:
+          AnimalCubit.get(context).screen_user[AnimalCubit.get(context).curentindex]
     );
   }
 }

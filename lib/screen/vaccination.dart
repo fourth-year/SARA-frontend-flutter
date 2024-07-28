@@ -66,7 +66,8 @@ class _vaccinationState extends State<vaccination> {
                 );
               }, icon: Icon(Icons.arrow_back_ios),),
               backgroundColor: ColorApp.colorback,
-              title: Center(child: text(text1: 'Vaccination',),),
+              title: Center(child: text(text1: 'Vaccination',color: ColorApp.color2,
+                size: 22,),),
             ),
             body: Column(
               children: [
