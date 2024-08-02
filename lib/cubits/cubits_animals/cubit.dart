@@ -5,6 +5,7 @@ import 'package:sara_front/models/GetFeeding.dart';
 import 'package:sara_front/models/getAnimal_id.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
+import 'package:sara_front/screen/Emergencies.dart';
 import 'package:sara_front/screen/more.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
@@ -192,14 +193,14 @@ class AnimalCubit extends Cubit<AnimalStates> {
   List<Widget> screen = [
     Show_Animals(),
     Home(),
-    AddAnimal(),
+    Emergencies(),
     Jops(),
   ];
 
   List<Widget> screen_user = [
     Show_Animals(),
     Home(),
-    AddAnimal(),
+    Emergencies(),
     more(),
   ];
 
@@ -209,21 +210,20 @@ class AnimalCubit extends Cubit<AnimalStates> {
 
   ///////////////////////// Feeding
   Get_Feeding? feeding_modle;
-  Future<void>feedingAnimal()async{
-  emit(AnimalLoadingState());
-  DioHelper.getData(
-    url: baseurl + "/user/unfed-departments",
-  ).then((value) {
-    feeding_modle = Get_Feeding.fromJson(value.data);
-    print(feeding_modle!.data);
-    emit( FeedingSuccessState());
-  }).catchError((erroe) {
-    print(erroe.toString());
+  Future<void> feedingAnimal() async {
+    emit(AnimalLoadingState());
+    DioHelper.getData(
+      url: baseurl + "/user/unfed-departments",
+    ).then((value) {
+      feeding_modle = Get_Feeding.fromJson(value.data);
+      print(feeding_modle!.data);
+      emit(FeedingSuccessState());
+    }).catchError((erroe) {
+      print(erroe.toString());
 
-    emit( FeedingErrorState());
-  });
-
-}
+      emit(FeedingErrorState());
+    });
+  }
   // List<bool> _isChecked=[];
   //
   // void check(int index, bool value) {
@@ -233,19 +233,13 @@ class AnimalCubit extends Cubit<AnimalStates> {
   //
   // bool getIsChecked(int index) => _isChecked[index];
 
-
-  bool ischeck=false;
-  void check (dynamic is_check){
-    ischeck=is_check;
+  bool ischeck = false;
+  void check(dynamic is_check) {
+    ischeck = is_check;
     emit(CheckState());
-
   }
 
-  void Can_Feeding(
-    {required id_dep,
-    required id}
-      ){
-
+  void Can_Feeding({required id_dep, required id}) {
     emit(AnimalLoadingState());
     DioHelper.postData(url: baseurl + '/user/employee/feeding/add', data: {
       'user_id': id,
@@ -263,26 +257,21 @@ class AnimalCubit extends Cubit<AnimalStates> {
 
   ///////////////////////////// vaccination
   Vaccination? vaccination_modle;
-  Future<void>vaccinationAnimal()async{
+  Future<void> vaccinationAnimal() async {
     emit(AnimalLoadingState());
     DioHelper.getData(
       url: baseurl + "/user/unVac-departments",
     ).then((value) {
       vaccination_modle = Vaccination.fromJson(value.data);
       print(vaccination_modle!.data);
-      emit( vaccinationSuccessState());
+      emit(vaccinationSuccessState());
     }).catchError((erroe) {
       print(erroe.toString());
-      emit( vaccinationErrorState());
+      emit(vaccinationErrorState());
     });
-
   }
 
-
-  void Can_vaccination(
-      {required id_dep}
-      ){
-
+  void Can_vaccination({required id_dep}) {
     emit(AnimalLoadingState());
     DioHelper.postData(url: baseurl + '/user/employee/vaccination/add', data: {
       'department_id': id_dep,
@@ -298,41 +287,31 @@ class AnimalCubit extends Cubit<AnimalStates> {
   }
 
 //////////////////////////////// adoptions
-void adoptions({
-    required animal_id
-}){
-  emit(adoptionsLoadingState());
-  DioHelper.postData(url: baseurl + '/user/adoption/Req', data: {
-    'animal_id': animal_id,
-  }).then((value) {
-    print(value.data);
-    emit(adoptionsSuccessState());
-  }).catchError((error) {
-    print(error.toString());
+  void adoptions({required animal_id}) {
+    emit(adoptionsLoadingState());
+    DioHelper.postData(url: baseurl + '/user/adoption/Req', data: {
+      'animal_id': animal_id,
+    }).then((value) {
+      print(value.data);
+      emit(adoptionsSuccessState());
+    }).catchError((error) {
+      print(error.toString());
 
-    emit(adoptionsErrorState());
-
-  });
+      emit(adoptionsErrorState());
+    });
   }
 
   //////////////////////////////// sponcership
-  void sponcership({
-    required animal_id,
-    required balance
-  }){
+  void sponcership({required animal_id, required balance}) {
     emit(sponcershipLoadingState());
-    DioHelper.postData(url: baseurl + '/user/sponcership/req', data: {
-      'animal_id': animal_id,
-      'balance':balance
-    }).then((value) {
+    DioHelper.postData(
+        url: baseurl + '/user/sponcership/req',
+        data: {'animal_id': animal_id, 'balance': balance}).then((value) {
       print(value.data);
       emit(sponcershipSuccessState());
     }).catchError((error) {
       print(error.toString());
       emit(sponcershipErrorState(error.hashCode));
     });
-
-
   }
-
 }

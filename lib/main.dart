@@ -1,9 +1,9 @@
-
 import 'package:easy_localization/easy_localization.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
+import 'package:sara_front/cubits/Emergencies/cubit/emergency_cubit.dart';
 import 'package:sara_front/cubits/Posts_cubit/cubit/posts_cubit.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/network/dio_helper.dart';
@@ -11,8 +11,10 @@ import 'package:sara_front/network/end_point.dart';
 import 'package:sara_front/register/reset_password.dart';
 import 'package:sara_front/register/signin.dart';
 import 'package:sara_front/register/signup.dart';
+import 'package:sara_front/screen/Emergencies.dart';
 import 'package:sara_front/screen/Settings.dart';
 import 'package:sara_front/screen/add_animals.dart';
+import 'package:sara_front/screen/add_emergency.dart';
 import 'package:sara_front/screen/animal_details.dart';
 import 'package:sara_front/screen/home.dart';
 import 'package:sara_front/screen/join_us_page.dart';
@@ -65,6 +67,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => AnimalCubit()),
         BlocProvider(create: (BuildContext context) => PostsCubit()),
         BlocProvider(create: (BuildContext context) => UserCubit()),
+        BlocProvider(create: (BuildContext context) => EmergencyCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

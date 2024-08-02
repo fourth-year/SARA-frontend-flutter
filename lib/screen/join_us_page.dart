@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
 import 'package:sara_front/components/defaultButton.dart';
 import 'package:sara_front/components/text.dart';
+import 'package:sara_front/components/textButton.dart';
 import 'package:sara_front/components/textfromfilde.dart';
 import 'package:sara_front/cubits/Posts_cubit/cubit/posts_cubit.dart';
 import 'package:sara_front/screen/layout.dart';
@@ -41,6 +42,9 @@ class _JoinUsPageState extends State<JoinUsPage> {
       (selected_start_time.hour > 10 && selected_start_time.minute < 10)
           ? "${selected_start_time.hour}:0${selected_start_time.minute}:00"
           : "${selected_start_time.hour}:${selected_start_time.minute}:00";
+      (selected_start_time.hour < 10 && selected_start_time.minute < 10)
+          ? "${selected_start_time.hour}:${selected_start_time.minute}:00"
+          : "${selected_start_time.hour}:${selected_start_time.minute}:00";
       PostsCubit.get(context).selectstartTime(selectstartTime);
       print(selectstartTime);
       start_time.text = selectstartTime.toString();
@@ -67,31 +71,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
     return BlocConsumer<PostsCubit, PostsState>(
       listener: (context, state) {
         if (state is JoinUsSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'your request has been sent successfully',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Inter',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              behavior: SnackBarBehavior.floating,
-              showCloseIcon: true,
-              backgroundColor: ColorApp.colorback,
-            ),
-          );
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Layout(),
-              ));
-          age.clear();
-          job_title.clear();
-          start_time.clear();
-          end_time.clear();
+          _openAnimatedDialog(context);
         }
         if (state is JoinUsError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -129,9 +109,17 @@ class _JoinUsPageState extends State<JoinUsPage> {
                 children: [
                   text(
                     text1:
-                        "We are very happy about your interest in joining us.\nPlease enter the required information",
+                        "\"Volunteering is not just about giving time, it's about giving hope and making a difference in the lives of other\"",
                     size: 18,
+                    color: ColorApp.color2,
                     fontWeight: FontWeight.w400,
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "We are very happy about your interest in joining us.\nPlease enter the required information",
+                    style: TextStyle(fontSize: 17),
                   ),
                   SizedBox(
                     height: 20,
@@ -153,19 +141,43 @@ class _JoinUsPageState extends State<JoinUsPage> {
                   SizedBox(
                     height: 25,
                   ),
-                  textfromfilde(
-                    size: 13,
-                    hint: 'Enter the job title',
+                  Text(
+                    "Tell us a bit about your skills and experience",
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextFormField(
                     controller: job_title,
-                    color: Color.fromARGB(255, 219, 229, 244),
-                    validate: (value) {
+                    minLines: 2,
+                    maxLines: 8,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide.none),
+                      hintText: 'type...',
+                      hintStyle: TextStyle(fontSize: 14, color: Colors.black87),
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 219, 229, 244),
+                      contentPadding: EdgeInsets.only(
+                          left: 25, top: 18, bottom: 18, right: 30),
+                    ),
+                    validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please enter the job title";
+                        return "Required";
                       }
                     },
                   ),
                   SizedBox(
                     height: 25,
+                  ),
+                  Text(
+                    "Please specify a time that suits you",
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   Row(
                     children: [
@@ -237,6 +249,49 @@ class _JoinUsPageState extends State<JoinUsPage> {
                 ],
               ),
             ),
+          ),
+        );
+      },
+    );
+  }
+
+  _openAnimatedDialog(BuildContext context) {
+    return showGeneralDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierLabel: '',
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        return Container();
+      },
+      transitionBuilder: (context, a1, a2, child) {
+        return ScaleTransition(
+          scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
+          child: AlertDialog(
+            backgroundColor: ColorApp.colorback,
+            title: text(text1: 'Thank you'.tr()),
+            content: Text(
+                'your request has been sent successfully...\nYou will receive an email notification upon approval.'
+                    .tr()),
+            shape: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none),
+            actions: [
+              textButton(
+                  text: 'Ok'.tr(),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Layout(),
+                        ));
+                    age.clear();
+                    job_title.clear();
+                    start_time.clear();
+                    end_time.clear();
+                  }),
+            ],
           ),
         );
       },

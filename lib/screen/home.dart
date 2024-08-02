@@ -201,6 +201,17 @@ class _HomeState extends State<Home> {
               ),
             ),
           );
+        } else if (state is GetAllPostsError) {
+          return Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Center(
+                  child: Text(
+                'There are no Posts',
+                style: TextStyle(fontSize: 17),
+              )),
+            ),
+          );
         } else {
           return Scaffold(
             body: Padding(
