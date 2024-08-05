@@ -18,13 +18,28 @@ class Wallet extends StatelessWidget {
 
         if(UserCubit.get(context).walletmodel !=null){
           return  Scaffold(
-        appBar: AppBar(backgroundColor: ColorApp.colorback, leading: IconButton(onPressed: () {
+        appBar: AppBar(
+          title: Padding(
+            padding: const EdgeInsets.only(top:8,right: 18),
+            child: text(
+            text1: 'Account Balance',
+            color: ColorApp.color2,
+            size: 22,
+                    ),
+          ),
+
+          backgroundColor: ColorApp.colorback,
+          leading: IconButton(onPressed: () {
           Navigator.pop(context);
           
-        }, icon: Icon(Icons.arrow_back_ios),),),
+        }, icon: Padding(
+          padding: const EdgeInsets.only(left: 20.0),
+          child: Icon(Icons.arrow_back_ios),
+        ),),),
+        backgroundColor: Colors.white,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 100.0),
+            padding: const EdgeInsets.only(top: 150.0),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center, // Add this line
 
@@ -34,25 +49,28 @@ class Wallet extends StatelessWidget {
                 //   child: textfromfilde(hint: UserCubit.get(context).walletmodel?.data.wallet.toString(),readonly: true,color: Colors.white,color1: Colors.black,),
                 //
                 // ),
-                SizedBox(height: 5,),
-                Card(
-                  elevation: 3.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  // shadowColor:Colors.black,
-                  surfaceTintColor: ColorApp.color2,
-
-                  borderOnForeground: false,
-                  child: Container(
-                    width: 400,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                    color: Colors.white
+                SizedBox(height: 10,),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Card(
+                    elevation: 3.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
                     ),
-                    child:Center(child: text(text1: UserCubit.get(context).walletmodel!.data.wallet.toString(),)),
+                    // shadowColor:Colors.black,
+                    surfaceTintColor: ColorApp.color2,
 
+                    borderOnForeground: false,
+                    child: Container(
+                      width: 400,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                      color: ColorApp.color
+                      ),
+                      child:Center(child: text(text1: UserCubit.get(context).walletmodel!.data.wallet.toString(),)),
+
+                    ),
                   ),
                 )
 
@@ -64,11 +82,23 @@ class Wallet extends StatelessWidget {
       );}
         return
           Scaffold(
-            appBar: AppBar(backgroundColor: ColorApp.colorback, leading: IconButton(onPressed: () {
-          Navigator.pop(context);
+            appBar: AppBar(
+              title: Padding(
+                padding: const EdgeInsets.only(right: 18),
+                child: text(
+                  text1: 'Account Balance',
+                  color: ColorApp.color2,
+                  size: 22,
+                ),
+              ),
 
-        }, icon: Icon(Icons.arrow_back_ios),),),
-        body: Center(
+              backgroundColor: ColorApp.colorback, leading: IconButton(onPressed: () {
+              Navigator.pop(context);
+
+            }, icon: Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Icon(Icons.arrow_back_ios),
+            ),),),        body: Center(
         child: CircularProgressIndicator(),
         ),
           );

@@ -130,7 +130,7 @@ class _signupState extends State<signup> {
                                 height: 150,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: ColorApp.color3,
+                                  color: ColorApp.color,
                                 ),
                               ),
                               Positioned(
@@ -211,8 +211,9 @@ class _signupState extends State<signup> {
                         if (value == null || value.isEmpty) {
                           return "please enter your password";
                         }
-                        return null;
-                      },
+
+                          return null;
+                        },
                     ),
                   ),
                   passError
@@ -256,8 +257,9 @@ class _signupState extends State<signup> {
                         if (value == null || value.isEmpty) {
                           return "please enter your password";
                         }
-                        return null;
-                      },
+
+                          return null;
+                        },
                     ),
                   ),
                   passError

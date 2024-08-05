@@ -123,16 +123,26 @@ class _AddAnimalState extends State<AddAnimal> {
         backgroundColor: ColorApp.colorback,
         appBar: AppBar(
           backgroundColor: ColorApp.colorback,
-          title: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: text(
-                text1: 'Add an animal'.tr(),
-                size: 25,
-                color: ColorApp.color2,
-              ),
-            ),
+          title: Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child:
+            text(text1:'Add an animal'.tr(),color: ColorApp.color2,
+              size: 22,),
+
+            // text(
+            //   text1: 'Add an animal'.tr(),
+            //   size: 25,
+            //   color: ColorApp.color2,
+            // ),
           ),
+          leading: IconButton(onPressed: () {
+            Navigator.pop(
+                context);
+          }, icon: Padding(
+            padding: const EdgeInsets.only(left: 20.0,right: 20),
+            child: Icon(Icons.arrow_back_ios),
+          ),),
+
         ),
         body: SingleChildScrollView(
           child: Padding(

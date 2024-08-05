@@ -11,10 +11,7 @@ import '../components/colors.dart';
 import '../components/text.dart';
 import 'layout.dart';
 
-
 class vaccination extends StatefulWidget {
-
-
   @override
   State<vaccination> createState() => _vaccinationState();
 }
@@ -24,63 +21,83 @@ class _vaccinationState extends State<vaccination> {
   // GlobalKey<ScaffoldState> _scaffoldKeyVac = GlobalKey<ScaffoldState>();
   // GlobalKey<ScaffoldState> _scaffoldKeyElse = GlobalKey<ScaffoldState>(); // new key
 
-
   void initState() {
     super.initState();
     AnimalCubit.get(context).vaccinationAnimal();
-
   }
 
   bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
-
-    return  BlocConsumer<AnimalCubit, AnimalStates>(
+    return BlocConsumer<AnimalCubit, AnimalStates>(
       listener: (context, state) {
-        if(state is CanvaccinationErrorState){
-          print('error feed');
+        if (state is CanvaccinationErrorState) {
+          {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(
+                'Error happened, try again',
+                style: TextStyle(
+                  color: ColorApp.color2,
+                  fontFamily: 'Inter',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              behavior: SnackBarBehavior.floating,
+              showCloseIcon: true,
+              closeIconColor: ColorApp.color2,
+              backgroundColor: ColorApp.colorback,
+            ));
+            AnimalCubit.get(context).feedingAnimal();
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => vaccination()));
+          }
         }
-        if(state is CanvaccinationSuccessState){
+        if (state is CanvaccinationSuccessState) {
           AnimalCubit.get(context).vaccinationAnimal();
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => vaccination()),
           );
         }
-
       },
-      builder: (context,  state) {
-
-        if( AnimalCubit.get(context).vaccination_modle!=null && state is vaccinationSuccessState){
+      builder: (context, state) {
+        if (AnimalCubit.get(context).vaccination_modle != null &&
+            state is vaccinationSuccessState) {
           print('vaccination');
-          return    Scaffold(
+          return Scaffold(
             // key: _scaffoldKeyVac,
             appBar: AppBar(
               leading: IconButton(
                 onPressed: () {
-
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) => Layout()),
-                );
-              }, icon: Icon(Icons.arrow_back_ios),),
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Layout()),
+                  );
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20),
+                  child: Icon(Icons.arrow_back_ios),
+                ),
+              ),
               backgroundColor: ColorApp.colorback,
-              title: Center(child: text(text1: 'Vaccination',color: ColorApp.color2,
-                size: 22,),),
+              title: text(
+                text1: 'Vaccination',
+                color: ColorApp.color2,
+                size: 22,
+              ),
             ),
             body: Column(
               children: [
                 Expanded(
                   child: GridView.count(
                     crossAxisCount: 1,
-                    childAspectRatio: 2,
+                    childAspectRatio: 2.5,
                     children: List.generate(
-                      AnimalCubit.get(context)
-                          .vaccination_modle!
-                          .data
-                          .length,
-                          (index) => builditem(
+                      AnimalCubit.get(context).vaccination_modle!.data.length,
+                      (index) => builditem(
                           AnimalCubit.get(context)
                               .vaccination_modle!
                               .data[index],
@@ -91,52 +108,60 @@ class _vaccinationState extends State<vaccination> {
                 ),
               ],
             ),
-          );}
-        else {
+          );
+        } else {
           print('not vaccination');
           return Scaffold(
               // key: _scaffoldKeyElse,
 
-              appBar:AppBar(
-                leading: IconButton(onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Layout()),
-                  );
-                }, icon: Icon(Icons.arrow_back_ios),),
+              appBar: AppBar(
+                leading: IconButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Layout()),
+                    );
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    child: Icon(Icons.arrow_back_ios),
+                  ),
+                ),
                 backgroundColor: ColorApp.colorback,
-                title: text(text1: 'Vaccination',),
+                title: text(
+                  text1: 'Vaccination',
+                  color: ColorApp.color2,
+                  size: 22,
+                ),
               ),
               body: Center(
                 child: CircularProgressIndicator(),
-
-              )
-          );
+              ));
         }
       },
-
     );
   }
 
   Widget builditem(dynamic model, context, index) {
-    return Container(
-      height: 400,
-      width: 520,
-      child: Card(
-        elevation: 3.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        // shadowColor:Colors.black,
-        surfaceTintColor: ColorApp.color2,
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Container(
+        // height: 400,
+        // width: 520,
+        child: Card(
+          // elevation: 3.0,
+          // shape: RoundedRectangleBorder(
+          //   borderRadius: BorderRadius.circular(20.0),
+          // ),
+          // // shadowColor:Colors.black,
+          // surfaceTintColor: ColorApp.color2,
+          //
+          // borderOnForeground: false,
 
-        borderOnForeground: false,
-
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
           child: Container(
             decoration: BoxDecoration(
-                color: ColorApp.colorback,
+                // color: ColorApp.colorback,
                 borderRadius: BorderRadius.circular(20)),
             child: Row(
               children: [
@@ -145,7 +170,6 @@ class _vaccinationState extends State<vaccination> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Padding(
                         padding: const EdgeInsets.all(18),
                         child: Column(
@@ -160,7 +184,7 @@ class _vaccinationState extends State<vaccination> {
                               height: 5.0,
                             ),
                             text(
-                              text1: " Dep : ${model.number}",
+                              text1: " the time  : 9:00 am",
                               size: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -170,29 +194,44 @@ class _vaccinationState extends State<vaccination> {
                     ],
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       dynamic dep;
-                      if (model.name=="Department 1"){dep=1;}
-                      if (model.name=="Department 2"){dep=2;}
-                      if (model.name=="Department 3"){dep=3;}
-                      if (model.name=="Department 4"){dep=4;}
-                      if (model.name=="Department 5"){dep=5;}
-                      if (model.name=="Department 6"){dep=6;}
-                      if (model.name=="Department 7"){dep=7;}
-                      if (model.name=="Department 8"){dep=8;}
-                      if (model.name=="Department 9"){dep=9;}
-                      if (model.name=="Department 10"){dep=10;}
+                      if (model.name == "Department 1") {
+                        dep = 1;
+                      }
+                      if (model.name == "Department 2") {
+                        dep = 2;
+                      }
+                      if (model.name == "Department 3") {
+                        dep = 3;
+                      }
+                      if (model.name == "Department 4") {
+                        dep = 4;
+                      }
+                      if (model.name == "Department 5") {
+                        dep = 5;
+                      }
+                      if (model.name == "Department 6") {
+                        dep = 6;
+                      }
+                      if (model.name == "Department 7") {
+                        dep = 7;
+                      }
+                      if (model.name == "Department 8") {
+                        dep = 8;
+                      }
+                      if (model.name == "Department 9") {
+                        dep = 9;
+                      }
+                      if (model.name == "Department 10") {
+                        dep = 10;
+                      }
 
-
-
-
-                     openFeedingDialog(context, dep);
+                      openFeedingDialog(context, dep);
                       print(model.name);
-
                     },
                     child: Container(
                       width: 24,
@@ -200,19 +239,10 @@ class _vaccinationState extends State<vaccination> {
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
                         borderRadius: BorderRadius.circular(4),
-                      ),),
+                      ),
+                    ),
                   ),
                 ),
-
-                // Checkbox(
-                //   checkColor: Colors.white,
-                //   side: BorderSide(),
-                //   value:   AnimalCubit.get(context).ischeck,
-                //   onChanged: (bool? value) {
-                //     AnimalCubit.get(context). check(value);
-                //   },
-                // )
-
               ],
             ),
           ),
@@ -222,7 +252,7 @@ class _vaccinationState extends State<vaccination> {
   }
 
   //////////////////////////////////////
-  openFeedingDialog(BuildContext context,dynamic i) {
+  openFeedingDialog(BuildContext context, dynamic i) {
     return showGeneralDialog(
       context: context,
       barrierDismissible: false,
@@ -236,20 +266,13 @@ class _vaccinationState extends State<vaccination> {
           scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
           child: AlertDialog(
             backgroundColor: ColorApp.colorback,
-            title: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5, right: 5),
-                  child: Icon(
-                    Icons.warning_amber_rounded,
-                    color: ColorApp.color2,
-                    size: 18,
-                  ),
-                ),
-                text(text1: 'Confirmation'),
-              ],
+            content: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: text(
+                text1: 'Are you sure you can complete the task?',
+                color: ColorApp.color2,
+              ),
             ),
-            content: Text('Are you sure you can complete the task?'),
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none),
@@ -263,9 +286,8 @@ class _vaccinationState extends State<vaccination> {
                   text: 'yes',
                   color: ColorApp.color2,
                   onTap: () {
-                    AnimalCubit.get(context).Can_vaccination(id_dep:i );
+                    AnimalCubit.get(context).Can_vaccination(id_dep: i);
                     // Navigator.push(context, MaterialPageRoute(builder:(context)=> vaccination()));
-
                   })
             ],
           ),
@@ -273,5 +295,4 @@ class _vaccinationState extends State<vaccination> {
       },
     );
   }
-
 }

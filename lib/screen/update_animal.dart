@@ -21,17 +21,11 @@ class Update_Animal extends StatefulWidget {
 
 class _Update_AnimalState extends State<Update_Animal> {
   bool Dep_Error = false;
-
   bool Type_Error = false;
-
   var formkay = GlobalKey<FormState>();
-
   // String date = '';
-
   final _picker = ImagePicker();
-
   File? _image;
-
   late String image64 = '';
 
   @override
@@ -106,18 +100,24 @@ class _Update_AnimalState extends State<Update_Animal> {
         AnimalCubit.get(context)
             .getanimal_Byid(AnimalCubit.get(context).get_Animal_By_id!.data.id);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            'Updated successfully',
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Inter',
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-            ),
+          content: Row(
+            children: [
+              Text(
+                'Updated successfully',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Inter',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Spacer(), // Add a spacer to push the icon to the end
+              Icon(Icons.check, color: Colors.green),
+            ],
           ),
           behavior: SnackBarBehavior.floating,
-          showCloseIcon: true,
-          closeIconColor: Colors.black,
+          // showCloseIcon: true,
+          // closeIconColor: Colors.black,
           backgroundColor: ColorApp.colorback,
         ));
       }
@@ -143,15 +143,22 @@ class _Update_AnimalState extends State<Update_Animal> {
         backgroundColor: ColorApp.colorback,
         appBar: AppBar(
           backgroundColor: ColorApp.colorback,
-          title: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: text(
-                text1: 'Update the animal info',
-                size: 25,
-                color: ColorApp.color2,
-              ),
-            ),
+          leading: IconButton(
+            onPressed: () {
+              AnimalCubit.get(context).getanimal_Byid(model!.id);
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (BuildContext context) => AnimalDetails(id: model!.id,)),
+              );
+            }, icon: Padding(
+            padding: const EdgeInsets.only(left: 20.0,right: 20),
+              child: Icon(Icons.arrow_back_ios),
+            ),),
+          title: text(
+            text1: 'Update the animal info',
+            size: 22,
+            color: ColorApp.color2,
           ),
         ),
         body: SingleChildScrollView(
@@ -166,7 +173,26 @@ class _Update_AnimalState extends State<Update_Animal> {
                       onTap: () {
                         _openImagePicker();
                       },
-                      child: _image == null
+
+
+                      child:
+                      model?.photo!=null?
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorApp.color3,
+                            image: DecorationImage(
+                              image: MemoryImage(base64Decode(model?.photo)),
+                              fit: BoxFit.fill,
+                            )
+                        ),
+
+                      ):
+
+
+                      _image == null
                           ? Stack(children: [
                               Container(
                                 width: 150,
@@ -238,7 +264,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                       _selectDateTime(context);
                     },
                     readonly: true,
-                    color: ColorApp.color3,
+                    color: ColorApp.color,
                     prefix: Icon(Icons.calendar_today),
                     validate: (value) {
                       if (value == null || value.isEmpty) {
@@ -280,6 +306,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                   Padding(
                     padding: const EdgeInsets.only(top: 18),
                     child: DropdownButtonFormField(
+                        isExpanded: true,
                         hint: Text(
                           'Choose the health status of the animal',
                           style:

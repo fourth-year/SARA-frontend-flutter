@@ -10,6 +10,7 @@ import 'package:sara_front/screen/vaccination.dart';
 import '../components/colors.dart';
 import '../components/text.dart';
 import '../cubits/cubits_animals/cubit.dart';
+import 'drawer.dart';
 
 class Jops extends StatelessWidget {
   // GlobalKey<ScaffoldState> scaffoldekey= new GlobalKey<ScaffoldState>();
@@ -19,8 +20,10 @@ class Jops extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(),
+      appBar: AppBar(title:text(text1:"Tasks",color: ColorApp.color2,
+        size: 22,),
+        ),
+      drawer: Drawer_Screen(),
       // (title: Padding(
       //   padding: const EdgeInsets.only(left: 60.0,right: 60),
       //   child: text(text1: 'Task',color: ColorApp.color2,
@@ -32,18 +35,18 @@ class Jops extends StatelessWidget {
       //   size: 35,),heightFactor: 100,)),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 15.0,
-              right: 15,
-              top: 35,
-            ),
-            child: text(
-              text1: 'Tasks',
-              color: ColorApp.color2,
-              size: 25,
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(
+          //     left: 15.0,
+          //     right: 15,
+          //     top: 35,
+          //   ),
+          //   child: text(
+          //     text1: 'Tasks',
+          //     color: ColorApp.color2,
+          //     size: 25,
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 15, top: 150),
             child: Column(

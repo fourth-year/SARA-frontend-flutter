@@ -69,19 +69,25 @@ class _Edit_ProfileState extends State<Edit_Profile> {
       builder: (BuildContext context, state) {
         return Scaffold(
           backgroundColor: ColorApp.colorback,
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: text(text1: 'Update Profile'.tr(),
+              size: 22,
+              font: "title",
+              fontWeight: FontWeight.w100,
+              color: ColorApp.color2,),
+            leading: IconButton(onPressed: () {
+              Navigator.pop(
+                  context);
+            }, icon: Padding(
+              padding: const EdgeInsets.only(left: 20.0,right: 20),
+              child: Icon(Icons.arrow_back_ios),
+            ),),
+          ),
           body: SingleChildScrollView(
             child: Form(
               key: formkay,
               child: Column(
                 children: [
-                  text(
-                    text1: 'Update Profile'.tr(),
-                    size: 35,
-                    font: "title",
-                    fontWeight: FontWeight.w100,
-                    color: ColorApp.color2,
-                  ),
                   text(
                     text1: '',
                     size: 15,
@@ -102,7 +108,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                                 height: 150,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: ColorApp.color3,
+                                  color: ColorApp.color,
                                 ),
                               ),
                               Positioned(
@@ -120,7 +126,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                               height: 150,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: ColorApp.color3,
+                                color: ColorApp.color,
                               ),
                               child: CircleAvatar(
                                 radius: 60.0,

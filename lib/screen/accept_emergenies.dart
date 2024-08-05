@@ -8,6 +8,8 @@ import 'package:sara_front/components/text.dart';
 import 'package:sara_front/components/textButton.dart';
 import 'package:sara_front/cubits/Emergencies/cubit/emergency_cubit.dart';
 
+import 'layout.dart';
+
 class AcceptEmergenies extends StatelessWidget {
   const AcceptEmergenies({super.key});
 
@@ -56,6 +58,15 @@ class AcceptEmergenies extends StatelessWidget {
         if (state is GetAllEmergenciesSuccessfully) {
           return Scaffold(
             appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Icon(Icons.arrow_back_ios),
+                ),
+              ),
               title: text(
                 text1: 'Unacceptable emergencies',
                 size: 18,
@@ -219,7 +230,21 @@ class AcceptEmergenies extends StatelessWidget {
           );
         } else if (state is GetAllEmergenciesError) {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Layout()),
+                  );
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20),
+                  child: Icon(Icons.arrow_back_ios),
+                ),
+              ),
+            ),
             body: Center(
               child: Text(
                 'There are no unacceptable emergencies',
@@ -229,7 +254,19 @@ class AcceptEmergenies extends StatelessWidget {
           );
         } else {
           return Scaffold(
-            appBar: AppBar(),
+            appBar: AppBar( leading: IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Layout()),
+                );
+              },
+              icon: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Icon(Icons.arrow_back_ios),
+              ),
+            ),),
             body: Center(child: CircularProgressIndicator()),
           );
         }

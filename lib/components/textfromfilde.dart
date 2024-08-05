@@ -68,11 +68,7 @@ class textfromfilde extends StatelessWidget {
           //لون المستطيل كامل
           filled: true,
           fillColor: color,
-
-          // border: InputBorder.none,
-
-          // enabledBorder: InputBorder.none,
-          border: UnderlineInputBorder(
+          border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(r!),
             borderSide: BorderSide.none,
           ),

@@ -326,7 +326,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                 length: 5,
                 child: Scaffold(
                   key: scaffoldekey,
-                  backgroundColor: ColorApp.color,
+                  backgroundColor: Colors.white,
                   appBar: AppBar(
                     title: text(
                       text1: 'Animals'.tr(),
@@ -552,7 +552,7 @@ class _Show_AnimalsState extends State<Show_Animals>
       child: Card(
         elevation: 3.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(24.0),
         ),
         // shadowColor:Colors.black,
         surfaceTintColor: ColorApp.color2,
@@ -576,7 +576,7 @@ class _Show_AnimalsState extends State<Show_Animals>
             child: Container(
               decoration: BoxDecoration(
                   color: ColorApp.colorback,
-                  borderRadius: BorderRadius.circular(24)),
+                  borderRadius: BorderRadius.circular(14)),
               child: Column(
                 children: [
                   Padding(
@@ -585,18 +585,28 @@ class _Show_AnimalsState extends State<Show_Animals>
                     child: Container(
                       constraints: BoxConstraints(
                         minWidth: 400,
-                        minHeight: 180,
+                        minHeight: 120,
                       ),
                       child: model.photo != null
-                          ? Image(
-                              height: 180,
-                              width: 400,
-                              fit: BoxFit.fill,
-                              image: MemoryImage(base64Decode(model.photo)),
-                            )
+                          ? Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: MemoryImage(base64Decode(model.photo)),
+                            fit: BoxFit.fill,
+                          )
+
+                        ),
+                            // child: Image(
+                            //     height: 120,
+                            //     width: 400,
+                            //     fit: BoxFit.fill,
+                            //     image: MemoryImage(base64Decode(model.photo)),
+                            //   ),
+                          )
                           : Container(),
                       decoration: BoxDecoration(
-                        color: ColorApp.color3,
+                        color: ColorApp.color,
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
@@ -608,7 +618,7 @@ class _Show_AnimalsState extends State<Show_Animals>
                       children: [
                         text(
                           text1: "Name : ${model!.name}",
-                          size: 20,
+                          size: 18,
                           fontWeight: FontWeight.w200,
                         ),
                         SizedBox(
@@ -617,37 +627,37 @@ class _Show_AnimalsState extends State<Show_Animals>
                         if (model!.animaltypeId == 1)
                           text(
                             text1: "Type : Cat",
-                            size: 16,
+                            size: 14,
                             fontWeight: FontWeight.normal,
                           ),
                         if (model!.animaltypeId == 2)
                           text(
                             text1: "Type : Dog",
-                            size: 16,
+                            size: 14,
                             fontWeight: FontWeight.normal,
                           ),
                         if (model!.animaltypeId == 3)
                           text(
                             text1: "Type : Bird",
-                            size: 16,
+                            size: 14,
                             fontWeight: FontWeight.normal,
                           ),
                         if (model!.animaltypeId == 4)
                           text(
                             text1: "Type : Horse",
-                            size: 16,
+                            size: 14,
                             fontWeight: FontWeight.normal,
                           ),
                         if (model!.animaltypeId == 5)
                           text(
                             text1: "Type : Donkey",
-                            size: 16,
+                            size: 14,
                             fontWeight: FontWeight.normal,
                           ),
                         // SizedBox(height: 5,),
                         text(
                           text1: " Age : ${model.age}",
-                          size: 16,
+                          size: 14,
                           fontWeight: FontWeight.normal,
                         ),
                       ],

@@ -17,7 +17,8 @@ class more extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: text(text1: 'S.A.R.A',color: ColorApp.color2,
+        size: 24,),),
       // (title: Padding(
       //   padding: const EdgeInsets.only(left: 60.0,right: 60),
       //   child: text(text1: 'Task',color: ColorApp.color2,
@@ -35,9 +36,9 @@ class more extends StatelessWidget {
               size: 35,),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 15.0,right: 15,top: 150),
+            padding: const EdgeInsets.only(left: 15.0,right: 15,top: 50),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Card(
                 //     elevation: 3.0,
@@ -54,7 +55,7 @@ class more extends StatelessWidget {
                 //       w:screenWidth.width,
                 //       h: 50,s: 20,
                 //       color: ColorApp.color3,textColor: ColorApp.color1,)),
-                SizedBox(height: 8,),
+                // SizedBox(height: 28,),
                 Row(
                   mainAxisAlignment:MainAxisAlignment.center,
                   children: [
@@ -75,7 +76,7 @@ class more extends StatelessWidget {
                           borderOnForeground: false,
                           child:
                          Container(
-                           width: 200,
+                           width: screenWidth.width/3,
                            height: 200,
                            decoration: BoxDecoration(
                                color: ColorApp.colorback,
@@ -84,7 +85,7 @@ class more extends StatelessWidget {
                                         child:Column(
                                           children: [
                                             Container(
-                                              width: 200,
+                                              width: screenWidth.width/3,
                                               height: 170,
                                                 decoration: BoxDecoration(
                                                     color: ColorApp.colorback,
@@ -118,33 +119,30 @@ class more extends StatelessWidget {
 
                             //id:model.id,
                           );},
-                          child: Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: Container(
-                                width: 200,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: ColorApp.colorback,
-                                  borderRadius: BorderRadius.circular(24),),
+                          child: Container(
+                              width: screenWidth.width/3,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: ColorApp.colorback,
+                                borderRadius: BorderRadius.circular(24),),
 
-                                child:Column(
-                                  children: [
-                                    Container(
-                                      width: 200,
-                                      height: 170,
-                                      decoration: BoxDecoration(
-                                        color: ColorApp.colorback,
-                                        borderRadius: BorderRadius.circular(24),
-                                        image: DecorationImage(
+                              child:Column(
+                                children: [
+                                  Container(
+                                    width: screenWidth.width/3,
+                                    height: 170,
+                                    decoration: BoxDecoration(
+                                      color: ColorApp.colorback,
+                                      borderRadius: BorderRadius.circular(24),
+                                      image: DecorationImage(
 
-                                            image: AssetImage('assets/images/donate.png',),
-                                            fit: BoxFit.cover),),child: SizedBox(),
-                                    ),
-                                    text(text1: 'Donate'.tr(),size: 15,),
-                                  ],
-                                )
+                                          image: AssetImage('assets/images/donate.png',),
+                                          fit: BoxFit.cover),),child: SizedBox(),
+                                  ),
+                                  text(text1: 'Donate'.tr(),size: 15,),
+                                ],
+                              )
 
-                            ),
                           ),
                         )),
                   ],

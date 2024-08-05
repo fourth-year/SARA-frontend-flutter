@@ -71,7 +71,7 @@ class signin extends StatelessWidget {
                   ClipPath(
                     clipper: containerclipper(),
                     child: Container(
-                      height: 250,
+                      height: 180,
                       width:screenWidth.width,
                       constraints: BoxConstraints(),
                       decoration: BoxDecoration(
@@ -84,7 +84,7 @@ class signin extends StatelessWidget {
 
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 35,),
                   text(text1: 'Welcome Back',size: 35,font: "title",
                     fontWeight: FontWeight.w100,
                     color: ColorApp.color2,),

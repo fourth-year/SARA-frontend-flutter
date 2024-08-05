@@ -26,8 +26,10 @@ class _JoinUsPageState extends State<JoinUsPage> {
   TextEditingController job_title = TextEditingController();
   late TextEditingController start_time = TextEditingController();
   TextEditingController end_time = TextEditingController();
+  var formkey = GlobalKey<FormState>();
 
-  Future<Null> SelectStartTime(BuildContext context) async {
+
+  Future<void> SelectStartTime(BuildContext context) async {
     final TimeOfDay? selected_start_time =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
@@ -51,7 +53,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
     }
   }
 
-  Future<Null> SelectEndTime(BuildContext context) async {
+  Future<void> SelectEndTime(BuildContext context) async {
     final TimeOfDay? selected_end_time =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
@@ -67,7 +69,8 @@ class _JoinUsPageState extends State<JoinUsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var formkey = GlobalKey<FormState>();
+    final screenWidth = MediaQuery.of(context).size;
+
     return BlocConsumer<PostsCubit, PostsState>(
       listener: (context, state) {
         if (state is JoinUsSuccess) {
@@ -95,38 +98,47 @@ class _JoinUsPageState extends State<JoinUsPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              "Join Us",
-              style: TextStyle(color: ColorApp.color2),
-            ),
+            title: text(text1:"Join Us",color: ColorApp.color2,
+              size: 22,),
+            leading: IconButton(onPressed: () {
+              Navigator.pop(
+                  context);
+            }, icon: Icon(Icons.arrow_back_ios),),
+            // title: Text(
+            //   "Join Us",
+            //   style: TextStyle(color: ColorApp.color2),
+            // ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Form(
-              key: formkey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  text(
-                    text1:
-                        "\"Volunteering is not just about giving time, it's about giving hope and making a difference in the lives of other\"",
-                    size: 18,
-                    color: ColorApp.color2,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "We are very happy about your interest in joining us.\nPlease enter the required information",
-                    style: TextStyle(fontSize: 17),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: textfromfilde(
-                      size: 13,
+
+
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Form(
+                key: formkey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    text(
+                      text1:
+                          "\"Volunteering is not just about giving time, it's about giving hope and making a difference in the lives of other\"",
+                      size: 18,
+                      color: ColorApp.color2,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "We are very happy about your interest in joining us.\nPlease enter the required information",
+                      style: TextStyle(fontSize: 17),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    textfromfilde(
+                      // size: 13,
+            
                       hint: 'Enter your age',
                       controller: age,
                       type: TextInputType.name,
@@ -137,116 +149,116 @@ class _JoinUsPageState extends State<JoinUsPage> {
                         }
                       },
                     ),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    "Tell us a bit about your skills and experience",
-                    style: TextStyle(fontSize: 17),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextFormField(
-                    controller: job_title,
-                    minLines: 2,
-                    maxLines: 8,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none),
-                      hintText: 'type...',
-                      hintStyle: TextStyle(fontSize: 14, color: Colors.black87),
-                      filled: true,
-                      fillColor: Color.fromARGB(255, 219, 229, 244),
-                      contentPadding: EdgeInsets.only(
-                          left: 25, top: 18, bottom: 18, right: 30),
+                    SizedBox(
+                      height: 25,
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "Required";
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    "Please specify a time that suits you",
-                    style: TextStyle(fontSize: 17),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        width: 230,
-                        child: textfromfilde(
-                          size: 13,
-                          readonly: true,
-                          hint: 'Start Time',
-                          controller: start_time,
-                          type: TextInputType.name,
-                          color: Color.fromARGB(255, 219, 229, 244),
-                          validate: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Required";
-                            }
-                          },
-                          ontap: () {
-                            SelectStartTime(context);
-                          },
-                        ),
+                    Text(
+                      "Tell us a bit about your skills and experience",
+                      style: TextStyle(fontSize: 17),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextFormField(
+                      controller: job_title,
+                      minLines: 2,
+                      maxLines: 8,
+                      decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none),
+                        hintText: 'type...',
+                        hintStyle: TextStyle(fontSize: 14, color: Colors.black87),
+                        filled: true,
+                        fillColor: Color.fromARGB(255, 219, 229, 244),
+                        contentPadding: EdgeInsets.only(
+                            left: 25, top: 18, bottom: 18, right: 30),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 230,
-                        child: textfromfilde(
-                          size: 13,
-                          readonly: true,
-                          hint: 'End Time',
-                          controller: end_time,
-                          type: TextInputType.name,
-                          color: Color.fromARGB(255, 219, 229, 244),
-                          validate: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Required";
-                            }
-                          },
-                          ontap: () {
-                            SelectEndTime(context);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Center(
-                    child: defaultButton(
-                      onTap: () {
-                        if (formkey.currentState!.validate()) {
-                          PostsCubit.get(context).add_Request_JoinUs(
-                              age: age.text,
-                              job_title: job_title.text,
-                              start_time:
-                                  PostsCubit.get(context).selectstarttime,
-                              end_time: PostsCubit.get(context).selectendtime);
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Required";
                         }
                       },
-                      text: "Send",
-                      textColor: Colors.white,
-                      color: ColorApp.color2,
-                      h: 50,
-                      w: 100,
                     ),
-                  )
-                ],
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Text(
+                      "Please specify a time that suits you",
+                      style: TextStyle(fontSize: 17),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: screenWidth.width/3+screenWidth.width/10,
+                          child: textfromfilde(
+                            size: 13,
+                            readonly: true,
+                            hint: 'Start Time',
+                            controller: start_time,
+                            type: TextInputType.name,
+                            color: Color.fromARGB(255, 219, 229, 244),
+                            validate: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Required";
+                              }
+                            },
+                            ontap: () {
+                              SelectStartTime(context);
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          width: screenWidth.width/3+screenWidth.width/10,
+                          child: textfromfilde(
+                            size: 13,
+                            readonly: true,
+                            hint: 'End Time',
+                            controller: end_time,
+                            type: TextInputType.name,
+                            color: Color.fromARGB(255, 219, 229, 244),
+                            validate: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Required";
+                              }
+                            },
+                            ontap: () {
+                              SelectEndTime(context);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Center(
+                      child: defaultButton(
+                        onTap: () {
+                          if (formkey.currentState!.validate()) {
+                            PostsCubit.get(context).add_Request_JoinUs(
+                                age: age.text,
+                                job_title: job_title.text,
+                                start_time:
+                                    PostsCubit.get(context).selectstarttime,
+                                end_time: PostsCubit.get(context).selectendtime);
+                          }
+                        },
+                        text: "Send",
+                        textColor: Colors.white,
+                        color: ColorApp.color2,
+                        h: 50,
+                        w: 100,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

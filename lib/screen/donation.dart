@@ -25,10 +25,16 @@ class donation extends StatelessWidget {
       listener: (BuildContext context, UserSates state) {
         if (state is DonationSuccessState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: text(text1: ' Donation successfully,',),
+            content: Row(
+              children: [
+                text(text1: ' Donation successfully,',),
+                Spacer(), // Add a spacer to push the icon to the end
+                Icon(Icons.check, color: Colors.green),
+              ],
+            ),
             behavior: SnackBarBehavior.floating,
-            showCloseIcon: true,
-            closeIconColor: Colors.black,
+            // showCloseIcon: true,
+            // closeIconColor: Colors.black,
             backgroundColor: ColorApp.colorback,
           ));
         }
@@ -64,66 +70,71 @@ class donation extends StatelessWidget {
             leading: IconButton(onPressed: () {
               Navigator.pop(
                 context);
-            }, icon: Icon(Icons.arrow_back_ios),),),
+            }, icon: Padding(
+              padding: const EdgeInsets.only(left: 20.0,right: 20),
+              child: Icon(Icons.arrow_back_ios),
+            ),),),
           body: Form(
             key: formkay,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Column(
-                children: [
-                  Padding(
-                    padding:  EdgeInsets.only(left: 40.0,right: 40.0,bottom: 40.0),
-                    child: text(text1:"You can make a difference in the lives of animals by donating to the center here. By doing so, "
-                        "you will help support our work to uplift animals and improve their lives, "
-                        "no matter how small the donation",size: 15,),
-                  ),
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 25.0),
-                    child: textfromfilde(hint:'enter the amount ',
-                      controller:amountcontroller ,
-                      color: ColorApp.color,
-                      validate: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "please enter the amount";
-                        }
-                        return null;
-                      },
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 60),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: 40.0,right: 40.0,bottom: 40.0),
+                      child: text(text1:"You can make a difference in the lives of animals by donating to the center here. By doing so, "
+                          "you will help support our work to uplift animals and improve their lives, "
+                          "no matter how small the donation",size: 15,),
                     ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Center(
-                      child: ConditionalBuilder(
-                        condition:state is! DonationLoadingState,
-                        fallback: (context)=>Center(child: CircularProgressIndicator(),),
-                        builder: (context)=>  defaultButton(
-                          text: " Done",
-                          w: 130,
-                          h: 45,
-                          r:10 ,
-                          s: 20,
-                          color:ColorApp.color2,
-                          onTap: (){
-
-                            if (formkay.currentState!.validate())
-                            {
-                                UserCubit.get(context).post_donation(balance: int.parse(amountcontroller.text));
-                            }
-
-                          },
-
-
-                          // Color.fromRGBO(255, 239, 193,1),
-                        ),
-
+                      
+                      
+                    Padding(
+                      padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 25.0),
+                      child: textfromfilde(hint:'enter the amount ',
+                        controller:amountcontroller ,
+                        color: ColorApp.color,
+                        validate: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "please enter the amount";
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                  ),
-
-                ],
+                      
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Center(
+                        child: ConditionalBuilder(
+                          condition:state is! DonationLoadingState,
+                          fallback: (context)=>Center(child: CircularProgressIndicator(),),
+                          builder: (context)=>  defaultButton(
+                            text: " Done",
+                            w: 130,
+                            h: 45,
+                            r:10 ,
+                            s: 20,
+                            color:ColorApp.color2,
+                            onTap: (){
+                      
+                              if (formkay.currentState!.validate())
+                              {
+                                  UserCubit.get(context).post_donation(balance: int.parse(amountcontroller.text));
+                              }
+                      
+                            },
+                      
+                      
+                            // Color.fromRGBO(255, 239, 193,1),
+                          ),
+                      
+                        ),
+                      ),
+                    ),
+                      
+                  ],
+                ),
               ),
             ),
           ),

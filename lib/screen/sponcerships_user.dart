@@ -51,7 +51,7 @@ class _sponcership_userState extends State<sponcership_user> {
                   Expanded(
                       child: GridView.count(
                         crossAxisCount: 1,
-                        childAspectRatio: 1.5,
+                        childAspectRatio: 2.5,
                         children: List.generate(
                           UserCubit.get(context)
                               .sponcershipmodel!
@@ -77,76 +77,85 @@ class _sponcership_userState extends State<sponcership_user> {
   }
 
   Widget builditem(dynamic model, context, index) {
-    return Container(
-      height: 400,
-      width: 520,
-      child: Card(
-        elevation: 3.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(26.0),
-        ),
-        // shadowColor:Colors.black,
-        surfaceTintColor: ColorApp.color2,
+    return Padding(
+      padding: const EdgeInsets.all(3.0),
+      child: Container(
+        height: 100,
+        width: 520,
+        child: Card(
+          elevation: 3.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(26.0),
+          ),
+          // shadowColor:Colors.black,
+          surfaceTintColor: ColorApp.color2,
 
-        borderOnForeground: false,
+          borderOnForeground: false,
 
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: ColorApp.colorback,
-                borderRadius: BorderRadius.circular(16)),
-            child: Row(
-              children: [
-                Padding(
-                  padding:
-                  const EdgeInsets.only(top: 8.0, left: 10, right: 10),
-                  child: Container(
-                    constraints: BoxConstraints(
-                      minWidth: 400,
-                      minHeight: 180,
-                    ),
-                    child: model.animal!.photo != null
-                        ? Image(
-                      height: 180,
-                      width: 400,
-                      fit: BoxFit.fill,
-                      image: MemoryImage(base64Decode(model!.animal!.photo)),
-                    )
-                        : Container(),
-                    decoration: BoxDecoration(
-                      color: ColorApp.color3,
-                      borderRadius: BorderRadius.circular(20),
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: ColorApp.colorback,
+                  borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding:
+                      const EdgeInsets.only(top: 8.0, left: 10, right: 10,bottom: 10),
+                      child: Container(
+                        constraints: BoxConstraints(
+                          minWidth: 120,
+                          minHeight: 60,
+                        ),
+                        child: model.animal!.photo != null
+                            ? Image(
+                          height: 100,
+                          width: 120,
+                          fit: BoxFit.fill,
+                          image: MemoryImage(base64Decode(model!.animal!.photo)),
+                        )
+                            : Container( height: 120,
+                          width: 120,),
+                        decoration: BoxDecoration(
+                          color: ColorApp.color3,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, right: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      text(
-                        text1: "Name animal  : ${model!.animal.name}",
-                        size: 20,
-                        fontWeight: FontWeight.w200,
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          text(
+                            text1: "Name animal:${model!.animal.name}",
+                            size: 18,
+                            fontWeight: FontWeight.w200,
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          text(
+                            text1: " the Type : ${model.animal.type}",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          text(
+                            text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      text(
-                        text1: " the Type : ${model.animal.type}",
-                        size: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      text(
-                        text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}",
-                        size: 16,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

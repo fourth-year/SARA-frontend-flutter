@@ -13,6 +13,8 @@ import 'package:sara_front/components/text.dart';
 import 'package:sara_front/components/textfromfilde.dart';
 import 'package:sara_front/cubits/Emergencies/cubit/emergency_cubit.dart';
 
+import 'layout.dart';
+
 class AddEmergency extends StatefulWidget {
   const AddEmergency({super.key});
 
@@ -21,16 +23,18 @@ class AddEmergency extends StatefulWidget {
 }
 
 class _AddEmergencyState extends State<AddEmergency> {
+
+  var formkey = GlobalKey<FormState>();
+  TextEditingController address = TextEditingController();
+  TextEditingController description = TextEditingController();
+  late TextEditingController contact = TextEditingController();
+  ///////////////////////////////////////////////////////////////////////////
+  final _picker = ImagePicker();
+  File? _image;
+  late String image64 = '';
+
   @override
   Widget build(BuildContext context) {
-    var formkey = GlobalKey<FormState>();
-    TextEditingController address = TextEditingController();
-    TextEditingController description = TextEditingController();
-    late TextEditingController contact = TextEditingController();
-    ///////////////////////////////////////////////////////////////////////////
-    final _picker = ImagePicker();
-    File? _image;
-    late String image64 = '';
 
     Future<void> _openImagePicker() async {
       final XFile? pickedImage =
@@ -49,16 +53,70 @@ class _AddEmergencyState extends State<AddEmergency> {
 
 //////////////////////////////////////////////////////////////////////////////////
     return BlocConsumer<EmergencyCubit, EmergencyState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+      if (state is EmergencyAddedSuccessfully) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Row(
+            children: [
+              Text(
+                'Case recorded',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Inter',
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Spacer(), // Add a spacer to push the icon to the end
+              Icon(Icons.check, color: Colors.green),
+            ],
+          ),
+          behavior: SnackBarBehavior.floating,
+          // showCloseIcon: true,
+          // closeIconColor: Colors.black,
+          backgroundColor: ColorApp.colorback,
+        ));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) => Layout()),
+        );
+      }
+
+      if (state is EmergencyAddedError) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            'Error happened, try again',
+            style: TextStyle(
+              color: ColorApp.color2,
+              fontFamily: 'Inter',
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          showCloseIcon: true,
+          closeIconColor: ColorApp.color2,
+          backgroundColor: ColorApp.colorback,
+        ));
+      }
+
+    },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
             title: text(
-              text1: 'Add an Emergency',
-              size: 22,
-              fontWeight: FontWeight.w500,
-            ),
-            centerTitle: true,
+            text1: 'Add an Emergency',
+            color: ColorApp.color2,
+            size: 22,
+          ),
+            leading: IconButton(onPressed: () {
+              Navigator.pop(context);
+
+            }, icon: Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Icon(Icons.arrow_back_ios),
+            ),),
+
           ),
           body: Form(
             key: formkey,
@@ -180,13 +238,19 @@ class _AddEmergencyState extends State<AddEmergency> {
                                         BorderRadius.all(Radius.circular(8)),
                                     shape: BoxShape.rectangle,
                                     color: Colors.white12,
+                                      image: DecorationImage(
+                                        image: FileImage(
+                                          File(_image!.path),
+                                        ),
+                                        fit: BoxFit.fill,
+                                      )
                                   ),
-                                  child: Image(
-                                    image: FileImage(
-                                      File(_image!.path),
-                                    ),
-                                    fit: BoxFit.fill,
-                                  ),
+                                  // child: Image(
+                                  //   image: FileImage(
+                                  //     File(_image!.path),
+                                  //   ),
+                                  //   fit: BoxFit.fill,
+                                  // ),
                                 ),
                               ),
                       ),
