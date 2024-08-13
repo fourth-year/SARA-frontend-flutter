@@ -26,7 +26,7 @@ class ColorApp{
     static final Color colorback = const Color(0xffffffff);
   // static final Color color4 = const Color(0xffffffff);
 
-
+ // static final Color color2 = const Color(0xffdac0a3);
 // static final Color colorback = const Color(0xfffefaf6);
   static final Color color4 = const Color(0xfffff7f1);
 

@@ -29,28 +29,50 @@ class _CommentsPageState extends State<CommentsPage> {
     PostsCubit.get(context).getComments(id: id);
   }
 
+
+  bool empty = false;
+  var formkey = GlobalKey<FormState>();
+  TextEditingController comment = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    PostsCubit.get(context).getComments(id: id);
-    bool empty = false;
-    var formkey = GlobalKey<FormState>();
-    TextEditingController comment = TextEditingController();
+    // PostsCubit.get(context).getComments(id: id);
+    final screenWidth = MediaQuery.of(context).size;
+
     return BlocConsumer<PostsCubit, PostsState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is CommentAddedSuccessfully){
+          PostsCubit.get(context).getComments(id: id);
+        }
+
+      },
       builder: (context, state) {
-        if (state is GetAllCommentsSuccessfully) {
+        if ( PostsCubit.get(context).get_allComments!=null) {
           return Scaffold(
             appBar: AppBar(
               leading: IconButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Layout()));
-                    PostsCubit.get(context).getAllPosts();
-                  },
-                  icon: Icon(Icons.arrow_back)),
-              title: Text("Comments"),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => Layout()),
+                  );
+                },
+                icon: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20),
+                  child: Icon(Icons.arrow_back_ios),
+                ),
+              ),
+              title: text(
+                themestyle: Theme.of(context).textTheme.headline5,
+
+                text1: 'Comments',
+                color: ColorApp.color2,
+                size: 22,
+              ),
             ),
-            body: Padding(
+
+
+                       body: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Form(
                 key: formkey,
@@ -87,7 +109,7 @@ class _CommentsPageState extends State<CommentsPage> {
                                               .get_allComments!
                                               .data[index]
                                               .user
-                                              .photo,
+                                              .photo??"",
                                           errorBuilder:
                                               (context, error, stackTrace) {
                                             return FlutterLogo();
@@ -193,10 +215,12 @@ class _CommentsPageState extends State<CommentsPage> {
                       height: 10,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 415,
-                          decoration: BoxDecoration(
+                          width:  screenWidth.width/4 +  screenWidth.width/2
+
+                          ,decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: Color.fromARGB(255, 240, 239, 239),
                           ),
@@ -229,22 +253,23 @@ class _CommentsPageState extends State<CommentsPage> {
                         SizedBox(
                           width: 5,
                         ),
-                        (empty == false)
-                            ? Container(
-                                height: 45,
-                                width: 45,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.black38),
-                                child: Center(
-                                    child: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.send,
-                                          color: Colors.white,
-                                        ))),
-                              )
-                            : Container(
+                        // (empty == false)
+                        //     ? Container(
+                        //         height: 45,
+                        //         width: 45,
+                        //         decoration: BoxDecoration(
+                        //             shape: BoxShape.circle,
+                        //             color: Colors.black38),
+                        //         child: Center(
+                        //             child: IconButton(
+                        //                 onPressed: () {},
+                        //                 icon: Icon(
+                        //                   Icons.send,
+                        //                   color: Colors.white,
+                        //                 ))),
+                        //       )
+                        //     :
+                        Container(
                                 height: 45,
                                 width: 45,
                                 decoration: BoxDecoration(
@@ -261,8 +286,7 @@ class _CommentsPageState extends State<CommentsPage> {
                                                   key: "post_id"),
                                             );
                                             comment.clear();
-                                            PostsCubit.get(context)
-                                                .getComments(id: id);
+                                            PostsCubit.get(context).getComments(id: id);
                                           }
                                         },
                                         icon: Icon(

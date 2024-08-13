@@ -33,7 +33,9 @@ class _sponcership_userState extends State<sponcership_user> {
       builder: (context, state) {
 
         return Scaffold(
-            appBar: AppBar(title: text(text1:"Your Sponcerships",color: ColorApp.color2,
+            appBar: AppBar(title: text(
+              themestyle: Theme.of(context).textTheme.headline5,
+              text1:"Your Sponcerships",color: ColorApp.color2,
               size: 22,),
               leading: IconButton(onPressed: () {
                 Navigator.pop(

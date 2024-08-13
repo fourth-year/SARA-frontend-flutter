@@ -35,15 +35,18 @@ class _sessionState extends State<session> {
             appBar: AppBar(
               title: text(
                 text1: "Sessions",
+                themestyle: Theme.of(context).textTheme.headline5,
+
                 color: ColorApp.color2,
                 size: 22,
               ),
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back_ios),
-              ),
+              leading: IconButton(onPressed: () {
+                Navigator.pop(context);
+
+              }, icon: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Icon(Icons.arrow_back_ios),
+              ),),
             ),
             body: (UserCubit.get(context).sessionmodel == null)
                 ? Center(child: CircularProgressIndicator())
@@ -88,40 +91,45 @@ class _sessionState extends State<session> {
                           ),
                         ),
                         (UserCubit.get(context).select == "all")
-                            ? Expanded(
-                                child: GridView.count(
-                                crossAxisCount: 1,
-                                childAspectRatio: 2,
-                                children: List.generate(
+                            ?
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount:  UserCubit.get(context)
+                                .sessionmodel!
+                                .data
+                                .length,
+                            itemBuilder: (context, index) {
+                              return  builditem(
                                   UserCubit.get(context)
                                       .sessionmodel!
-                                      .data
-                                      .length,
-                                  (index) => builditem(
-                                      UserCubit.get(context)
-                                          .sessionmodel!
-                                          .data[index],
-                                      context,
-                                      index),
-                                ),
-                              ))
-                            : Expanded(
-                                child: GridView.count(
-                                crossAxisCount: 1,
-                                childAspectRatio: 2.5,
-                                children: List.generate(
+                                      .data[index],
+                                  context,
+                                  index);
+                            },
+                          ),
+                        )
+
+                            :
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: UserCubit.get(context)
+                                .session_user!
+                                .data
+                                .length,
+                            itemBuilder: (context, index) {
+                              return  you_builditem(
                                   UserCubit.get(context)
                                       .session_user!
-                                      .data
-                                      .length,
-                                  (index) => you_builditem(
-                                      UserCubit.get(context)
-                                          .session_user!
-                                          .data[index],
-                                      context,
-                                      index),
-                                ),
-                              )),
+                                      .data[index],
+                                  context,
+                                  index);
+                            },
+                          ),
+                        )
+
+
+
+
                       ],
                     ),
                   ));
@@ -133,106 +141,110 @@ class _sessionState extends State<session> {
     final screenWidth = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0,right: 8,top:8),
-      child: Container(
-        child: Card(
-          elevation: 3.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24.0),
-          ),
-          // shadowColor:Colors.black,
-          surfaceTintColor: ColorApp.color2,
+      padding: const EdgeInsets.only(left: 8.0,right: 8,top:20),
+      child: Card(
 
-          borderOnForeground: false,
+        elevation: 3.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        // shadowColor:Colors.black,
+        surfaceTintColor: ColorApp.color2,
+
+        borderOnForeground: false,
+
+        child: Container(
+          decoration: BoxDecoration(
+            color:
+            Theme.of(context).brightness == Brightness.light
+                ? ColorApp.colorback// لون المظهر الخفيف
+                : Colors.grey[800] ?? ColorApp.color2,
+            borderRadius: BorderRadius.circular(20)
+          ),
 
           child: Padding(
             padding: const EdgeInsets.all(2),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ColorApp.colorback,
-                  borderRadius: BorderRadius.circular(16)),
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 25.0, left: 25),
-                      child: text(
-                        text1: "Subject : ${model!.title}",
-                        size: 18,
-                        fontWeight: FontWeight.w200,
-                      ),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25.0, left: 25),
+                    child: text(
+                      text1: " ${model!.title}",
+                      size: 18,
+                      fontWeight: FontWeight.w200,
                     ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 25.0, left: 25),
-                      child: Row(
-                        children: [
-                          text(
-                            text1: " the time : ",
-                            size: 18,
-                            fontWeight: FontWeight.w100,
-                          ),
-                          text(
-                            text1: " ${model.time} ",
-                            size: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          text(
-                            text1: " in ",
-                            size: 18,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          text(
-                            text1:
-                                " ${model.date.year}-${model.date.month}-${model.date.day} ",
-                            size: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ],
-                      ),
-                    ),
-                   SizedBox(height: 5,),
-                    model.isAdded == false
-                        ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                  ),
+                  SizedBox(
+                    height: 8.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25.0, left: 25),
+                    child: Row(
                       children: [
-                            Container(
-                                width: double
-                                    .infinity, // Take up the full width of the screen
-                                alignment: Alignment.center,
-                                child: textButton(
-                                  text: "Join the Session",
-                                  size: 18,
-                                  onTap: () {
-                                    UserCubit.get(context)
-                                        .session_P(session_id: model.id);
-                                    UserCubit.get(context).all_session();
-                                    UserCubit.get(context).user_session();
-                                  },
-                                  color: Colors.green,
-                                ),
+                        text(
+                          text1: " the time : ",
+                          size: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                        text(
+                          text1: " ${model.time} ",
+                          size: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        text(
+                          text1: " in ",
+                          size: 18,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        text(
+                          text1:
+                              " ${model.date.year}-${model.date.month}-${model.date.day} ",
+                          size: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ],
+                    ),
+                  ),
+                 SizedBox(height: 5,),
+                  model.isAdded == false
+                      ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                          Container(
+                              width: double
+                                  .infinity, // Take up the full width of the screen
+                              alignment: Alignment.center,
+                              child: textButton(
+                                text: "Join the Session",
+                                size: 18,
+                                onTap: () {
+                                  UserCubit.get(context)
+                                      .session_P(session_id: model.id);
+                                  UserCubit.get(context).all_session();
+                                  UserCubit.get(context).user_session();
+                                },
+                                color: Colors.green,
                               ),
-                          ],
-                        )
+                            ),
+                        ],
+                      )
 
-                        :Container(
-                      width: double
-                          .infinity, // Take up the full width of the screen
-                      alignment: Alignment.center,
-                      child: textButton(
-                        text: "Already Joined",
-                        size: 18,
-                        onTap: () {},
-                        color: Colors.grey,
-                      ),
-                    )
+                      :Container(
+                    width: double
+                        .infinity, // Take up the full width of the screen
+                    alignment: Alignment.center,
+                    child: textButton(
+                      text: "Already Joined",
+                      size: 18,
+                      onTap: () {},
+                      color: Colors.grey,
+                    ),
+                  )
 
-                  ],
-                ),
+                ],
               ),
             ),
           ),
@@ -245,70 +257,71 @@ class _sessionState extends State<session> {
     final screenWidth = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0,right: 8,top:8),
-      child: Container(
-        height: 400,
-        width: 520,
-        child: Card(
-          elevation: 3.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(26.0),
-          ),
-          // shadowColor:Colors.black,
-          surfaceTintColor: ColorApp.color2,
+      padding: const EdgeInsets.only(left: 8.0,right: 8,top:25),
+      child: Card(
+        elevation: 3.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.0),
+        ),
+        // shadowColor:Colors.black,
+        surfaceTintColor: ColorApp.color2,
 
-          borderOnForeground: false,
+        borderOnForeground: false,
 
+        child: Container(
+          decoration: BoxDecoration(
+            color:
+            Theme.of(context).brightness == Brightness.light
+                ? ColorApp.colorback// لون المظهر الخفيف
+                : Colors.grey[800] ?? ColorApp.color2,
+              borderRadius: BorderRadius.circular(20)),
           child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ColorApp.colorback,
-                  borderRadius: BorderRadius.circular(16)),
-              child: Row(
+            padding: const EdgeInsets.all(10),
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 18.0, right: 18, left: 18),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    padding: const EdgeInsets.only(right: 25.0, left: 25),
+                    child: text(
+                      text1: "${model!.session.title}",
+                      size: 18,
+                      fontWeight: FontWeight.w200,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 25.0, left: 25),
+                    child: Row(
                       children: [
                         text(
-                          text1: "Subject  : ${model!.session.title}",
+                          text1: " the time : ",
+                          size: 18,
+                          fontWeight: FontWeight.w100,
+                        ),
+                        text(
+                          text1: " ${model.session.time} ",
                           size: 16,
-                          fontWeight: FontWeight.w200,
+                          fontWeight: FontWeight.normal,
                         ),
-                        SizedBox(
-                          height: 5.0,
+                        text(
+                          text1: " in ",
+                          size: 18,
+                          fontWeight: FontWeight.normal,
                         ),
-                        Row(
-                          children: [
-                            text(
-                              text1: " the time : ",
-                              size: 18,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            text(
-                              text1: " ${model.session.time} ",
-                              size: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            text(
-                              text1: "  in ",
-                              size: 18,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            text(
-                              text1:
-                                  "  ${model.session.date.year}-${model.session.date.month}-${model.session.date.day} ",
-                              size: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ],
+                        text(
+                          text1:
+                          " ${model.session.date.year}-${model.session.date.month}-${model.session.date.day} ",
+                          size: 16,
+                          fontWeight: FontWeight.normal,
                         ),
                       ],
                     ),
-                  )
+                  ),
+
                 ],
               ),
             ),
@@ -316,5 +329,69 @@ class _sessionState extends State<session> {
         ),
       ),
     );
+
+
+    // return Padding(
+    //   padding: const EdgeInsets.only(left: 30.0,right: 30,top:8),
+    //   child: Card(
+    //     elevation: 3.0,
+    //     shape: RoundedRectangleBorder(
+    //       borderRadius: BorderRadius.circular(24.0),
+    //     ),
+    //     // shadowColor:Colors.black,
+    //     surfaceTintColor: ColorApp.color2,
+    //
+    //     borderOnForeground: false,
+    //
+    //     child: Padding(
+    //       padding: const EdgeInsets.all(7.0),
+    //       child: Row(
+    //         children: [
+    //           Padding(
+    //             padding: const EdgeInsets.only(),
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.start,
+    //               children: [
+    //                 text(
+    //                   text1: "Subject  : ${model!.session.title}",
+    //                   size: 16,
+    //                   fontWeight: FontWeight.w200,
+    //                 ),
+    //                 SizedBox(
+    //                   height: 5.0,
+    //                 ),
+    //                 Row(
+    //                   children: [
+    //                     text(
+    //                       text1: " the time : ",
+    //                       size: 18,
+    //                       fontWeight: FontWeight.normal,
+    //                     ),
+    //                     text(
+    //                       text1: " ${model.session.time} ",
+    //                       size: 16,
+    //                       fontWeight: FontWeight.normal,
+    //                     ),
+    //                     text(
+    //                       text1: "  in ",
+    //                       size: 18,
+    //                       fontWeight: FontWeight.normal,
+    //                     ),
+    //                     text(
+    //                       text1:
+    //                           "  ${model.session.date.year}-${model.session.date.month}-${model.session.date.day} ",
+    //                       size: 16,
+    //                       fontWeight: FontWeight.normal,
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ],
+    //             ),
+    //           )
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }

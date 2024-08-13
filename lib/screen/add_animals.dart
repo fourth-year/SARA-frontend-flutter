@@ -120,21 +120,11 @@ class _AddAnimalState extends State<AddAnimal> {
       }
     }, builder: (context, state) {
       return Scaffold(
-        backgroundColor: ColorApp.colorback,
         appBar: AppBar(
-          backgroundColor: ColorApp.colorback,
-          title: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child:
-            text(text1:'Add an animal'.tr(),color: ColorApp.color2,
-              size: 22,),
-
-            // text(
-            //   text1: 'Add an animal'.tr(),
-            //   size: 25,
-            //   color: ColorApp.color2,
-            // ),
-          ),
+          title: text(
+            themestyle: Theme.of(context).textTheme.headline5,
+            text1:'Add an animal'.tr(),color: ColorApp.color2,
+            size: 22,),
           leading: IconButton(onPressed: () {
             Navigator.pop(
                 context);
@@ -163,7 +153,10 @@ class _AddAnimalState extends State<AddAnimal> {
                                 height: 150,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: ColorApp.color3,
+                                  color:
+                                  Theme.of(context).brightness == Brightness.light
+                                      ? ColorApp.color// لون المظهر الخفيف
+                                      : Colors.grey[400] ?? ColorApp.color3,
                                 ),
                               ),
                               Positioned(
@@ -181,8 +174,10 @@ class _AddAnimalState extends State<AddAnimal> {
                               height: 150,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: ColorApp.color3,
-                              ),
+                                color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? ColorApp.color// لون المظهر الخفيف
+                                    : Colors.grey[400] ?? ColorApp.color3,                              ),
                               child: CircleAvatar(
                                 radius: 60.0,
                                 backgroundImage:
@@ -199,8 +194,10 @@ class _AddAnimalState extends State<AddAnimal> {
                     hint: 'Enter the name of the animal'.tr(),
                     controller: name,
                     type: TextInputType.name,
-                    color: ColorApp.color,
-                    validate: (value) {
+                    color:
+                    Theme.of(context).brightness == Brightness.light
+                        ? ColorApp.color// لون المظهر الخفيف
+                        : Colors.grey[400] ?? ColorApp.color3,                    validate: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter the name".tr();
                       }
@@ -213,8 +210,10 @@ class _AddAnimalState extends State<AddAnimal> {
                     hint: 'Enter the age of the animal'.tr(),  size: 13,
                     controller: age,
                     type: TextInputType.number,
-                    color: ColorApp.color,
-                    validate: (value) {
+                    color:
+                    Theme.of(context).brightness == Brightness.light
+                        ? ColorApp.color// لون المظهر الخفيف
+                        : Colors.grey[400] ?? ColorApp.color3,                    validate: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter the age".tr();
                       }
@@ -231,8 +230,15 @@ class _AddAnimalState extends State<AddAnimal> {
                     ontap: () {
                       _selectDateTime(context);
                     },
-                    color: ColorApp.color3,
-                    prefix: Icon(Icons.calendar_today),
+                    color:
+                    Theme.of(context).brightness == Brightness.light
+                        ? ColorApp.color// لون المظهر الخفيف
+                        : Colors.grey[400] ?? ColorApp.color3,
+                     prefix: Icon(Icons.calendar_today,
+                         color:
+                         Theme.of(context).brightness == Brightness.light
+                         ? ColorApp.color2// لون المظهر الخفيف
+                         : Colors.grey[800] ?? ColorApp.color2,),
                     validate: (value) {
                       if (value == null || value.isEmpty) {
                         return "Please enter the date".tr();
@@ -249,12 +255,17 @@ class _AddAnimalState extends State<AddAnimal> {
                               TextStyle(color: ColorApp.color1, fontSize: 13),
                         ),
                         iconSize: 40,
-                        icon: Icon(Icons.arrow_drop_down_rounded),
+                        icon: Icon(Icons.arrow_drop_down_rounded ,color:
+                            Theme.of(context).brightness == Brightness.light
+                            ? ColorApp.color2// لون المظهر الخفيف
+                            : Colors.grey[800] ?? ColorApp.color2,),
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(
                                 left: 30, top: 10, bottom: 10, right: 20),
                             filled: true,
-                            fillColor: ColorApp.color,
+                            fillColor:Theme.of(context).brightness == Brightness.light
+                                ? ColorApp.color// لون المظهر الخفيف
+                                : Colors.grey[400] ?? ColorApp.color3,
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(30)),
@@ -284,12 +295,17 @@ class _AddAnimalState extends State<AddAnimal> {
                               TextStyle(color: ColorApp.color1, fontSize: 13),
                         ),
                         iconSize: 40,
-                        icon: Icon(Icons.arrow_drop_down_rounded),
+                        icon: Icon(Icons.arrow_drop_down_rounded, color:
+                        Theme.of(context).brightness == Brightness.light
+                            ? ColorApp.color2// لون المظهر الخفيف
+                            : Colors.grey[800] ?? ColorApp.color2,),
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(
                                 left: 30, top: 10, bottom: 10, right: 20),
                             filled: true,
-                            fillColor: ColorApp.color,
+                            fillColor:Theme.of(context).brightness == Brightness.light
+                                ? ColorApp.color// لون المظهر الخفيف
+                                : Colors.grey[400] ?? ColorApp.color3 ,
                             border: OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(30)),
@@ -349,10 +365,14 @@ class _AddAnimalState extends State<AddAnimal> {
                         style: TextStyle(color: ColorApp.color1, fontSize: 13),
                       ),
                       iconSize: 40,
-                      icon: Icon(Icons.arrow_drop_down_rounded),
+                      icon: Icon(Icons.arrow_drop_down_rounded,color: Theme.of(context).brightness == Brightness.light
+                          ? ColorApp.color2// لون المظهر الخفيف
+                          : Colors.grey[800] ?? ColorApp.color3,),
                       decoration: InputDecoration(
                           filled: true,
-                          fillColor: ColorApp.color,
+                          fillColor: Theme.of(context).brightness == Brightness.light
+                              ? ColorApp.color// لون المظهر الخفيف
+                              : Colors.grey[400] ?? ColorApp.color3,
                           contentPadding: EdgeInsets.only(
                               left: 30, top: 10, bottom: 10, right: 20),
                           border: OutlineInputBorder(
@@ -360,7 +380,9 @@ class _AddAnimalState extends State<AddAnimal> {
                             borderSide: BorderSide.none,
                           )),
                       value: selected_Dep,
-                      dropdownColor: ColorApp.colorback,
+                      dropdownColor: Theme.of(context).brightness == Brightness.light
+                        ? ColorApp.colorback// لون المظهر الخفيف
+                        : Theme.of(context).cardColor,
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       items: [
                         DropdownMenuItem(

@@ -1,280 +1,15 @@
-// import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:sara_front/cubits/cubits_animals/cubit.dart';
-// import 'package:sara_front/cubits/cubits_animals/states.dart';
-// import '../components/colors.dart';
-// import '../components/text.dart';
-//
-//
-// class Show_Animals extends StatefulWidget {
-//   @override
-//   State<Show_Animals> createState() => _Show_AnimalsState();
-// }
-//
-// class _Show_AnimalsState extends State<Show_Animals> with SingleTickerProviderStateMixin{
-//   late TabController _tabController;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _tabController = TabController(length: 5, vsync:this );
-//     if (_tabController.indexIsChanging) {
-//       setState(() { });
-//     }
-//     AnimalCubit.get(context).getAllAnimal();
-//     AnimalCubit.get(context).getAllCats();
-//
-//
-//   }
-//
-//
-//
-//
-//   Future<void> fetchAllAnimals(int tabIndex) async {
-//     AnimalCubit.get(context).getAllAnimal();
-//     AnimalCubit.get(context).getAllCats();
-//     return print('done');
-//
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocConsumer<AnimalCubit, AnimalStates>(
-//         listener: (context, state) {},
-//         builder: (context, state) {
-//           //state is GetAnimalSuccessState||state is GetCatsSuccessState
-//           if (AnimalCubit.get(context).allanimals !=null && AnimalCubit.get(context).catsanimals !=null) {
-//             print(AnimalCubit.get(context).allanimals?.data.length);
-//             return DefaultTabController(
-//                 length: 5,
-//                 child: Scaffold(
-//                   backgroundColor: ColorApp.color,
-//                   appBar: AppBar(
-//                     backgroundColor: ColorApp.color4,
-//                     bottom: TabBar(tabs: [
-//                       Tab(child: Text("All"),),
-//                       Tab(child: Text("Cats"),),
-//                       Tab(child: Text("Dogs"),),
-//                       Tab(child: Text("Birds"),),
-//                       Tab(child: Text("Horses"),),
-//                     ],unselectedLabelColor:Colors.grey[500],
-//                         labelColor:ColorApp.color2,
-//                         controller: _tabController,
-//
-//
-//                         onTap: (index) {
-//                           if (index == 0) {
-//                             AnimalCubit.get(context).getAllAnimal();
-//                           } else if (index == 1) {
-//                             AnimalCubit.get(context).getAllCats();   }
-//                         }
-//
-//                     ),
-//
-//                   ),
-//
-//
-//                   body:  Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: TabBarView(
-//                         controller: _tabController,
-//                         children: [
-//                           Column(
-//                             children: [
-//                               Expanded(
-//                                   child: GridView.count(
-//                                     crossAxisCount: 1, childAspectRatio: 5,
-//                                     children: List.generate(AnimalCubit
-//                                         .get(context)
-//                                         .allanimals!.data
-//                                         .length, (index) =>
-//                                         builditem(AnimalCubit
-//                                             .get(context)
-//                                             .allanimals!.data[index], context, index),),)),
-//                             ],
-//                           ),
-//                           Column(
-//                             children: [
-//                               Expanded(
-//                                   child: GridView.count(
-//                                     crossAxisCount: 1, childAspectRatio: 5,
-//                                     children: List.generate(AnimalCubit
-//                                         .get(context)
-//                                         .catsanimals!
-//                                         .data
-//                                         .length, (index) =>
-//                                         builditem(AnimalCubit
-//                                             .get(context)
-//                                             .catsanimals!.data[index], context, index),),)),
-//                             ],
-//                           ),
-//                           Column(
-//                             children: [
-//                               Expanded(
-//                                   child: GridView.count(
-//                                     crossAxisCount: 1, childAspectRatio: 5,
-//                                     children: List.generate(AnimalCubit
-//                                         .get(context)
-//                                         .allanimals!
-//                                         .data
-//                                         .length, (index) =>
-//                                         builditem(AnimalCubit
-//                                             .get(context)
-//                                             .allanimals!.data[index], context, index),),)),
-//                             ],
-//                           ),
-//                           Column(
-//                             children: [
-//                               Expanded(child: GridView.count(crossAxisCount: 1,
-//                                 childAspectRatio:5,
-//                                 children: List.generate(AnimalCubit.get(context).allanimals!.data.length,
-//                                       (index) =>  builditem(AnimalCubit.get(context).allanimals!.data[index], context, index),),),
-//
-//
-//
-//
-//                               ),
-//                             ],
-//                           ),
-//                           Column(
-//                             children: [
-//                               Expanded(child: GridView.count(crossAxisCount: 1,
-//                                 childAspectRatio:2,
-//                                 children: List.generate(AnimalCubit.get(context).allanimals!.data.length,
-//                                       (index) =>  builditem(AnimalCubit.get(context).allanimals!.data[index], context, index),),),
-//
-//
-//
-//
-//                               ),
-//                             ],
-//                           ),
-//                         ]),
-//                   ),
-//                 ));
-//
-//           } else
-//             return Scaffold(
-//                 appBar:  AppBar(
-//                   backgroundColor: ColorApp.color2,
-//                   bottom: TabBar(tabs: [
-//                     Tab(child: Text("All"),),
-//                     Tab(child: Text("Cat"),),
-//                     Tab(child: Text("Dog"),),
-//                     Tab(child: Text("Birds"),),
-//                     Tab(child: Text("Horses"),),
-//                   ],labelColor:Colors.yellow,controller: _tabController,
-//                   ),),
-//                 body: Center(
-//                   child :CircularProgressIndicator(),
-//                       // : text(text1: "loading.....",size: 30,),
-//                 ));
-//         });
-//   }
-//
-//   ////////////////////
-//
-//   Widget builditem(dynamic model, context, index) {
-//
-//
-//
-//     return Padding(
-//       padding: const EdgeInsets.all(5.0),
-//       child: GestureDetector(
-//         onTap: (){
-//           print(model.id);
-//         },
-//         child: Container(
-//           decoration: BoxDecoration(
-//               color: ColorApp.colorback, borderRadius: BorderRadius.circular(30)),
-//           child: Row(
-//             children: [
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 8.0,bottom: 8,left: 10),
-//                 child: CircleAvatar(radius: 50, backgroundColor: ColorApp.color2
-//                   // NetworkImage(model!.data[index]!.photo.toString()),
-//
-//                   // MemoryImage(base64Decode(model!.data[index]!.photo)),
-//                 ),
-//               ),
-//               SizedBox(
-//                 width: 30.0,
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 8.0,right: 8,bottom: 8),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     text(
-//                       text1: "Name : ${model!.name}",
-//                       size: 20,
-//                     ),
-//                     SizedBox(height: 5.0,),
-//                     if(model!.animaltypeId==1)
-//                       text(
-//                         text1: "Type : Cat",
-//                         size: 16,fontWeight: FontWeight.w100,
-//                       ),
-//                     if(model!.animaltypeId==2)
-//                       text(
-//                         text1: "Type : Dog",
-//                         size: 16,fontWeight: FontWeight.w100,
-//                       ),
-//                     if(model!.animaltypeId==3)
-//                       text(
-//                         text1: "Type : Bird",
-//                         size: 16,fontWeight: FontWeight.w100,
-//                       ),
-//                     if(model!.animaltypeId==4)
-//                       text(
-//                         text1: "Type : Horse",
-//                         size: 16,fontWeight: FontWeight.w100,
-//                       ),
-//                     if(model!.animaltypeId==5)
-//                       text(
-//                         text1: "Type : Donkey",
-//                         size: 16,fontWeight: FontWeight.w100,
-//                       ),
-//                     SizedBox(height: 5,),
-//                     text(
-//                       text1: " Age : ${model.age}",
-//                       size: 16,fontWeight: FontWeight.w100,
-//                     ),
-//
-//                   ],
-//                 ),
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'dart:convert';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sara_front/components/defaultButton.dart';
-import 'package:sara_front/components/textfromfilde.dart';
-import 'package:sara_front/cubits/User/cubit.dart';
 import 'package:sara_front/cubits/cubits_animals/cubit.dart';
 import 'package:sara_front/cubits/cubits_animals/states.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
-import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/register/signin.dart';
-import 'package:sara_front/screen/Settings.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/animal_details.dart';
-import 'package:sara_front/screen/edit_profile.dart';
-import 'package:sara_front/screen/wallet.dart';
 import '../components/colors.dart';
 import '../components/text.dart';
 import '../components/textButton.dart';
@@ -293,6 +28,8 @@ class _Show_AnimalsState extends State<Show_Animals>
   GlobalKey<ScaffoldState> scaffoldekey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
+    // AnimalCubit.get(context).All_Type_Model();
+
     super.initState();
     _tabController = TabController(length: 5, vsync: this);
     if (_tabController.indexIsChanging) {
@@ -300,17 +37,11 @@ class _Show_AnimalsState extends State<Show_Animals>
     }
     AnimalCubit.get(context).getAllAnimal();
     AnimalCubit.get(context).getanimal_Type(1);
-    AnimalCubit.get(context).getanimal_Type(2);
-    AnimalCubit.get(context).getanimal_Type(3);
-    AnimalCubit.get(context).getanimal_Type(4);
+    // AnimalCubit.get(context).getanimal_Type(2);
+    // AnimalCubit.get(context).getanimal_Type(3);
+    // AnimalCubit.get(context).getanimal_Type(4);
+    AnimalCubit.get(context).All_Type_Model();
   }
-
-  // Future<void> fetchAllAnimals(int tabIndex) async {
-  //   // AnimalCubit.get(context).getAllAnimal();
-  //   // AnimalCubit.get(context).getanimal_Type(1);
-  //   return print('done');
-  //
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -319,23 +50,256 @@ class _Show_AnimalsState extends State<Show_Animals>
         listener: (context, state) {},
         builder: (context, state) {
           //state is GetAnimalSuccessState||state is GetCatsSuccessState
-          if (AnimalCubit.get(context).allanimals != null &&
-              AnimalCubit.get(context).get_animal_type != null) {
-            print(AnimalCubit.get(context).allanimals?.data.length);
-            return DefaultTabController(
-                length: 5,
-                child: Scaffold(
-                  key: scaffoldekey,
-                  backgroundColor: Colors.white,
+         if (AnimalCubit
+             .get(context)
+             .Type_Model != null) {
+            if (AnimalCubit
+                .get(context)
+                .allanimals != null &&
+                AnimalCubit
+                    .get(context)
+                    .get_animal_type != null) {
+              print(AnimalCubit
+                  .get(context)
+                  .allanimals
+                  ?.data
+                  .length);
+              return DefaultTabController(
+                  length: 5,
+                  child: Scaffold(
+                    key: scaffoldekey,
+                    appBar: AppBar(
+                      title: text(
+                        text1: 'Animals'.tr(),
+                        themestyle: Theme
+                            .of(context)
+                            .textTheme
+                            .headline5,
+                        color: ColorApp.color2,
+                        size: 25,
+                      ),
+                      bottom: TabBar(
+                          tabs: [
+                            Tab(
+                              child: Text("All".tr()),
+                            ),
+                            // for (String typeName in AnimalCubit
+                            //     .get(context)
+                            //     .typeNames ?? [])
+                            //   Tab(
+                            //     child: Text(typeName),
+                            //   ),
+
+
+                            Tab(
+                              child: Text("Cats".tr()),
+                            ),
+                            Tab(
+                              child: Text("Dogs".tr()),
+                            ),
+                            Tab(
+                              child: Text("Birds".tr()),
+                            ),
+                            Tab(
+                              child: Text("Horses".tr()),
+                            ),
+                          ],
+
+                          controller: _tabController,
+                          isScrollable: true,
+                          onTap: (index) {
+                            if (index == 0) {
+                              AnimalCubit.get(context).getAllAnimal();
+                            } else
+                              AnimalCubit.get(context).getanimal_Type(index);
+                          }),
+                    ),
+                    drawer: Drawer_Screen(),
+                    drawerEdgeDragWidth: 0,
+
+                    floatingActionButton: FloatingActionButton(
+                      backgroundColor: ColorApp.color2,
+
+
+                      child: role_id == "2" || role_id == "4"
+                          ? Icon(
+                        Icons.add,
+                        size: 30,
+                        color: Colors.white,)
+                          : Icon(
+                          Icons.search_rounded,
+                          size: 30,
+                          color: Colors.white),
+                      onPressed: () {
+                        role_id == "2"
+                            ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddAnimal()))
+                            : Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddAnimal()));
+                      },
+                    ),
+                    body: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TabBarView(controller: _tabController, children: [
+                        Column(
+                          children: [
+                            Expanded(
+                                child: GridView.count(
+                                  shrinkWrap: true,
+                                  childAspectRatio: 0.8,
+                                  crossAxisCount: 2,
+                                  children: List.generate(
+                                    AnimalCubit
+                                        .get(context)
+                                        .allanimals!
+                                        .data
+                                        .length,
+                                        (index) =>
+                                        builditem(
+                                            AnimalCubit
+                                                .get(context)
+                                                .allanimals!
+                                                .data[index],
+                                            context,
+                                            index),
+                                  ),
+                                )),
+                          ],
+                        ),
+                        // for (int i=1;i <= AnimalCubit
+                        //     .get(context)
+                        //     .typeNames!.length ;i++)
+                        //   Column(
+                        //     children: [
+                        //       Expanded(
+                        //           child: GridView.count(
+                        //             crossAxisCount: 1,
+                        //             childAspectRatio: 1.5,
+                        //             children: List.generate(
+                        //               AnimalCubit
+                        //                   .get(context)
+                        //                   .get_animal_type!
+                        //                   .data
+                        //                   .length,
+                        //                   (index) =>
+                        //                   builditem(
+                        //                       AnimalCubit
+                        //                           .get(context)
+                        //                           .get_animal_type!
+                        //                           .data[index],
+                        //                       context,
+                        //                       index),
+                        //             ),
+                        //           )),
+                        //     ],
+                        //   ),
+                        Column(
+                          children: [
+                            Expanded(
+                                child: GridView.count(
+                              crossAxisCount: 1,
+                              childAspectRatio: 1.5,
+                              children: List.generate(
+                                AnimalCubit.get(context)
+                                    .get_animal_type!
+                                    .data
+                                    .length,
+                                (index) => builditem(
+                                    AnimalCubit.get(context)
+                                        .get_animal_type!
+                                        .data[index],
+                                    context,
+                                    index),
+                              ),
+                            )),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Expanded(
+                              child: GridView.count(
+                                crossAxisCount: 1,
+                                childAspectRatio: 1.5,
+                                children: List.generate(
+                                  AnimalCubit.get(context)
+                                      .get_animal_type!
+                                      .data
+                                      .length,
+                                  (index) => builditem(
+                                      AnimalCubit.get(context)
+                                          .get_animal_type!
+                                          .data[index],
+                                      context,
+                                      index),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Expanded(
+                              child: GridView.count(
+                                crossAxisCount: 1,
+                                childAspectRatio: 1.5,
+                                children: List.generate(
+                                  AnimalCubit.get(context)
+                                      .get_animal_type!
+                                      .data
+                                      .length,
+                                  (index) => builditem(
+                                      AnimalCubit.get(context)
+                                          .get_animal_type!
+                                          .data[index],
+                                      context,
+                                      index),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Expanded(
+                              child: GridView.count(
+                                crossAxisCount: 1,
+                                childAspectRatio: 1.5,
+                                children: List.generate(
+                                  AnimalCubit.get(context)
+                                      .get_animal_type!
+                                      .data
+                                      .length,
+                                      (index) => builditem(
+                                      AnimalCubit.get(context)
+                                          .get_animal_type!
+                                          .data[index],
+                                      context,
+                                      index),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ]),
+                    ),
+                  ));
+            }
+            else
+              return Scaffold(
                   appBar: AppBar(
                     title: text(
                       text1: 'Animals'.tr(),
+                      themestyle: Theme.of(context).textTheme.headline5,
                       color: ColorApp.color2,
                       size: 25,
                     ),
-                    backgroundColor: Colors.white,
                     bottom: TabBar(
                         tabs: [
+
                           Tab(
                             child: Text("All".tr()),
                           ),
@@ -352,8 +316,6 @@ class _Show_AnimalsState extends State<Show_Animals>
                             child: Text("Horses".tr()),
                           ),
                         ],
-                        unselectedLabelColor: Colors.grey[500],
-                        labelColor: ColorApp.color2,
                         controller: _tabController,
                         isScrollable: true,
                         onTap: (index) {
@@ -364,150 +326,26 @@ class _Show_AnimalsState extends State<Show_Animals>
                         }),
                   ),
                   drawer: Drawer_Screen(),
-                  floatingActionButton: FloatingActionButton(
-                    child: role_id == "2"||role_id == "4"
-                        ? Icon(
-                            Icons.add,
-                            size: 30,
-                          )
-                        : Icon(
-                            Icons.search_rounded,
-                            size: 30,
-                          ),
-                    onPressed: () {
-                      role_id == "2"
-                          ? Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddAnimal()))
-                          : Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddAnimal()));
-                    },
-                  ),
-                  body: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TabBarView(controller: _tabController, children: [
-                      Column(
-                        children: [
-                          Expanded(
-                              child: GridView.count(
-                            shrinkWrap: true,
-                            childAspectRatio: 0.7,
-                            crossAxisCount: 2,
-                            children: List.generate(
-                              AnimalCubit.get(context).allanimals!.data.length,
-                              (index) => builditem(
-                                  AnimalCubit.get(context)
-                                      .allanimals!
-                                      .data[index],
-                                  context,
-                                  index),
-                            ),
-                          )),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Expanded(
-                              child: GridView.count(
-                            crossAxisCount: 1,
-                            childAspectRatio: 1.5,
-                            children: List.generate(
-                              AnimalCubit.get(context)
-                                  .get_animal_type!
-                                  .data
-                                  .length,
-                              (index) => builditem(
-                                  AnimalCubit.get(context)
-                                      .get_animal_type!
-                                      .data[index],
-                                  context,
-                                  index),
-                            ),
-                          )),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Expanded(
-                              child: GridView.count(
-                            crossAxisCount: 1,
-                            childAspectRatio: 1.5,
-                            children: List.generate(
-                              AnimalCubit.get(context)
-                                  .get_animal_type!
-                                  .data
-                                  .length,
-                              (index) => builditem(
-                                  AnimalCubit.get(context)
-                                      .get_animal_type!
-                                      .data[index],
-                                  context,
-                                  index),
-                            ),
-                          )),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Expanded(
-                            child: GridView.count(
-                              crossAxisCount: 1,
-                              childAspectRatio: 1.5,
-                              children: List.generate(
-                                AnimalCubit.get(context)
-                                    .get_animal_type!
-                                    .data
-                                    .length,
-                                (index) => builditem(
-                                    AnimalCubit.get(context)
-                                        .get_animal_type!
-                                        .data[index],
-                                    context,
-                                    index),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Expanded(
-                            child: GridView.count(
-                              crossAxisCount: 1,
-                              childAspectRatio: 1.5,
-                              children: List.generate(
-                                AnimalCubit.get(context)
-                                    .get_animal_type!
-                                    .data
-                                    .length,
-                                (index) => builditem(
-                                    AnimalCubit.get(context)
-                                        .get_animal_type!
-                                        .data[index],
-                                    context,
-                                    index),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ]),
-                  ),
-                ));
-          } else
+                  drawerEdgeDragWidth: 0,
+
+                  body: Center(
+                    child: CircularProgressIndicator(),
+                    // : text(text1: "loading.....",size: 30,),
+                  ));
+          }
+
+          else
             return Scaffold(
                 appBar: AppBar(
                   title: text(
                     text1: 'Animals'.tr(),
+                    themestyle: Theme.of(context).textTheme.headline5,
                     color: ColorApp.color2,
                     size: 25,
                   ),
-                  backgroundColor: Colors.white,
                   bottom: TabBar(
                       tabs: [
+
                         Tab(
                           child: Text("All".tr()),
                         ),
@@ -524,8 +362,6 @@ class _Show_AnimalsState extends State<Show_Animals>
                           child: Text("Horses".tr()),
                         ),
                       ],
-                      unselectedLabelColor: Colors.grey[500],
-                      labelColor: ColorApp.color2,
                       controller: _tabController,
                       isScrollable: true,
                       onTap: (index) {
@@ -536,6 +372,8 @@ class _Show_AnimalsState extends State<Show_Animals>
                       }),
                 ),
                 drawer: Drawer_Screen(),
+                drawerEdgeDragWidth: 0,
+
                 body: Center(
                   child: CircularProgressIndicator(),
                   // : text(text1: "loading.....",size: 30,),
@@ -546,57 +384,53 @@ class _Show_AnimalsState extends State<Show_Animals>
   ////////////////////
 
   Widget builditem(dynamic model, context, index) {
-    return Container(
-      height: 400,
-      width: 520,
-      child: Card(
-        elevation: 3.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.0),
-        ),
-        // shadowColor:Colors.black,
-        surfaceTintColor: ColorApp.color2,
+    return Card(
+      elevation: 3.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24.0),
+      ),
+      // shadowColor:Colors.black,
+      surfaceTintColor: ColorApp.color2,
 
-        borderOnForeground: false,
+      borderOnForeground: false,
 
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: GestureDetector(
-            onTap: () {
-              print(model.id);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => AnimalDetails(id: model.id)),
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: GestureDetector(
+          onTap: () {
+            print(model.id);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AnimalDetails(id: model.id)),
 
-                //id:model.id,
-              );
-              AnimalCubit.get(context).getanimal_Byid(model.id);
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  color: ColorApp.colorback,
-                  borderRadius: BorderRadius.circular(14)),
-              child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 8.0, left: 10, right: 10),
-                    child: Container(
-                      constraints: BoxConstraints(
-                        minWidth: 400,
-                        minHeight: 120,
-                      ),
-                      child: model.photo != null
-                          ? Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: MemoryImage(base64Decode(model.photo)),
-                            fit: BoxFit.fill,
-                          )
-
-                        ),
+              //id:model.id,
+            );
+            AnimalCubit.get(context).getanimal_Byid(model.id);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                borderRadius: BorderRadius.circular(18)),
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 8.0, left: 10, right: 10),
+                  child: Container(
+                    constraints: BoxConstraints(
+                      minWidth: 400,
+                      minHeight: 120,
+                    ),
+                    child: model.photo != null
+                        ? Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: DecorationImage(
+                                  image:
+                                      MemoryImage(base64Decode(model.photo)),
+                                  fit: BoxFit.fill,
+                                )),
                             // child: Image(
                             //     height: 120,
                             //     width: 400,
@@ -604,67 +438,70 @@ class _Show_AnimalsState extends State<Show_Animals>
                             //     image: MemoryImage(base64Decode(model.photo)),
                             //   ),
                           )
-                          : Container(),
-                      decoration: BoxDecoration(
-                        color: ColorApp.color,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                        : Container(),
+                    decoration: BoxDecoration(
+                      color: ColorApp.color,
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, right: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        text(
-                          text1: "Name : ${model!.name}",
-                          size: 18,
-                          fontWeight: FontWeight.w200,
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        if (model!.animaltypeId == 1)
-                          text(
-                            text1: "Type : Cat",
-                            size: 14,
-                            fontWeight: FontWeight.normal,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, right: 10,left: 10),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          text(themestyle: Theme.of(context).textTheme.headline6,
+                            text1: "${model!.name}",
+                            size: 18,
+                            fontWeight: FontWeight.w200,
                           ),
-                        if (model!.animaltypeId == 2)
-                          text(
-                            text1: "Type : Dog",
-                            size: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        if (model!.animaltypeId == 3)
-                          text(
-                            text1: "Type : Bird",
-                            size: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        if (model!.animaltypeId == 4)
-                          text(
-                            text1: "Type : Horse",
-                            size: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        if (model!.animaltypeId == 5)
-                          text(
-                            text1: "Type : Donkey",
-                            size: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        // SizedBox(height: 5,),
-                        text(
-                          text1: " Age : ${model.age}",
-                          size: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                          // SizedBox(
+                          //   height: 3.0,
+                          // ),
+                          if (model!.animaltypeId == 1)
+                            text(
+                              text1: " Cat",
+                              size: 14,
+                              fontWeight: FontWeight.normal,
+                              themestyle: Theme.of(context).textTheme.subtitle1,
+                            ),
+                          if (model!.animaltypeId == 2)
+                            text( themestyle: Theme.of(context).textTheme.subtitle1,
+                              text1: " Dog",
+                              size: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          if (model!.animaltypeId == 3)
+                            text(themestyle: Theme.of(context).textTheme.subtitle1,
+                              text1: " Bird",
+                              size: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          if (model!.animaltypeId == 4)
+                            text(themestyle: Theme.of(context).textTheme.subtitle1,
+                              text1: " Horse",
+                              size: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          if (model!.animaltypeId == 5)
+                            text(themestyle: Theme.of(context).textTheme.subtitle1,
+                              text1: "Type : Donkey",
+                              size: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          // SizedBox(height: 5,),
+                          // text(
+                          //   text1: " Age : ${model.age}",
+                          //   size: 14,
+                          //   fontWeight: FontWeight.normal,
+                          // ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),

@@ -26,7 +26,8 @@ class _LayoutState extends State<Layout> {
       bottomNavigationBar:CurvedNavigationBar(
           height: 65,
           index:  AnimalCubit.get(context).curentindex,
-          backgroundColor: Colors.white,
+
+          backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
           buttonBackgroundColor: ColorApp.color2,
           color: ColorApp.color2,
           onTap: (index){
@@ -45,7 +46,7 @@ class _LayoutState extends State<Layout> {
                 children: [
                   Icon(Icons.grid_view_rounded,size :26,color: Colors.white,),
                   AnimalCubit.get(context).curentindex==0?SizedBox():
-                  text(text1: 'animals',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+                  text(text1: 'animals',themestyle: Theme.of(context).textTheme.subtitle2,)
 
                 ],
               ),
@@ -58,7 +59,8 @@ class _LayoutState extends State<Layout> {
                   Icon(Icons.home_filled,size :26,color: Colors.white,),
                   // Text('home', style: TextStyle(color: Colors.white)),
                   AnimalCubit.get(context).curentindex==1?SizedBox():
-                  text(text1: 'home',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+                  text(text1: 'home',
+                    themestyle: Theme.of(context).textTheme.subtitle2,color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
                 ],
               ),
             ),
@@ -69,7 +71,7 @@ class _LayoutState extends State<Layout> {
                 children: [
                   Icon(Icons.medical_services,size :26,color: Colors.white,),
                   AnimalCubit.get(context).curentindex==2?SizedBox():
-                  text(text1: 'emegance',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+                  text(themestyle: Theme.of(context).textTheme.subtitle2,text1: 'emegance',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
 
                 ],
               ),
@@ -81,7 +83,7 @@ class _LayoutState extends State<Layout> {
                 children: [
                   Icon(Icons.task_alt_sharp,size :26,color: Colors.white,),
                   AnimalCubit.get(context).curentindex==3?SizedBox():
-                  text(text1: 'task',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+                  text(themestyle: Theme.of(context).textTheme.subtitle2,text1: 'task',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
 
                 ],
               ),
@@ -89,11 +91,55 @@ class _LayoutState extends State<Layout> {
           ]
               :
           <Widget>[
-            Icon(Icons.grid_view_rounded,size :26,color: Colors.white,),
-            Icon(Icons.home_filled,size :26,color: Colors.white,),
-            Icon(Icons.medical_services,size :26,color: Colors.white,),
-            Icon(Icons.more_horiz,size :26,color: Colors.white,),
-            // Icon(Icons.grid_view_rounded,size :26,color: Colors.white,)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.grid_view_rounded,size :26,color: Colors.white,),
+                  AnimalCubit.get(context).curentindex==0?SizedBox():
+                  text(text1: 'animals',themestyle: Theme.of(context).textTheme.subtitle2,)
+
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.home_filled,size :26,color: Colors.white,),
+                  // Text('home', style: TextStyle(color: Colors.white)),
+                  AnimalCubit.get(context).curentindex==1?SizedBox():
+                  text(text1: 'home',
+                    themestyle: Theme.of(context).textTheme.subtitle2,color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.medical_services,size :26,color: Colors.white,),
+                  AnimalCubit.get(context).curentindex==2?SizedBox():
+                  text(themestyle: Theme.of(context).textTheme.subtitle2,text1: 'emegance',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.more_horiz,size :26,color: Colors.white,),
+                  AnimalCubit.get(context).curentindex==3?SizedBox():
+                  text(themestyle: Theme.of(context).textTheme.subtitle2,text1: 'more',color: Colors.white ,size: 14,fontWeight: FontWeight.w100,)
+
+                ],
+              ),
+            ),
           ]
       ),
       // BottomNavigationBar(

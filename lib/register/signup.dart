@@ -80,31 +80,54 @@ class _signupState extends State<signup> {
           }
           );
         }
+
+        if (state is SignupErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              'Please ensure of the entered information',
+              style: TextStyle(
+                color: ColorApp.color2,
+                fontFamily: 'Inter',
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            behavior: SnackBarBehavior.floating,
+            showCloseIcon: true,
+            closeIconColor: ColorApp.color2,
+            backgroundColor: ColorApp.colorback,
+          ));
+        }
+
       },
       builder: (context, state) {
         return Scaffold(
+          // appBar: AppBar(),
           backgroundColor: ColorApp.colorback,
           body: SingleChildScrollView(
             child: Form(
               key: formkay,
               child: Column(
                 children: [
-                  ClipPath(
-                    clipper: containerclipper(),
-                    child: Container(
-                      height: 120,
-                      width: 600,
-                      constraints: BoxConstraints(),
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                'assets/images/p1.jpg',
-                              ),
-                              fit: BoxFit.cover)),
-                    ),
-                  ),
+                  // ClipPath(
+                  //   clipper: containerclipper(),
+                  //   child: Container(
+                  //     height: 120,
+                  //     width: 600,
+                  //     constraints: BoxConstraints(),
+                  //     decoration: BoxDecoration(
+                  //         image: DecorationImage(
+                  //             image: AssetImage(
+                  //               'assets/images/p1.jpg',
+                  //             ),
+                  //             fit: BoxFit.cover)),
+                  //   ),
+                  // ),
+                  SizedBox(height: 80,),
                   text(
                     text1: 'Register',
+                    themestyle: Theme.of(context).textTheme.headline3,
+
                     size: 35,
                     font: "title",
                     fontWeight: FontWeight.w100,
@@ -112,6 +135,8 @@ class _signupState extends State<signup> {
                   ),
                   text(
                     text1: 'Create your new accout ',
+                    themestyle: Theme.of(context).textTheme.headline4,
+
                     size: 15,
                     fontWeight: FontWeight.normal,
                   ),
@@ -195,7 +220,7 @@ class _signupState extends State<signup> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 18.0, right: 18.0, bottom: 8.0),
+                        left: 18.0, right: 18.0, bottom: 18.0),
                     child: textfromfilde(
                       hint: 'Your Password',
                       controller: passwordcontroller,
@@ -212,35 +237,20 @@ class _signupState extends State<signup> {
                           return "please enter your password";
                         }
 
+                        else {
+                          if (passwordcontroller.text.length < 8) {
+                            return "this field must contain at least 8 characters";
+                          }}
+
                           return null;
                         },
                     ),
                   ),
-                  passError
-                      ? Padding(
-                          padding:
-                              const EdgeInsets.only(left: 40.0, bottom: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              text(
-                                text1:
-                                    'this field must contain at least 8 characters',
-                                color: ColorApp.color2,
-                                size: 12,
-                                fontWeight: FontWeight.w100,
-                              ),
-                            ],
-                          ),
-                        )
-                      : SizedBox(
-                          height: 10,
-                        ),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 18.0,
                       right: 18.0,
-                      bottom: 8.0,
+                      bottom: 18.0,
                     ),
                     child: textfromfilde(
                       hint: 'Confirm  Password',
@@ -258,30 +268,14 @@ class _signupState extends State<signup> {
                           return "please enter your password";
                         }
 
-                          return null;
+                        else {
+                          if (password1controller.text.length < 8) {
+                            return "this field must contain at least 8 characters";
+                          }}
                         },
                     ),
                   ),
-                  passError
-                      ? Padding(
-                          padding:
-                              const EdgeInsets.only(left: 40.0, bottom: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              text(
-                                text1:
-                                    'this field must contain at least 8 characters',
-                                color: ColorApp.color2,
-                                size: 12,
-                                fontWeight: FontWeight.w100,
-                              ),
-                            ],
-                          ),
-                        )
-                      : SizedBox(
-                          height: 10,
-                        ),
+
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 18.0,
@@ -380,8 +374,7 @@ class _signupState extends State<signup> {
                       child: defaultButton(
                           onTap: () {
                             if (formkay.currentState!.validate()) {
-                              if ((passwordcontroller.text.length > 7 &&
-                                  password1controller.text.length > 7)) {
+
                                 setState(() {
                                   passError = false;
                                 });
@@ -398,16 +391,13 @@ class _signupState extends State<signup> {
                                       name: namecontroller.text,
                                       phone: phonecontroller.text,
                                       photo: image64.toString(),
-                                      gender: gender.toString());
+                                      gender:gender.toString());
                                   print(registerCubit.get(context).gender);
                                 } else
                                   setState(() {
                                     showError = true;
                                   });
-                              } else
-                                setState(() {
-                                  passError = true;
-                                });
+
                             }
                           },
                           text: "Create Account",

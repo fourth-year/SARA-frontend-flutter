@@ -74,7 +74,7 @@ class User {
     String phone;
     String address;
     String gender;
-    String photo;
+    String? photo;
     String role;
     int wallet;
     DateTime createdAt;

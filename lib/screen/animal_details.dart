@@ -78,11 +78,12 @@ class _AnimalDetailsState extends State<AnimalDetails> {
       },
       builder: (context, state) {
         return Builder(builder: (context) {
-          if (state is GetAnimalByIdSuccessState) {
+          if (AnimalCubit.get(context).get_Animal_By_id!=null) {
             return Scaffold(
               appBar: AppBar(
                   title: text(
-                    text1: 'Animal Details:',
+                    themestyle: Theme.of(context).textTheme.headline5,
+                    text1: 'Animal Details',
                     color: ColorApp.color2,
                     size: 22,
                   ),
@@ -98,31 +99,35 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                   child: Icon(Icons.arrow_back_ios),
                 ),),
               ),
-              backgroundColor: ColorApp.colorback,
-
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      margin: EdgeInsets.only(left: 30, bottom: 20),
-                      width: 300,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
-                          ? Image(height: 75,width: 400,fit: BoxFit.fill,
-                        image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
-                      )
-                          : Image(
-                        image: AssetImage('assets/images/sara.png'),
-                        fit: BoxFit.fill,
+                    padding: const EdgeInsets.all(18.0),
+                    child: Center(
+                      child: Container(
+                        // margin: EdgeInsets.only(left: 30, bottom: 20),
+                        width: 300,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
+                            ? Image(height: 75,width: 400,fit: BoxFit.fill,
+                          image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
+                        )
+                            : Image(
+                          image: AssetImage('assets/images/sara.png'),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
+                  ),
+
+                  SizedBox(
+                    height: 12,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 50),
@@ -134,15 +139,16 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               text1: 'Name :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
+                              themestyle: Theme.of(context).textTheme.headline6,
                             ),
                             SizedBox(
                               width: 10,
                             ),
                             Text(
                               '${AnimalCubit.get(context).get_Animal_By_id?.data.name}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
-                            )
+                              style: Theme.of(context).textTheme.headline6,
+
+          )
                           ],
                         ),
                         SizedBox(
@@ -151,6 +157,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
+                              themestyle: Theme.of(context).textTheme.headline6,
+
                               text1: 'type :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
@@ -169,9 +177,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                   : "Horses".tr()
 
                               ,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
-                            )
+                              style:Theme.of(context).textTheme.headline6,
+
+          )
                           ],
                         ),
                         SizedBox(
@@ -179,7 +187,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         ),
                         Row(
                           children: [
-                            text(
+                            text(  themestyle: Theme.of(context).textTheme.headline6,
+
                               text1: 'Age :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
@@ -189,9 +198,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                             ),
                             Text(
                               '${AnimalCubit.get(context).get_Animal_By_id?.data.age}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
-                            )
+                              style:Theme.of(context).textTheme.headline6,
+          )
                           ],
                         ),
                         SizedBox(
@@ -201,6 +209,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
+                              themestyle: Theme.of(context).textTheme.headline6,
+
                               text1: 'health :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
@@ -210,9 +220,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                             ),
                             Text(
                               '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
-                            )
+                              style: Theme.of(context).textTheme.headline6,
+
+          )
                           ],
                         ),
 
@@ -223,6 +233,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                         Row(
                           children: [
                             text(
+                              themestyle: Theme.of(context).textTheme.headline6,
+
                               text1: 'Department :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
@@ -251,19 +263,22 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               "Department_9"
                                   : "Department_10"
                               ,
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
+                              style:Theme.of(context).textTheme.headline6,
+
+          ),
+                            SizedBox(
+                              height: 12,
                             ),
                           ],
                         )
                         :SizedBox(),
-                        SizedBox(
-                          height: 12,
-                        ),
+
                         Row(
                           children: [
                             text(
-                              text1: 'Registration Date :'.tr(),
+                              themestyle: Theme.of(context).textTheme.headline6,
+
+                              text1: 'Entry Date :'.tr(),
                               color: ColorApp.color2,
                               size: 20,
                             ),
@@ -274,9 +289,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.year}-'
                                   '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.month}-'
                                   '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.day}',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w400),
-                            )
+                              style:Theme.of(context).textTheme.headline6,
+
+          )
                           ],
                         ),
                       ],

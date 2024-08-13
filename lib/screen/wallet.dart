@@ -19,16 +19,14 @@ class Wallet extends StatelessWidget {
         if(UserCubit.get(context).walletmodel !=null){
           return  Scaffold(
         appBar: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.only(top:8,right: 18),
-            child: text(
-            text1: 'Account Balance',
-            color: ColorApp.color2,
-            size: 22,
-                    ),
-          ),
+          title: text(
+            themestyle: Theme.of(context).textTheme.headline5,
 
-          backgroundColor: ColorApp.colorback,
+            text1: 'Account Balance',
+          color: ColorApp.color2,
+          size: 22,
+                  ),
+
           leading: IconButton(onPressed: () {
           Navigator.pop(context);
           
@@ -36,20 +34,23 @@ class Wallet extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20.0),
           child: Icon(Icons.arrow_back_ios),
         ),),),
-        backgroundColor: Colors.white,
         body: Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 150.0),
+            padding: const EdgeInsets.only(top: 100.0),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center, // Add this line
 
               children: [
-                text(text1: "You have the following amount in your account :"),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: text(text1: "You have the following amount in your account :"
+                  ,themestyle: Theme.of(context).textTheme.headline6,),
+                ),
                 // Container(
                 //   child: textfromfilde(hint: UserCubit.get(context).walletmodel?.data.wallet.toString(),readonly: true,color: Colors.white,color1: Colors.black,),
                 //
                 // ),
-                SizedBox(height: 10,),
+
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Card(
@@ -67,8 +68,10 @@ class Wallet extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
                       color: ColorApp.color
+
                       ),
-                      child:Center(child: text(text1: UserCubit.get(context).walletmodel!.data.wallet.toString(),)),
+                      child:Center(child: text(text1: UserCubit.get(context).walletmodel!.data.wallet.toString(),
+                        themestyle: Theme.of(context).textTheme.headline4,)),
 
                     ),
                   ),
@@ -83,16 +86,14 @@ class Wallet extends StatelessWidget {
         return
           Scaffold(
             appBar: AppBar(
-              title: Padding(
-                padding: const EdgeInsets.only(right: 18),
-                child: text(
-                  text1: 'Account Balance',
-                  color: ColorApp.color2,
-                  size: 22,
-                ),
+              title: text(
+                text1: 'Account Balance',
+                color: ColorApp.color2,
+                size: 22,
               ),
 
-              backgroundColor: ColorApp.colorback, leading: IconButton(onPressed: () {
+              // backgroundColor: ColorApp.colorback,
+              leading: IconButton(onPressed: () {
               Navigator.pop(context);
 
             }, icon: Padding(

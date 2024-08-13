@@ -11,6 +11,7 @@ import 'package:sara_front/screen/update_animal.dart';
 
 import '../../models/GetAnimalByType.dart';
 import '../../models/GetVaccination.dart';
+import '../../models/TypeModel.dart';
 import '../../screen/Jops.dart';
 import '../../screen/add_animals.dart';
 import '../../screen/home.dart';
@@ -314,4 +315,28 @@ class AnimalCubit extends Cubit<AnimalStates> {
       emit(sponcershipErrorState(error.hashCode));
     });
   }
+
+  /////////////////////////////////// type
+
+  TypeModel? Type_Model;
+  List<String>? typeNames;
+  Future<void> All_Type_Model() async {
+    emit(AnimalLoadingState());
+    DioHelper.getData(
+      url: baseurl + "/animaltypes/getall",
+    ).then((value) {
+      Type_Model = TypeModel.fromJson(value.data);
+     typeNames = Type_Model?.data.map((datum) => datum.type).toList();
+
+      // Print the list of type names
+      print(typeNames);
+      print(Type_Model?.status);
+      emit(GetAnimalByIdSuccessState());
+    }).catchError((erroe) {
+      print(erroe.toString());
+      emit(GetAnimalByIdErrorState());
+    });
+  }
+
+
 }

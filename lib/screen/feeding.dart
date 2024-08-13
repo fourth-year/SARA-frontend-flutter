@@ -75,8 +75,9 @@ class _FeedingState extends State<Feeding> {
                   child: Icon(Icons.arrow_back_ios),
                 ),
               ),
-              backgroundColor: ColorApp.colorback,
               title: text(
+                themestyle: Theme.of(context).textTheme.headline5,
+
                 text1: 'Feeding',
                 color: ColorApp.color2,
                 size: 22,
@@ -120,8 +121,9 @@ class _FeedingState extends State<Feeding> {
                     child: Icon(Icons.arrow_back_ios),
                   ),
                 ),
-                backgroundColor: ColorApp.colorback,
                 title: text(
+                  themestyle: Theme.of(context).textTheme.headline5,
+
                   text1: 'Feeding',
                   color: ColorApp.color2,
                   size: 22,
@@ -138,105 +140,101 @@ class _FeedingState extends State<Feeding> {
   Widget builditem(dynamic model, context, index) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
-      child: Container(
-        // height: 400,
-        // width: 520,
-        child: Card(
-          // elevation: 3.0,
-          // shape: RoundedRectangleBorder(
-          //   borderRadius: BorderRadius.circular(20.0),
-          // ),
-          // // shadowColor:Colors.black,
-          // surfaceTintColor: ColorApp.color2,
-          //
-          // borderOnForeground: false,
+      child: Card(
+        // elevation: 3.0,
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(20.0),
+        // ),
+        // // shadowColor:Colors.black,
+        // surfaceTintColor: ColorApp.color2,
+        //
+        // borderOnForeground: false,
 
-          child: Container(
-            decoration: BoxDecoration(
-                // color: ColorApp.colorback,
-                borderRadius: BorderRadius.circular(20)),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(18),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            text(
-                              text1: "Name : ${model!.name}",
-                              size: 20,
-                              fontWeight: FontWeight.w200,
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            text(
-                              text1: " the time  : 9:00 am",
-                              size: 16,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      dynamic dep;
-                      if (model.name == "Department 1") {
-                        dep = 1;
-                      }
-                      if (model.name == "Department 2") {
-                        dep = 2;
-                      }
-                      if (model.name == "Department 3") {
-                        dep = 3;
-                      }
-                      if (model.name == "Department 4") {
-                        dep = 4;
-                      }
-                      if (model.name == "Department 5") {
-                        dep = 5;
-                      }
-                      if (model.name == "Department 6") {
-                        dep = 6;
-                      }
-                      if (model.name == "Department 7") {
-                        dep = 7;
-                      }
-                      if (model.name == "Department 8") {
-                        dep = 8;
-                      }
-                      if (model.name == "Department 9") {
-                        dep = 9;
-                      }
-                      if (model.name == "Department 10") {
-                        dep = 10;
-                      }
-
-                      openFeedingDialog(context, dep);
-                      print(model.name);
-                    },
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(4),
+        child: Container(
+          decoration: BoxDecoration(
+              // color: ColorApp.colorback,
+              borderRadius: BorderRadius.circular(20)),
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          text(
+                            text1: "Name : ${model!.name}",
+                            size: 20,
+                            fontWeight: FontWeight.w200,
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          text(
+                            text1: " the time  : 9:00 am",
+                            size: 16,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ],
                       ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: GestureDetector(
+                  onTap: () {
+                    dynamic dep;
+                    if (model.name == "Department 1") {
+                      dep = 1;
+                    }
+                    if (model.name == "Department 2") {
+                      dep = 2;
+                    }
+                    if (model.name == "Department 3") {
+                      dep = 3;
+                    }
+                    if (model.name == "Department 4") {
+                      dep = 4;
+                    }
+                    if (model.name == "Department 5") {
+                      dep = 5;
+                    }
+                    if (model.name == "Department 6") {
+                      dep = 6;
+                    }
+                    if (model.name == "Department 7") {
+                      dep = 7;
+                    }
+                    if (model.name == "Department 8") {
+                      dep = 8;
+                    }
+                    if (model.name == "Department 9") {
+                      dep = 9;
+                    }
+                    if (model.name == "Department 10") {
+                      dep = 10;
+                    }
+
+                    openFeedingDialog(context, dep);
+                    print(model.name);
+                  },
+                  child: Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(4),
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

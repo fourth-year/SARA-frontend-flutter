@@ -21,32 +21,13 @@ class Jops extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title:text(text1:"Tasks",color: ColorApp.color2,
+        themestyle: Theme.of(context).textTheme.headline5,
+
         size: 22,),
         ),
       drawer: Drawer_Screen(),
-      // (title: Padding(
-      //   padding: const EdgeInsets.only(left: 60.0,right: 60),
-      //   child: text(text1: 'Task',color: ColorApp.color2,
-      //     size: 25,),
-      // ),backgroundColor:ColorApp.colorback,),
-      // key: scaffoldekey,
-      backgroundColor: ColorApp.colorback,
-      // appBar: AppBar(title: Center(child: text(text1: 'task',color: ColorApp.color2,
-      //   size: 35,),heightFactor: 100,)),
       body: Column(
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.only(
-          //     left: 15.0,
-          //     right: 15,
-          //     top: 35,
-          //   ),
-          //   child: text(
-          //     text1: 'Tasks',
-          //     color: ColorApp.color2,
-          //     size: 25,
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.only(left: 15.0, right: 15, top: 150),
             child: Column(
@@ -65,11 +46,18 @@ class Jops extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => Feeding()));
                       },
                       text: "Feedings",
+
                       w: screenWidth.width,
                       h: 50,
                       s: 20,
-                      color: ColorApp.color3,
-                      textColor: ColorApp.color1,
+                      color:
+                      Theme.of(context).brightness == Brightness.light
+                          ? ColorApp.color3// لون المظهر الخفيف
+                          : Colors.grey[600] ?? ColorApp.color3,
+
+                      textColor:  Theme.of(context).brightness == Brightness.light
+                          ?  ColorApp.color1 // لون المظهر الخفيف
+                          : Colors.white,
                     )),
                 SizedBox(
                   height: 8,
@@ -92,8 +80,14 @@ class Jops extends StatelessWidget {
                       w: screenWidth.width,
                       h: 50,
                       s: 20,
-                      color: ColorApp.color3,
-                      textColor: ColorApp.color1,
+                      color:
+                      Theme.of(context).brightness == Brightness.light
+                          ? ColorApp.color3// لون المظهر الخفيف
+                          : Colors.grey[600] ?? ColorApp.color3,
+
+                      textColor:  Theme.of(context).brightness == Brightness.light
+                          ?  ColorApp.color1 // لون المظهر الخفيف
+                          : Colors.white,
                     )),
                 SizedBox(
                   height: 8,
@@ -116,8 +110,14 @@ class Jops extends StatelessWidget {
                       w: screenWidth.width,
                       h: 50,
                       s: 20,
-                      color: ColorApp.color3,
-                      textColor: ColorApp.color1,
+                      color:
+                      Theme.of(context).brightness == Brightness.light
+                          ? ColorApp.color3// لون المظهر الخفيف
+                          : Colors.grey[600] ?? ColorApp.color3,
+
+                      textColor:  Theme.of(context).brightness == Brightness.light
+                          ?  ColorApp.color1 // لون المظهر الخفيف
+                          : Colors.white,
                     ))
               ],
             ),

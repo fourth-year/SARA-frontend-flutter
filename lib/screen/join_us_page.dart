@@ -99,6 +99,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
         return Scaffold(
           appBar: AppBar(
             title: text(text1:"Join Us",color: ColorApp.color2,
+              themestyle: Theme.of(context).textTheme.headline5,
               size: 22,),
             leading: IconButton(onPressed: () {
               Navigator.pop(
@@ -125,14 +126,14 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       size: 18,
                       color: ColorApp.color2,
                       fontWeight: FontWeight.w400,
+                      themestyle: Theme.of(context).textTheme.headline6,
                     ),
                     SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      "We are very happy about your interest in joining us.\nPlease enter the required information",
-                      style: TextStyle(fontSize: 17),
-                    ),
+                    text(
+                     text1:  "We are very happy about your interest in joining us.\nPlease enter the required information",
+themestyle: Theme.of(context).textTheme.headline1,                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -150,12 +151,11 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       },
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
-                    Text(
-                      "Tell us a bit about your skills and experience",
-                      style: TextStyle(fontSize: 17),
-                    ),
+                    text(
+                     text1:  "Tell us a bit about your skills and experience",
+                      themestyle: Theme.of(context).textTheme.headline1,                       ),
                     SizedBox(
                       height: 5,
                     ),
@@ -181,12 +181,11 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       },
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
-                    Text(
-                      "Please specify a time that suits you",
-                      style: TextStyle(fontSize: 17),
-                    ),
+                    text(
+                      text1: "Please specify a time that suits you",
+                      themestyle: Theme.of(context).textTheme.headline1,                       ),
                     SizedBox(
                       height: 5,
                     ),
@@ -241,6 +240,8 @@ class _JoinUsPageState extends State<JoinUsPage> {
                     Center(
                       child: defaultButton(
                         onTap: () {
+                          print(selected_start_time);
+                          print(selected_end_time);
                           if (formkey.currentState!.validate()) {
                             PostsCubit.get(context).add_Request_JoinUs(
                                 age: age.text,

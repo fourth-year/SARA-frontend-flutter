@@ -35,6 +35,8 @@ class _adoption_userState extends State<adoption_user> {
 
         return Scaffold(
           appBar: AppBar(title: text(text1:"Your adoptions",color: ColorApp.color2,
+            themestyle: Theme.of(context).textTheme.headline5,
+
             size: 22,),
             leading: IconButton(onPressed: () {
               Navigator.pop(

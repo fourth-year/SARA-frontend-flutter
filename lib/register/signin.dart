@@ -39,18 +39,55 @@ class signin extends StatelessWidget {
                     CachHelper.savetoken(key: 'phone', value: state.loginModel.user.phone.toString());
                       CachHelper.savetoken(key: 'email', value: state.loginModel.user.email.toString());
                         CachHelper.savetoken(key: 'photo', value: state.loginModel.user.photo.toString());
-                        CachHelper.savetoken(key: 'id', value: state.loginModel.user.id.toString());
+                        CachHelper.saveData(key: 'id', value: state.loginModel.user.id.toString());
 
                 CachHelper.savetoken(key: 'gender', value: state.loginModel.user.gender.toString());
-
-
-
-
-
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Row(
+                    children: [
+                      Text(
+                        'You have successfully logged in',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Inter',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Spacer(), // Add a spacer to push the icon to the end
+                      Icon(Icons.check, color: Colors.green),
+                    ],
+                  ),
+                  behavior: SnackBarBehavior.floating,
+                  // showCloseIcon: true,
+                  // closeIconColor: Colors.black,
+                  backgroundColor: ColorApp.colorback,
+                ));
+                Navigator.push(context,MaterialPageRoute(builder: (context) => Layout(),));
 
             }
               );}
+
+
+            if (state is LoginErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(
+                  'Please ensure of the entered information',
+                  style: TextStyle(
+                    color: ColorApp.color2,
+                    fontFamily: 'Inter',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                behavior: SnackBarBehavior.floating,
+                showCloseIcon: true,
+                closeIconColor: ColorApp.color2,
+                backgroundColor: ColorApp.colorback,
+              ));
+            }
+
+
       },
       builder: ( context, state) {
         return  Scaffold(
@@ -87,13 +124,16 @@ class signin extends StatelessWidget {
                   SizedBox(height: 35,),
                   text(text1: 'Welcome Back',size: 35,font: "title",
                     fontWeight: FontWeight.w100,
+                    themestyle: Theme.of(context).textTheme.headline3,
                     color: ColorApp.color2,),
                   SizedBox(height: 4,),
-                  text(text1: 'Login to your account',size: 15,fontWeight: FontWeight.normal,),
+                  text(text1: 'Login to your account',size: 15,fontWeight: FontWeight.normal,
+                    themestyle: Theme.of(context).textTheme.headline4,
+                  ),
                   SizedBox(height: 20,),
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 18.0),
-                    child: textfromfilde(hint:'Your Email or Phone ',
+                    child: textfromfilde(hint:'Your Email',
                       controller:emailcontroller ,
                       color: ColorApp.color,
                       prefix: Icon(Icons.person),
@@ -101,8 +141,12 @@ class signin extends StatelessWidget {
                         if (value == null || value.isEmpty) {
                           return "please enter your email or phone";
                         }
-                        return null;
-                      },
+
+
+
+                            return null;
+
+                        },
                     ),
                   ),
 
@@ -124,7 +168,10 @@ class signin extends StatelessWidget {
                         if (value == null || value.isEmpty) {
                           return "please enter your password";
                         }
-                        return null;
+    else {
+    if (passwordcontroller.text.length < 8) {
+    return "this field must contain at least 8 characters";
+    }}
                       },
                     ),
                   ),
@@ -173,7 +220,7 @@ class signin extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      text(text1: "Don't have an account?",size: 14,),
+                      text(text1: "Don't have an account?",size: 14,themestyle: Theme.of(context).textTheme.subtitle1,),
                       textButton(
                           text: "Sign Up",
                           onTap: (){

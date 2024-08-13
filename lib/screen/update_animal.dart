@@ -140,9 +140,7 @@ class _Update_AnimalState extends State<Update_Animal> {
       }
     }, builder: (context, state) {
       return Scaffold(
-        backgroundColor: ColorApp.colorback,
         appBar: AppBar(
-          backgroundColor: ColorApp.colorback,
           leading: IconButton(
             onPressed: () {
               AnimalCubit.get(context).getanimal_Byid(model!.id);
@@ -156,6 +154,8 @@ class _Update_AnimalState extends State<Update_Animal> {
               child: Icon(Icons.arrow_back_ios),
             ),),
           title: text(
+            themestyle: Theme.of(context).textTheme.headline5,
+
             text1: 'Update the animal info',
             size: 22,
             color: ColorApp.color2,

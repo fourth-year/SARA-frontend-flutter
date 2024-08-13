@@ -23,7 +23,10 @@ class Drawer_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       width: 250,
-      backgroundColor: ColorApp.colorback,
+      backgroundColor:
+        Theme.of(context).brightness == Brightness.light
+        ? ColorApp.colorback// لون المظهر الخفيف
+        : Colors.grey[900] ?? ColorApp.color2,
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 10, top: 45, right: 10),
@@ -37,7 +40,7 @@ class Drawer_Screen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
+                      padding: const EdgeInsets.only(bottom: 10,left: 40,right: 40),
                       child: Container(
                         width: 120,
                         height: 120,
@@ -48,19 +51,22 @@ class Drawer_Screen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10, bottom: 10),
-                      child: Text(
-                        "${CachHelper.getData(key: "name")}",
-                        style: TextStyle(fontSize: 20),
+                      padding: const EdgeInsets.only(left: 10, bottom: 10,top: 10),
+                      child: text(
+                        text1: "${CachHelper.getData(key: "name")}",
+                        themestyle: Theme.of(context).textTheme.headline2,
                       ),
                     ),
                   ],
                 ),
               ),
               Divider(
-                color: ColorApp.color2,
-                height: 20,
-                thickness: 2,
+                color:
+                Theme.of(context).brightness == Brightness.light
+                    ? ColorApp.color2// لون المظهر الخفيف
+                    : Colors.black ?? ColorApp.color2,
+                height: 15,
+                thickness: 1,
               ),
               SizedBox(
                 height: 15,
@@ -68,6 +74,10 @@ class Drawer_Screen extends StatelessWidget {
               textButton(
                   text: 'Profile'.tr(),
                   font: 'text normal',
+                color:
+                Theme.of(context).brightness == Brightness.light
+                    ? ColorApp.color1// لون المظهر الخفيف
+                    : Colors.grey[500] ?? ColorApp.color2,
                   size: 18,
                   onTap: () {
                     Navigator.push(
@@ -81,6 +91,10 @@ class Drawer_Screen extends StatelessWidget {
               textButton(
                   text: 'Settings'.tr(),
                   font: 'text normal',
+                  color:
+                  Theme.of(context).brightness == Brightness.light
+                      ? ColorApp.color1// لون المظهر الخفيف
+                      : Colors.grey[500] ?? ColorApp.color2,
                   size: 18,
                   onTap: () {
                     Navigator.push(
@@ -94,6 +108,10 @@ class Drawer_Screen extends StatelessWidget {
               textButton(
                   text: 'Wallet'.tr(),
                   font: 'text normal',
+                  color:
+                  Theme.of(context).brightness == Brightness.light
+                      ? ColorApp.color1// لون المظهر الخفيف
+                      : Colors.grey[500] ?? ColorApp.color2,
                   size: 18,
                   onTap: () {
                     UserCubit.get(context).user_Wallet();
@@ -106,6 +124,10 @@ class Drawer_Screen extends StatelessWidget {
               textButton(
                   text: 'Adoption'.tr(),
                   font: 'text normal',
+                  color:
+                  Theme.of(context).brightness == Brightness.light
+                      ? ColorApp.color1// لون المظهر الخفيف
+                      : Colors.grey[500] ?? ColorApp.color2,
                   size: 18,
                   onTap: () {
                         Navigator.push(
@@ -122,6 +144,10 @@ class Drawer_Screen extends StatelessWidget {
               textButton(
                   text: 'Sponserships'.tr(),
                   font: 'text normal',
+                  color:
+                  Theme.of(context).brightness == Brightness.light
+                      ? ColorApp.color1// لون المظهر الخفيف
+                      : Colors.grey[500] ?? ColorApp.color2,
                   size: 18,
                   onTap: () {
                     UserCubit.get(context).sponcershipsuser();
@@ -152,6 +178,10 @@ class Drawer_Screen extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom:18.0),
                     child: textButton(
                     text: 'join us'.tr(),
+                        color:
+                        Theme.of(context).brightness == Brightness.light
+                            ? ColorApp.color1// لون المظهر الخفيف
+                            : Colors.grey[500] ?? ColorApp.color2,
                     font: 'text normal',
                     size: 18,
                     onTap: () {
@@ -166,6 +196,10 @@ class Drawer_Screen extends StatelessWidget {
 
               textButton(
                   text: 'Log out'.tr(),
+                  color:
+                  Theme.of(context).brightness == Brightness.light
+                      ? ColorApp.color1// لون المظهر الخفيف
+                      : Colors.grey[500] ?? ColorApp.color2,
                   font: 'text normal',
                   size: 18,
                   onTap: () {
@@ -299,7 +333,7 @@ class Drawer_Screen extends StatelessWidget {
         return ScaleTransition(
           scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
           child: AlertDialog(
-            backgroundColor: ColorApp.colorback,
+            // backgroundColor: ColorApp.colorback,
             title: Row(
               children: [
                 // Padding(

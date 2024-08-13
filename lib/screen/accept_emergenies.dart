@@ -67,10 +67,16 @@ class AcceptEmergenies extends StatelessWidget {
                   child: Icon(Icons.arrow_back_ios),
                 ),
               ),
-              title: text(
-                text1: 'Unacceptable emergencies',
-                size: 18,
-                color: ColorApp.color2,
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  text(
+                    themestyle: Theme.of(context).textTheme.headline1,
+                    text1: 'Unacceptable emergencies',
+                    size: 18,
+                    color: ColorApp.color2,
+                  ),
+                ],
               ),
               centerTitle: true,
             ),

@@ -64,7 +64,9 @@ class donation extends StatelessWidget {
       },
       builder: (BuildContext context, UserSates state) {
         return  Scaffold(
-          appBar: AppBar(title: text(text1:"Donation",size: 22,
+          appBar: AppBar(title: text(
+            themestyle: Theme.of(context).textTheme.headline5,
+            text1:"Donation",size: 22,
             color: ColorApp.color2,
           ),
             leading: IconButton(onPressed: () {
@@ -85,7 +87,7 @@ class donation extends StatelessWidget {
                       padding:  EdgeInsets.only(left: 40.0,right: 40.0,bottom: 40.0),
                       child: text(text1:"You can make a difference in the lives of animals by donating to the center here. By doing so, "
                           "you will help support our work to uplift animals and improve their lives, "
-                          "no matter how small the donation",size: 15,),
+                          "no matter how small the donation",size: 15,themestyle: Theme.of(context).textTheme.headline6,),
                     ),
                       
                       
@@ -93,7 +95,7 @@ class donation extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 25.0),
                       child: textfromfilde(hint:'enter the amount ',
                         controller:amountcontroller ,
-                        color: ColorApp.color,
+                        color: Color.fromARGB(255, 219, 229, 244),
                         validate: (value) {
                           if (value == null || value.isEmpty) {
                             return "please enter the amount";

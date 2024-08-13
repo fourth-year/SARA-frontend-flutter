@@ -105,7 +105,8 @@ class _AddEmergencyState extends State<AddEmergency> {
         return Scaffold(
           appBar: AppBar(
             title: text(
-            text1: 'Add an Emergency',
+              themestyle: Theme.of(context).textTheme.headline5,
+              text1: 'Add an Emergency',
             color: ColorApp.color2,
             size: 22,
           ),
@@ -126,14 +127,17 @@ class _AddEmergencyState extends State<AddEmergency> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    text(
-                      text1:
-                          "When you see an animal in an emergency, please notify us and we will take care of the situation.",
-                      size: 18,
-                      fontWeight: FontWeight.w400,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0,right: 15,top: 15),
+                      child: text(
+                        text1:
+                            "When you see an animal in an emergency, please notify us and we will take care of the situation.",
+                        size: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Container(
                       child: textfromfilde(
@@ -150,7 +154,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                       ),
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
                     textfromfilde(
                       size: 13,
@@ -165,7 +169,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                       },
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
                     TextFormField(
                       controller: description,
@@ -190,7 +194,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                       },
                     ),
                     SizedBox(
-                      height: 30,
+                      height: 15,
                     ),
                     Center(
                       child: InkWell(

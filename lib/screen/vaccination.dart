@@ -63,8 +63,7 @@ class _vaccinationState extends State<vaccination> {
         }
       },
       builder: (context, state) {
-        if (AnimalCubit.get(context).vaccination_modle != null &&
-            state is vaccinationSuccessState) {
+        if (AnimalCubit.get(context).vaccination_modle != null) {
           print('vaccination');
           return Scaffold(
             // key: _scaffoldKeyVac,
@@ -82,8 +81,9 @@ class _vaccinationState extends State<vaccination> {
                   child: Icon(Icons.arrow_back_ios),
                 ),
               ),
-              backgroundColor: ColorApp.colorback,
               title: text(
+                themestyle: Theme.of(context).textTheme.headline5,
+
                 text1: 'Vaccination',
                 color: ColorApp.color2,
                 size: 22,
@@ -128,8 +128,9 @@ class _vaccinationState extends State<vaccination> {
                     child: Icon(Icons.arrow_back_ios),
                   ),
                 ),
-                backgroundColor: ColorApp.colorback,
                 title: text(
+                  themestyle: Theme.of(context).textTheme.headline5,
+
                   text1: 'Vaccination',
                   color: ColorApp.color2,
                   size: 22,

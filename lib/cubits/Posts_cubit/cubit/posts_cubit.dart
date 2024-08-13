@@ -11,6 +11,8 @@ import 'package:sara_front/models/post_model.dart';
 import 'package:sara_front/network/dio_helper.dart';
 import 'package:sara_front/network/end_point.dart';
 
+import '../../../network/cach_helper.dart';
+
 part 'posts_state.dart';
 
 class PostsCubit extends Cubit<PostsState> {
@@ -143,10 +145,13 @@ class PostsCubit extends Cubit<PostsState> {
 
   //////////////////////////////////////////////////////////////////////////
   void addLike({
-    required post_id,
+    required int post_id,
+    required  int id
+
   }) {
     DioHelper.postData(url: baseurl + '/user/likes', data: {
       'post_id': post_id,
+      'user_id': id,
     }).then((value) {
       print(value.data);
       emit(LikeAddedSuccessfully());
@@ -158,9 +163,9 @@ class PostsCubit extends Cubit<PostsState> {
   ///////////////////////////////////////////////////////////////////////////
 
   void removeLike({
-    required post_id,
+    required int  post_id,
   }) {
-    DioHelper.postData(url: baseurl + '/user/unlikes/${post_id}').then((value) {
+    DioHelper.DeleteData(url: baseurl + '/user/unlikes/${post_id}').then((value) {
       print(value.data);
       emit(LikeDeletedSuccessfully());
     }).catchError((error) {

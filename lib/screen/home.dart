@@ -8,6 +8,8 @@ import 'package:sara_front/cubits/Posts_cubit/cubit/posts_cubit.dart';
 import 'package:sara_front/network/cach_helper.dart';
 import 'package:sara_front/screen/comments_page.dart';
 
+import 'drawer.dart';
+
 class Home extends StatefulWidget {
   @override
   State<Home> createState() => _HomeState();
@@ -45,10 +47,22 @@ class _HomeState extends State<Home> {
         }
       },
       builder: (context, state) {
-        if (state is GetAllPostsSuccessfully) {
+        if (   PostsCubit.get(context).get_allPosts != null) {
           print(PostsCubit.get(context).get_allPosts?.data.length);
 
           return Scaffold(
+            appBar: AppBar(
+              title: text(
+                text1: 'S.A.R.A',
+                color: ColorApp.color2,
+                themestyle: Theme.of(context).textTheme.headline5,
+                size: 24,
+              ),
+            ),
+            drawerEdgeDragWidth: 0,
+
+            drawer: Drawer_Screen(),
+
             body: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -118,17 +132,23 @@ class _HomeState extends State<Home> {
                                             .data[index]
                                             .isLiked) {
                                           PostsCubit.get(context).removeLike(
-                                            post_id: PostsCubit()
+                                            post_id: PostsCubit.get(context)
                                                 .get_allPosts
-                                                ?.data[index]
+                                                !.data[index]
                                                 .id,
                                           );
                                         } else {
+                                          dynamic id =CachHelper.getData(key: "id");
+                                          print(id);
+                                          print( PostsCubit()
+                                              .get_allPosts
+                                              ?.data[index]
+                                              .id);
                                           PostsCubit.get(context).addLike(
-                                            post_id: PostsCubit()
+                                            post_id: PostsCubit.get(context)
                                                 .get_allPosts
-                                                ?.data[index]
-                                                .id,
+                                                !.data[index]
+                                                .id,id: int.parse(id),
                                           );
                                         }
                                         setState(() {});

@@ -65,12 +65,26 @@ class _Edit_ProfileState extends State<Edit_Profile> {
     }
 
     return BlocConsumer<registerCubit, registerSates>(
-      listener: (BuildContext context, state) {},
+      listener: (BuildContext context, state) {
+        if(state is UpdateSuccessState){ Navigator.pop(
+            context);
+        CachHelper.savetoken(key: 'name', value:namecontroller.text  );
+        CachHelper.savetoken(key: 'address', value: addresscontroller.text);
+        CachHelper.savetoken(key: 'phone', value:phonecontroller.text);
+        CachHelper.savetoken(key: 'email', value:emailcontroller.text);
+        // CachHelper.savetoken(key: 'photo', value:phot);
+
+        CachHelper.savetoken(key: 'gender', value:gender.toString());
+
+
+        }
+
+      },
       builder: (BuildContext context, state) {
         return Scaffold(
           backgroundColor: ColorApp.colorback,
           appBar: AppBar(
-            title: text(text1: 'Update Profile'.tr(),
+            title: text(text1: 'Update Profile'.tr(),themestyle: Theme.of(context).textTheme.headline5,
               size: 22,
               font: "title",
               fontWeight: FontWeight.w100,
