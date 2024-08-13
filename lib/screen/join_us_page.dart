@@ -28,39 +28,54 @@ class _JoinUsPageState extends State<JoinUsPage> {
   TextEditingController end_time = TextEditingController();
   var formkey = GlobalKey<FormState>();
 
-
   Future<void> SelectStartTime(BuildContext context) async {
     final TimeOfDay? selected_start_time =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
     if (selected_start_time != null) {
-      selectstartTime =
-          (selected_start_time.hour < 10 && selected_start_time.minute < 10)
-              ? "0${selected_start_time.hour}:0${selected_start_time.minute}:00"
-              : "${selected_start_time.hour}:${selected_start_time.minute}:00";
-      (selected_start_time.hour < 10 && selected_start_time.minute > 10)
-          ? "0${selected_start_time.hour}:${selected_start_time.minute}:00"
-          : "${selected_start_time.hour}:${selected_start_time.minute}:00";
-      (selected_start_time.hour > 10 && selected_start_time.minute < 10)
-          ? "${selected_start_time.hour}:0${selected_start_time.minute}:00"
-          : "${selected_start_time.hour}:${selected_start_time.minute}:00";
-      (selected_start_time.hour < 10 && selected_start_time.minute < 10)
-          ? "${selected_start_time.hour}:${selected_start_time.minute}:00"
-          : "${selected_start_time.hour}:${selected_start_time.minute}:00";
+      if (selected_start_time.hour < 10 && selected_start_time.minute < 10) {
+        selectstartTime =
+            "0${selected_start_time.hour}:0${selected_start_time.minute}:00";
+      } else if (selected_start_time.hour < 10 &&
+          selected_start_time.minute >= 10) {
+        selectstartTime =
+            "0${selected_start_time.hour}:${selected_start_time.minute}:00";
+      } else if (selected_start_time.hour >= 10 &&
+          selected_start_time.minute < 10) {
+        selectstartTime =
+            "${selected_start_time.hour}:0${selected_start_time.minute}:00";
+      } else {
+        selectstartTime =
+            "${selected_start_time.hour}:${selected_start_time.minute}:00";
+      }
       PostsCubit.get(context).selectstartTime(selectstartTime);
       print(selectstartTime);
       start_time.text = selectstartTime.toString();
     }
   }
 
+  ///////////////////////////////////////////////////////////////////////////////////////
+
   Future<void> SelectEndTime(BuildContext context) async {
     final TimeOfDay? selected_end_time =
         await showTimePicker(context: context, initialTime: TimeOfDay.now());
 
     if (selected_end_time != null) {
-      selectendTime = (selected_end_time.minute < 10)
-          ? "${selected_end_time.hour}:0${selected_end_time.minute}:00"
-          : "${selected_end_time.hour}:${selected_end_time.minute}:00";
+      if (selected_end_time.hour < 10 && selected_end_time.minute < 10) {
+        selectendTime =
+            "0${selected_end_time.hour}:0${selected_end_time.minute}:00";
+      } else if (selected_end_time.hour < 10 &&
+          selected_end_time.minute >= 10) {
+        selectendTime =
+            "0${selected_end_time.hour}:${selected_end_time.minute}:00";
+      } else if (selected_end_time.hour >= 10 &&
+          selected_end_time.minute < 10) {
+        selectendTime =
+            "${selected_end_time.hour}:0${selected_end_time.minute}:00";
+      } else {
+        selectendTime =
+            "${selected_end_time.hour}:${selected_end_time.minute}:00";
+      }
       PostsCubit.get(context).selectendTime(selectendTime);
       print(selectendTime);
       end_time.text = selectendTime.toString();
@@ -98,20 +113,23 @@ class _JoinUsPageState extends State<JoinUsPage> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: text(text1:"Join Us",color: ColorApp.color2,
+            title: text(
+              text1: "Join Us",
+              color: ColorApp.color2,
               themestyle: Theme.of(context).textTheme.headline5,
-              size: 22,),
-            leading: IconButton(onPressed: () {
-              Navigator.pop(
-                  context);
-            }, icon: Icon(Icons.arrow_back_ios),),
+              size: 22,
+            ),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios),
+            ),
             // title: Text(
             //   "Join Us",
             //   style: TextStyle(color: ColorApp.color2),
             // ),
           ),
-
-
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(18.0),
@@ -132,14 +150,16 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       height: 5,
                     ),
                     text(
-                     text1:  "We are very happy about your interest in joining us.\nPlease enter the required information",
-themestyle: Theme.of(context).textTheme.headline1,                    ),
+                      text1:
+                          "We are very happy about your interest in joining us.\nPlease enter the required information",
+                      themestyle: Theme.of(context).textTheme.headline1,
+                    ),
                     SizedBox(
                       height: 20,
                     ),
                     textfromfilde(
                       // size: 13,
-            
+
                       hint: 'Enter your age',
                       controller: age,
                       type: TextInputType.name,
@@ -154,8 +174,9 @@ themestyle: Theme.of(context).textTheme.headline1,                    ),
                       height: 15,
                     ),
                     text(
-                     text1:  "Tell us a bit about your skills and experience",
-                      themestyle: Theme.of(context).textTheme.headline1,                       ),
+                      text1: "Tell us a bit about your skills and experience",
+                      themestyle: Theme.of(context).textTheme.headline1,
+                    ),
                     SizedBox(
                       height: 5,
                     ),
@@ -164,11 +185,12 @@ themestyle: Theme.of(context).textTheme.headline1,                    ),
                       minLines: 2,
                       maxLines: 8,
                       decoration: InputDecoration(
-                      border: OutlineInputBorder(
+                        border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide.none),
                         hintText: 'type...',
-                        hintStyle: TextStyle(fontSize: 14, color: Colors.black87),
+                        hintStyle:
+                            TextStyle(fontSize: 14, color: Colors.black87),
                         filled: true,
                         fillColor: Color.fromARGB(255, 219, 229, 244),
                         contentPadding: EdgeInsets.only(
@@ -185,14 +207,15 @@ themestyle: Theme.of(context).textTheme.headline1,                    ),
                     ),
                     text(
                       text1: "Please specify a time that suits you",
-                      themestyle: Theme.of(context).textTheme.headline1,                       ),
+                      themestyle: Theme.of(context).textTheme.headline1,
+                    ),
                     SizedBox(
                       height: 5,
                     ),
                     Row(
                       children: [
                         Container(
-                          width: screenWidth.width/3+screenWidth.width/10,
+                          width: screenWidth.width / 3 + screenWidth.width / 10,
                           child: textfromfilde(
                             size: 13,
                             readonly: true,
@@ -214,7 +237,7 @@ themestyle: Theme.of(context).textTheme.headline1,                    ),
                           width: 10,
                         ),
                         Container(
-                          width: screenWidth.width/3+screenWidth.width/10,
+                          width: screenWidth.width / 3 + screenWidth.width / 10,
                           child: textfromfilde(
                             size: 13,
                             readonly: true,
@@ -248,7 +271,8 @@ themestyle: Theme.of(context).textTheme.headline1,                    ),
                                 job_title: job_title.text,
                                 start_time:
                                     PostsCubit.get(context).selectstarttime,
-                                end_time: PostsCubit.get(context).selectendtime);
+                                end_time:
+                                    PostsCubit.get(context).selectendtime);
                           }
                         },
                         text: "Send",

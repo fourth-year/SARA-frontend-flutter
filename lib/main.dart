@@ -38,14 +38,14 @@ void main() async {
   await CachHelper.init();
   Widget widget;
   if (CachHelper.gettoken(key: "token") == null) {
-    widget = signin();
+    widget = JoinUsPage();
   } else {
     token = CachHelper.gettoken(key: "token");
     role_id = CachHelper.getData(key: "role_id");
     print(token);
     print(role_id);
 
-    widget = Layout();
+    widget = JoinUsPage();
   }
   if(CachHelper.getData(key: "isdark")!=null){
     dark=CachHelper.getData(key: "isdark");
