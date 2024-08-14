@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +29,7 @@ class EditCommentPage extends StatelessWidget {
               //       PostsCubit.get(context).getComments(id: id));
               //     },
               //     icon: Icon(Icons.arrow_back)),
-              title: Text('Edit your comment'),
+              title: Text('Edit your comment'.tr()),
             ),
             body: Padding(
               padding: const EdgeInsets.only(top: 5, left: 10, right: 10),

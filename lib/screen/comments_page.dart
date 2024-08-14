@@ -65,7 +65,7 @@ class _CommentsPageState extends State<CommentsPage> {
               title: text(
                 themestyle: Theme.of(context).textTheme.headline5,
 
-                text1: 'Comments',
+                text1: 'Comments'.tr(),
                 color: ColorApp.color2,
                 size: 22,
               ),
@@ -161,11 +161,11 @@ class _CommentsPageState extends State<CommentsPage> {
                                               },
                                               itemBuilder: (context) => [
                                                 PopupMenuItem(
-                                                  child: Text('Edit'),
+                                                  child: Text('Edit').tr(),
                                                   value: "1-Edit",
                                                 ),
                                                 PopupMenuItem(
-                                                  child: Text('Delete'),
+                                                  child: Text('Delete').tr(),
                                                   value: "2-Delete",
                                                 ),
                                               ],
@@ -187,8 +187,8 @@ class _CommentsPageState extends State<CommentsPage> {
                                     trimLines: 3,
                                     trimMode: TrimMode.Line,
                                     colorClickableText: ColorApp.color2,
-                                    trimCollapsedText: 'Show more',
-                                    trimExpandedText: 'Show less',
+                                    trimCollapsedText: 'Show more'.tr(),
+                                    trimExpandedText: 'Show less'.tr(),
                                     moreStyle: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -241,7 +241,7 @@ class _CommentsPageState extends State<CommentsPage> {
                                   empty = true;
                               },
                               decoration: InputDecoration(
-                                  hintText: 'type what you want ...',
+                                  hintText: 'type what you want ...'.tr(),
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide.none)),
                               //  expands: true,

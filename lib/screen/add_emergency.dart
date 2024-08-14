@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -59,7 +60,7 @@ class _AddEmergencyState extends State<AddEmergency> {
           content: Row(
             children: [
               Text(
-                'Case recorded',
+                'Case recorded'.tr(),
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Inter',
@@ -85,7 +86,7 @@ class _AddEmergencyState extends State<AddEmergency> {
       if (state is EmergencyAddedError) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-            'Error happened, try again',
+            'Error happened, try again'.tr(),
             style: TextStyle(
               color: ColorApp.color2,
               fontFamily: 'Inter',
@@ -106,7 +107,7 @@ class _AddEmergencyState extends State<AddEmergency> {
           appBar: AppBar(
             title: text(
               themestyle: Theme.of(context).textTheme.headline5,
-              text1: 'Add an Emergency',
+              text1: 'Add an Emergency'.tr(),
             color: ColorApp.color2,
             size: 22,
           ),
@@ -131,7 +132,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                       padding: const EdgeInsets.only(left: 15.0,right: 15,top: 15),
                       child: text(
                         text1:
-                            "When you see an animal in an emergency, please notify us and we will take care of the situation.",
+                            "When you see an animal in an emergency, please notify us and we will take care of the situation.".tr(),
                         size: 18,
                         fontWeight: FontWeight.w400,
                       ),
@@ -142,13 +143,13 @@ class _AddEmergencyState extends State<AddEmergency> {
                     Container(
                       child: textfromfilde(
                         size: 13,
-                        hint: 'Enter the address',
+                        hint: 'Enter the address'.tr(),
                         controller: address,
                         type: TextInputType.name,
                         color: Color.fromARGB(255, 219, 229, 244),
                         validate: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Please enter the address";
+                            return "Please enter the address".tr();
                           }
                         },
                       ),
@@ -159,7 +160,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                     textfromfilde(
                       count: 10,
                       size: 13,
-                      hint: 'Enter your number',
+                      hint: 'Enter your number'.tr(),
                       controller: contact,
                       type: TextInputType.number,
                       color: Color.fromARGB(255, 219, 229, 244),
@@ -180,7 +181,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide.none),
-                        hintText: 'Description of the situation...',
+                        hintText: 'Description of the situation...'.tr(),
                         hintStyle:
                             TextStyle(fontSize: 13, color: Colors.black87),
                         filled: true,
@@ -274,7 +275,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                                 photo: image64.toString());
                           }
                         },
-                        text: "Send",
+                        text: "Send".tr(),
                         textColor: Colors.white,
                         color: ColorApp.color2,
                         h: 50,

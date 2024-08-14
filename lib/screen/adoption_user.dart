@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -34,7 +35,7 @@ class _adoption_userState extends State<adoption_user> {
       builder: (context, state) {
 
         return Scaffold(
-          appBar: AppBar(title: text(text1:"Your adoptions",color: ColorApp.color2,
+          appBar: AppBar(title: text(text1:"Your adoptions".tr(),color: ColorApp.color2,
             themestyle: Theme.of(context).textTheme.headline5,
 
             size: 22,),
@@ -143,7 +144,7 @@ class _adoption_userState extends State<adoption_user> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           text(
-                            text1: "Name animal: ${model!.animal.name}",
+                            text1: "Name animal: ${model!.animal.name}".tr(),
                             size: 18,
                             fontWeight: FontWeight.w200,
                           ),
@@ -151,12 +152,12 @@ class _adoption_userState extends State<adoption_user> {
                             height: 5.0,
                           ),
                           text(
-                            text1: " the Type : ${model.animal.type}",
+                            text1: " the Type : ${model.animal.type}".tr(),
                             size: 16,
                             fontWeight: FontWeight.normal,
                           ),
                           text(
-                            text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}",
+                            text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}".tr(),
                             size: 16,
                             fontWeight: FontWeight.normal,
                           ),

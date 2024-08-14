@@ -27,7 +27,7 @@ class donation extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Row(
               children: [
-                text(text1: ' Donation successfully,',),
+                text(text1: ' Donation successfully,'.tr(),),
                 Spacer(), // Add a spacer to push the icon to the end
                 Icon(Icons.check, color: Colors.green),
               ],
@@ -66,7 +66,7 @@ class donation extends StatelessWidget {
         return  Scaffold(
           appBar: AppBar(title: text(
             themestyle: Theme.of(context).textTheme.headline5,
-            text1:"Donation",size: 22,
+            text1:"Donation".tr(),size: 22,
             color: ColorApp.color2,
           ),
             leading: IconButton(onPressed: () {
@@ -87,18 +87,18 @@ class donation extends StatelessWidget {
                       padding:  EdgeInsets.only(left: 40.0,right: 40.0,bottom: 40.0),
                       child: text(text1:"You can make a difference in the lives of animals by donating to the center here. By doing so, "
                           "you will help support our work to uplift animals and improve their lives, "
-                          "no matter how small the donation",size: 15,themestyle: Theme.of(context).textTheme.headline6,),
+                          "no matter how small the donation".tr(),size: 15,themestyle: Theme.of(context).textTheme.headline6,),
                     ),
                       
                       
                     Padding(
                       padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 25.0),
-                      child: textfromfilde(hint:'enter the amount ',
+                      child: textfromfilde(hint:'enter the amount '.tr(),
                         controller:amountcontroller ,
                         color: Color.fromARGB(255, 219, 229, 244),
                         validate: (value) {
                           if (value == null || value.isEmpty) {
-                            return "please enter the amount";
+                            return "please enter the amount".tr();
                           }
                           return null;
                         },
@@ -112,7 +112,7 @@ class donation extends StatelessWidget {
                           condition:state is! DonationLoadingState,
                           fallback: (context)=>Center(child: CircularProgressIndicator(),),
                           builder: (context)=>  defaultButton(
-                            text: " Done",
+                            text: " Done".tr(),
                             w: 130,
                             h: 45,
                             r:10 ,

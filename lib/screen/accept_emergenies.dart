@@ -22,7 +22,7 @@ class AcceptEmergenies extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Successfully accepted',
+                'Successfully accepted'.tr(),
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Inter',
@@ -39,7 +39,7 @@ class AcceptEmergenies extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Successfully deleted',
+                'Successfully deleted'.tr(),
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Inter',
@@ -73,7 +73,7 @@ class AcceptEmergenies extends StatelessWidget {
                 children: [
                   text(
                     themestyle: Theme.of(context).textTheme.headline1,
-                    text1: 'Unacceptable emergencies',
+                    text1: 'Unacceptable emergencies'.tr(),
                     size: 18,
                     color: ColorApp.color2,
                   ),
@@ -101,7 +101,7 @@ class AcceptEmergenies extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                "Address:",
+                                                "Address:".tr(),
                                                 style: TextStyle(
                                                     color: ColorApp.color2,
                                                     fontSize: 18,
@@ -125,7 +125,7 @@ class AcceptEmergenies extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                "Contact:",
+                                                "Contact:".tr(),
                                                 style: TextStyle(
                                                     color: ColorApp.color2,
                                                     fontSize: 18,
@@ -147,7 +147,7 @@ class AcceptEmergenies extends StatelessWidget {
                                             height: 5,
                                           ),
                                           Text(
-                                            "Description of the emergency situation :",
+                                            "Description of the emergency situation :".tr(),
                                             style: TextStyle(
                                                 color: ColorApp.color2,
                                                 fontFamily: "text normal",
@@ -178,7 +178,7 @@ class AcceptEmergenies extends StatelessWidget {
 
                                                   },
                                                   child: Text(
-                                                    'Reject',
+                                                    'Reject'.tr(),
                                                     style: TextStyle(
                                                         color: const Color
                                                             .fromARGB(
@@ -203,7 +203,7 @@ class AcceptEmergenies extends StatelessWidget {
                                                             status: 0);
                                                   },
                                                   child: Text(
-                                                    'Accept',
+                                                    'Accept'.tr(),
                                                     style: TextStyle(
                                                         color: Color.fromARGB(
                                                             255, 16, 170, 113),
@@ -255,7 +255,7 @@ class AcceptEmergenies extends StatelessWidget {
             ),
             body: Center(
               child: Text(
-                'There are no unacceptable emergencies',
+                'There are no unacceptable emergencies'.tr(),
                 style: TextStyle(fontSize: 17),
               ),
             ),

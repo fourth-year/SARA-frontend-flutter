@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sara_front/components/defaultButton.dart';
 import 'package:sara_front/screen/accept_emergenies.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/feeding.dart';
 import 'package:sara_front/screen/session.dart';
@@ -20,7 +21,7 @@ class Jops extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(title:text(text1:"Tasks",color: ColorApp.color2,
+      appBar: AppBar(title:text(text1:"Tasks".tr(),color: ColorApp.color2,
         themestyle: Theme.of(context).textTheme.headline5,
 
         size: 22,),
@@ -45,7 +46,7 @@ class Jops extends StatelessWidget {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Feeding()));
                       },
-                      text: "Feedings",
+                      text: "Feeding".tr(),
 
                       w: screenWidth.width,
                       h: 50,
@@ -76,7 +77,7 @@ class Jops extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => vaccination()));
                       },
-                      text: "vaccinations",
+                      text: "vaccination".tr(),
                       w: screenWidth.width,
                       h: 50,
                       s: 20,
@@ -106,7 +107,7 @@ class Jops extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => AcceptEmergenies()));
                       },
-                      text: "Accept Emergencies",
+                      text: "Accept Emergencies".tr(),
                       w: screenWidth.width,
                       h: 50,
                       s: 20,
