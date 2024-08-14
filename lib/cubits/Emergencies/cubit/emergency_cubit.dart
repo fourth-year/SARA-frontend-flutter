@@ -57,15 +57,15 @@ class EmergencyCubit extends Cubit<EmergencyState> {
   }
 
   ////////////////////////////////////////////////////////////////////////////
- void DeleteEmergency({required id}) {
+ void RejectEmergency({required id}) {
     emit(Loading());
-    DioHelper.postData(url: baseurl + '/user/emergency/delete/${id}')
+    DioHelper.postData(url: baseurl + '/user/emergency/reject/${id}')
         .then((value) {
       print(value.data);
-      emit(DeleteEmergencySuccessfully());
+      emit(RejectEmergencySuccessfully());
     }).catchError((error) {
       print(error.toString());
-      emit(DeleteEmergencyError());
+      emit(RejectEmergencyError());
     });
   }
 
@@ -80,6 +80,32 @@ class EmergencyCubit extends Cubit<EmergencyState> {
     }).catchError((error) {
       print(error.toString());
       emit(AcceptEmergencyError());
+    });
+  }
+  ////////////////////////////////////////////////////////////////////////////
+
+  void UpdateEmergencyStatus({required id,required emer_status}) {
+    emit(Loading());
+    DioHelper.postData(url: baseurl + '/user/emergency/status/update/${id}',data:{'emer_status':emer_status})
+        .then((value) {
+      print(value.data);
+      emit(UpdateEmergencyStatusSuccessfully());
+    }).catchError((error) {
+      print(error.toString());
+      emit(UpdateEmergencyStatusError());
+    });
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  void DeleteEmergency({required id}) {
+    emit(Loading());
+    DioHelper.DeleteData(url: baseurl + '/user/emergency/delete/${id}')
+        .then((value) {
+      print(value.data);
+      emit(DeleteEmergencySuccessfully());
+    }).catchError((error) {
+      print(error.toString());
+      emit(DeleteEmergencyError());
     });
   }
 }

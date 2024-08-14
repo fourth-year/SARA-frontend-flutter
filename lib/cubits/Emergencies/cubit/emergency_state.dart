@@ -15,10 +15,18 @@ class AcceptEmergencySuccessfully extends EmergencyState {}
 
 class AcceptEmergencyError extends EmergencyState {}
 
-class DeleteEmergencySuccessfully extends EmergencyState {}
+class RejectEmergencySuccessfully extends EmergencyState {}
 
-class DeleteEmergencyError extends EmergencyState {}
+class RejectEmergencyError extends EmergencyState {}
 
 class GetAllEmergenciesSuccessfully extends EmergencyState {}
 
 class GetAllEmergenciesError extends EmergencyState {}
+
+class UpdateEmergencyStatusSuccessfully extends EmergencyState {}
+
+class UpdateEmergencyStatusError extends EmergencyState {}
+
+class DeleteEmergencySuccessfully extends EmergencyState {}
+
+class DeleteEmergencyError extends EmergencyState {}

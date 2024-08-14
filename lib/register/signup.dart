@@ -368,35 +368,36 @@ class _signupState extends State<signup> {
                       : SizedBox(
                           height: 10,
                         ),
+
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, bottom: 5),
+                    padding: const EdgeInsets.only(bottom: 5),
                     child: Center(
                       child: defaultButton(
                           onTap: () {
                             if (formkay.currentState!.validate()) {
 
+                              setState(() {
+                                passError = false;
+                              });
+                              if (gender != '') {
                                 setState(() {
-                                  passError = false;
+                                  showError = false;
                                 });
-                                if (gender != '') {
-                                  setState(() {
-                                    showError = false;
-                                  });
-                                  gender = registerCubit.get(context).gender;
-                                  registerCubit.get(context).SignUp(
-                                      email: emailcontroller.text,
-                                      password: passwordcontroller.text,
-                                      c_password: password1controller.text,
-                                      address: addresscontroller.text,
-                                      name: namecontroller.text,
-                                      phone: phonecontroller.text,
-                                      photo: image64.toString(),
-                                      gender:gender.toString());
-                                  print(registerCubit.get(context).gender);
-                                } else
-                                  setState(() {
-                                    showError = true;
-                                  });
+                                gender = registerCubit.get(context).gender;
+                                registerCubit.get(context).SignUp(
+                                    email: emailcontroller.text,
+                                    password: passwordcontroller.text,
+                                    c_password: password1controller.text,
+                                    address: addresscontroller.text,
+                                    name: namecontroller.text,
+                                    phone: phonecontroller.text,
+                                    photo: image64.toString(),
+                                    gender:gender.toString());
+                                print(registerCubit.get(context).gender);
+                              } else
+                                setState(() {
+                                  showError = true;
+                                });
 
                             }
                           },
@@ -406,10 +407,12 @@ class _signupState extends State<signup> {
                           r: 10,
                           s: 15,
                           color: ColorApp.color2
-                          // Color.fromRGBO(255, 239, 193,1),
-                          ),
+                        // Color.fromRGBO(255, 239, 193,1),
+                      ),
                     ),
                   ),
+
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -121,6 +123,21 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
+                              // PostsCubit.get(context)
+                              //     .get_allPosts!
+                              //     .data[index].photo!=null?
+                              // Container(
+                              //     decoration: BoxDecoration(
+                              //         borderRadius: BorderRadius.circular(20),
+                              //         image: DecorationImage(
+                              //           image:
+                              //           MemoryImage(base64Decode( PostsCubit.get(context)
+                              //               .get_allPosts!
+                              //               .data[index].photo!)),
+                              //           fit: BoxFit.fill,
+                              //         )))
+                              //     :SizedBox(),
+
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Row(

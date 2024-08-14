@@ -38,14 +38,14 @@ void main() async {
   await CachHelper.init();
   Widget widget;
   if (CachHelper.gettoken(key: "token") == null) {
-    widget = JoinUsPage();
+    widget = signin();
   } else {
     token = CachHelper.gettoken(key: "token");
     role_id = CachHelper.getData(key: "role_id");
     print(token);
     print(role_id);
 
-    widget = JoinUsPage();
+    widget = Layout();
   }
   if(CachHelper.getData(key: "isdark")!=null){
     dark=CachHelper.getData(key: "isdark");
@@ -173,8 +173,7 @@ class MyApp extends StatelessWidget {
 
 
             ),
-            themeMode:
-                AppCubit.get(context).isdark ? ThemeMode.dark : ThemeMode.light,
+            themeMode:AppCubit.get(context).isdark ? ThemeMode.dark : ThemeMode.light,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

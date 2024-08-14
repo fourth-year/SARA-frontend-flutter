@@ -1,3 +1,13 @@
+// To parse this JSON data, do
+//
+//     final allPosts = allPostsFromJson(jsonString);
+
+import 'dart:convert';
+
+AllPosts allPostsFromJson(String str) => AllPosts.fromJson(json.decode(str));
+
+String allPostsToJson(AllPosts data) => json.encode(data.toJson());
+
 class AllPosts {
     bool success;
     String message;
@@ -25,6 +35,7 @@ class AllPosts {
 class Datum {
     int id;
     String text;
+    String? photo;
     int userId;
     DateTime createdAt;
     DateTime updatedAt;
@@ -35,6 +46,7 @@ class Datum {
     Datum({
         required this.id,
         required this.text,
+        required this.photo,
         required this.userId,
         required this.createdAt,
         required this.updatedAt,
@@ -46,6 +58,7 @@ class Datum {
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
         text: json["text"],
+        photo: json["photo"],
         userId: json["user_id"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
@@ -57,6 +70,7 @@ class Datum {
     Map<String, dynamic> toJson() => {
         "id": id,
         "text": text,
+        "photo": photo,
         "user_id": userId,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),

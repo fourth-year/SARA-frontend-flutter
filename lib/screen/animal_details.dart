@@ -99,285 +99,287 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                   child: Icon(Icons.arrow_back_ios),
                 ),),
               ),
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: Center(
-                      child: Container(
-                        // margin: EdgeInsets.only(left: 30, bottom: 20),
-                        width: 300,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
-                            ? Image(height: 75,width: 400,fit: BoxFit.fill,
-                          image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
-                        )
-                            : Image(
-                          image: AssetImage('assets/images/sara.png'),
-                          fit: BoxFit.fill,
+              body: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Center(
+                        child: Container(
+                          // margin: EdgeInsets.only(left: 30, bottom: 20),
+                          width: 300,
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
+                              ? Image(height: 75,width: 400,fit: BoxFit.fill,
+                            image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
+                          )
+                              : Image(
+                            image: AssetImage('assets/images/sara.png'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            text(
-                              text1: 'Name :'.tr(),
-                              color: ColorApp.color2,
-                              size: 20,
-                              themestyle: Theme.of(context).textTheme.headline6,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.name}',
-                              style: Theme.of(context).textTheme.headline6,
-
-          )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Row(
-                          children: [
-                            text(
-                              themestyle: Theme.of(context).textTheme.headline6,
-
-                              text1: 'type :'.tr(),
-                              color: ColorApp.color2,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==1?
-                              'Cats'.tr()
-                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==2?
-                              "Dogs".tr()
-                                  : AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==3?
-                              "Birds".tr()
-
-                                  : "Horses".tr()
-
-                              ,
-                              style:Theme.of(context).textTheme.headline6,
-
-          )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                        Row(
-                          children: [
-                            text(  themestyle: Theme.of(context).textTheme.headline6,
-
-                              text1: 'Age :'.tr(),
-                              color: ColorApp.color2,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.age}',
-                              style:Theme.of(context).textTheme.headline6,
-          )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 12,
-                        ),
-                       
-                        Row(
-                          children: [
-                            text(
-                              themestyle: Theme.of(context).textTheme.headline6,
-
-                              text1: 'health :'.tr(),
-                              color: ColorApp.color2,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
-                              style: Theme.of(context).textTheme.headline6,
-
-          )
-                          ],
-                        ),
-
-                        SizedBox(
-                          height: 12,
-                        ),
-                        role_id=="2"?
-                        Row(
-                          children: [
-                            text(
-                              themestyle: Theme.of(context).textTheme.headline6,
-
-                              text1: 'Department :'.tr(),
-                              color: ColorApp.color2,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Text(
-                              AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==1?
-                              'Department_1'.tr()
-                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==2?
-                              "Department_2".tr()
-                                  : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==3?
-                              "Department_3".tr()
-                                  : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==4?
-                              'Department_4'.tr()
-                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==5?
-                              "Department_5".tr()
-                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==6?
-                              'Department_6'
-                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==7?
-                              "Department_7":
-                              AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==8?
-                              'Department_8'
-                                  :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==9?
-                              "Department_9"
-                                  : "Department_10"
-                              ,
-                              style:Theme.of(context).textTheme.headline6,
-
-          ),
-                            SizedBox(
-                              height: 12,
-                            ),
-                          ],
-                        )
-                        :SizedBox(),
-
-                        Row(
-                          children: [
-                            text(
-                              themestyle: Theme.of(context).textTheme.headline6,
-
-                              text1: 'Entry Date :'.tr(),
-                              color: ColorApp.color2,
-                              size: 20,
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.year}-'
-                                  '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.month}-'
-                                  '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.day}',
-                              style:Theme.of(context).textTheme.headline6,
-
-          )
-                          ],
-                        ),
-                      ],
+                
+                    SizedBox(
+                      height: 12,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 45, top: 40,right: 45),
-                    child:
-                    role_id == "2"||role_id == "4"
-                        ? Row(
+                    Padding(
+                      padding: const EdgeInsets.only(left: 50),
+                      child: Column(
+                        children: [
+                          Row(
                             children: [
-                              defaultButton(
-                                w: screenWidth.width/3,
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Update_Animal(
-                                            id: AnimalCubit.get(context)
-                                                .get_Animal_By_id
-                                                ?.data
-                                                .id)),
-                                  );
-                                },
-                                text: 'Update'.tr(),
-                                color: ColorApp.color,
-                                textColor: ColorApp.color2,
+                              text(
+                                text1: 'Name :'.tr(),
+                                color: ColorApp.color2,
+                                size: 20,
+                                themestyle: Theme.of(context).textTheme.headline6,
                               ),
                               SizedBox(
-                                width: 30,
+                                width: 10,
                               ),
-                              defaultButton(
+                              Text(
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.name}',
+                                style: Theme.of(context).textTheme.headline6,
+                
+                          )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Row(
+                            children: [
+                              text(
+                                themestyle: Theme.of(context).textTheme.headline6,
+                
+                                text1: 'type :'.tr(),
+                                color: ColorApp.color2,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==1?
+                                'Cats'.tr()
+                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==2?
+                                "Dogs".tr()
+                                    : AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==3?
+                                "Birds".tr()
+                
+                                    : "Horses".tr()
+                
+                                ,
+                                style:Theme.of(context).textTheme.headline6,
+                
+                          )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                          Row(
+                            children: [
+                              text(  themestyle: Theme.of(context).textTheme.headline6,
+                
+                                text1: 'Age :'.tr(),
+                                color: ColorApp.color2,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.age}',
+                                style:Theme.of(context).textTheme.headline6,
+                          )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 12,
+                          ),
+                         
+                          Row(
+                            children: [
+                              text(
+                                themestyle: Theme.of(context).textTheme.headline6,
+                
+                                text1: 'health :'.tr(),
+                                color: ColorApp.color2,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
+                                style: Theme.of(context).textTheme.headline6,
+                
+                          )
+                            ],
+                          ),
+                
+                          SizedBox(
+                            height: 12,
+                          ),
+                          role_id=="2"?
+                          Row(
+                            children: [
+                              text(
+                                themestyle: Theme.of(context).textTheme.headline6,
+                
+                                text1: 'Department :'.tr(),
+                                color: ColorApp.color2,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 12,
+                              ),
+                              Text(
+                                AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==1?
+                                'Department_1'.tr()
+                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==2?
+                                "Department_2".tr()
+                                    : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==3?
+                                "Department_3".tr()
+                                    : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==4?
+                                'Department_4'.tr()
+                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==5?
+                                "Department_5".tr()
+                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==6?
+                                'Department_6'
+                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==7?
+                                "Department_7":
+                                AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==8?
+                                'Department_8'
+                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==9?
+                                "Department_9"
+                                    : "Department_10"
+                                ,
+                                style:Theme.of(context).textTheme.headline6,
+                
+                          ),
+                              SizedBox(
+                                height: 12,
+                              ),
+                            ],
+                          )
+                          :SizedBox(),
+                
+                          Row(
+                            children: [
+                              text(
+                                themestyle: Theme.of(context).textTheme.headline6,
+                
+                                text1: 'Entry Date :'.tr(),
+                                color: ColorApp.color2,
+                                size: 20,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.year}-'
+                                    '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.month}-'
+                                    '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.day}',
+                                style:Theme.of(context).textTheme.headline6,
+                
+                          )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 45, top: 40,right: 45),
+                      child:
+                      role_id == "2"||role_id == "4"
+                          ? Row(
+                              children: [
+                                defaultButton(
                                   w: screenWidth.width/3,
-                                onTap: () {
-                                  _openAnimatedDialog(context);
-                                },
-                                text: 'Delete'.tr(),
-                                color: ColorApp.color,
-                                textColor: ColorApp.color2,
-                              )
-                            ],
-                          )
-                        : AnimalCubit.get(context).get_Animal_By_id!.data.adoptions.isEmpty?
-                    Row(
-                            children: [
-                              defaultButton(
-                                onTap: () {
-                                  AnimalCubit.get(context).adoptions
-                                    (animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id);
-                                },
-                                text: 'adoptions'.tr(),
-                                color: ColorApp.color,
-                                textColor: ColorApp.color2,
-                              ),
-                              SizedBox(
-                                width: 30,
-                              ),
-                              defaultButton(
-                                onTap: () {
-                                  print(' ffffffffffff');
-                                  AnimalCubit.get(context).sponcership(
-                                      animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id, balance: 150000);
-                                },
-                                text: 'sponcerships'.tr(),
-                                color: ColorApp.color,
-                                textColor: ColorApp.color2,
-                              )
-                            ],
-                          )
-                        :SizedBox(
-
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Update_Animal(
+                                              id: AnimalCubit.get(context)
+                                                  .get_Animal_By_id
+                                                  ?.data
+                                                  .id)),
+                                    );
+                                  },
+                                  text: 'Update'.tr(),
+                                  color: ColorApp.color,
+                                  textColor: ColorApp.color2,
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                defaultButton(
+                                    w: screenWidth.width/3,
+                                  onTap: () {
+                                    _openAnimatedDialog(context);
+                                  },
+                                  text: 'Delete'.tr(),
+                                  color: ColorApp.color,
+                                  textColor: ColorApp.color2,
+                                )
+                              ],
+                            )
+                          : AnimalCubit.get(context).get_Animal_By_id!.data.adoptions.isEmpty?
+                      Row(
+                              children: [
+                                defaultButton(
+                                  onTap: () {
+                                    AnimalCubit.get(context).adoptions
+                                      (animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id);
+                                  },
+                                  text: 'adoptions'.tr(),
+                                  color: ColorApp.color,
+                                  textColor: ColorApp.color2,
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                defaultButton(
+                                  onTap: () {
+                                    print(' ffffffffffff');
+                                    AnimalCubit.get(context).sponcership(
+                                        animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id, balance: 150000);
+                                  },
+                                  text: 'sponcerships'.tr(),
+                                  color: ColorApp.color,
+                                  textColor: ColorApp.color2,
+                                )
+                              ],
+                            )
+                          :SizedBox(
+                
+                      ),
+                            // :  defaultButton(
+                            // onTap: () {
+                            //   AnimalCubit.get(context).sponcership(
+                            //       animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
+                            //       , balance: 150000);
+                            //
+                            //
+                            // },
+                            // text: 'sponcerships'.tr(),
+                            // color: ColorApp.color3,
+                            // textColor: ColorApp.color2,
+                            // )
                     ),
-                          // :  defaultButton(
-                          // onTap: () {
-                          //   AnimalCubit.get(context).sponcership(
-                          //       animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
-                          //       , balance: 150000);
-                          //
-                          //
-                          // },
-                          // text: 'sponcerships'.tr(),
-                          // color: ColorApp.color3,
-                          // textColor: ColorApp.color2,
-                          // )
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           } else {

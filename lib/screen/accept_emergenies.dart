@@ -35,7 +35,7 @@ class AcceptEmergenies extends StatelessWidget {
             ),
           );
         }
-        if (state is DeleteEmergencySuccessfully) {
+        if (state is RejectEmergencyError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -55,12 +55,13 @@ class AcceptEmergenies extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (state is GetAllEmergenciesSuccessfully) {
+        if ( EmergencyCubit.get(context)
+            .get_all_emergencies!=null) {
           return Scaffold(
             appBar: AppBar(
               leading: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Layout(),));
                 },
                 icon: Padding(
                   padding: const EdgeInsets.only(left: 20.0),
@@ -174,6 +175,7 @@ class AcceptEmergenies extends StatelessWidget {
                                                             .get_all_emergencies!
                                                             .data[index]
                                                             .id);
+
                                                   },
                                                   child: Text(
                                                     'Reject',
@@ -322,7 +324,10 @@ class AcceptEmergenies extends StatelessWidget {
                   text: 'Delete'.tr(),
                   color: ColorApp.color2,
                   onTap: () {
-                    EmergencyCubit.get(context).DeleteEmergency(id: id);
+                    EmergencyCubit.get(context).RejectEmergency(id: id);
+
+                    EmergencyCubit.get(context).getAll_Emergencies(status: 0);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AcceptEmergenies(),));
                   })
             ],
           ),

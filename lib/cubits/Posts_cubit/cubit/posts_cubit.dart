@@ -173,30 +173,7 @@ class PostsCubit extends Cubit<PostsState> {
       emit(LikeDeletedError());
     });
   }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // void add_Request_JoinUs({
-  //   required age,
-  //   required job_title,
-  //   required start_time,
-  //   required end_time,
-  // }) {
-  //   var data = FormData.fromMap({
-  //     'age': age,
-  //     'job_title': job_title,
-  //     'start_time': start_time,
-  //     'end_time': end_time
-  //   });
-  //   log(data.fields.toString());
-  //   DioHelper.postData(url: baseurl + '/user/empreq', data: data).then((value) {
-  //     print(value.data);
-  //     emit(JoinUsSuccess());
-  //   }).catchError((error) {
-  //     print(error.toString());
-  //     emit(JoinUsError());
-  //   });
-  // }
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
   void add_Request_JoinUs({
     required age,
     required job_title,

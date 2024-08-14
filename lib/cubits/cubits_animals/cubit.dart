@@ -135,6 +135,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
     ).then((value) {
       get_Animal_By_id = GetAnimal_byid_Model.fromJson(value.data);
       print(get_animal_type?.status);
+
       emit(GetAnimalByIdSuccessState());
     }).catchError((erroe) {
       print(erroe.toString());

@@ -48,6 +48,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
     image64 = CachHelper.getData(key: "photo");
     gender = CachHelper.getData(key: "gender");
     registerCubit.get(context).type_gender(gender);
+    String img="";
 
     Future<void> _openImagePicker() async {
       final XFile? pickedImage =
@@ -64,6 +65,15 @@ class _Edit_ProfileState extends State<Edit_Profile> {
       }
     }
 
+
+    if(CachHelper.getData(key: 'photo')!=null){
+      img =CachHelper.getData(key: 'photo');
+    }
+
+    else
+      img ="";
+
+
     return BlocConsumer<registerCubit, registerSates>(
       listener: (BuildContext context, state) {
         if(state is UpdateSuccessState){ Navigator.pop(
@@ -72,6 +82,8 @@ class _Edit_ProfileState extends State<Edit_Profile> {
         CachHelper.savetoken(key: 'address', value: addresscontroller.text);
         CachHelper.savetoken(key: 'phone', value:phonecontroller.text);
         CachHelper.savetoken(key: 'email', value:emailcontroller.text);
+        CachHelper.savetoken(key: 'photo', value:image64);
+
         // CachHelper.savetoken(key: 'photo', value:phot);
 
         CachHelper.savetoken(key: 'gender', value:gender.toString());
@@ -115,26 +127,45 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                       onTap: () {
                         _openImagePicker();
                       },
-                      child: _image == null
-                          ? Stack(children: [
+                      child:
+                      _image == null?
+                     img !="null"?
+                          Stack(children: [
                               Container(
                                 width: 150,
                                 height: 150,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: ColorApp.color,
+                                    image: DecorationImage(
+                                      image:
+                                      MemoryImage(base64Decode(img)),
+                                      fit: BoxFit.fill,
+                                    )
                                 ),
                               ),
-                              Positioned(
-                                top: 110,
-                                left: 55,
-                                child: Icon(
-                                  Icons.camera_alt_outlined,
-                                  size: 35,
-                                  color: ColorApp.color2,
-                                ),
-                              ),
-                            ])
+
+                            ]):
+                      Stack(children: [
+                        Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: ColorApp.color,
+
+                          ),
+                        ),
+                        Positioned(
+                          top: 110,
+                          left: 55,
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            size: 35,
+                            color: ColorApp.color2,
+                          ),
+                        ),
+                      ])
                           : Container(
                               width: 150,
                               height: 150,

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:sara_front/cubits/register/cubit.dart';
 import 'package:sara_front/network/end_point.dart';
@@ -19,8 +21,17 @@ import '../register/signin.dart';
 import 'donation.dart';
 
 class Drawer_Screen extends StatelessWidget {
+
+  String img="";
   @override
   Widget build(BuildContext context) {
+//&&CachHelper.getData(key: 'photo')!=''
+    if(CachHelper.getData(key: 'photo')!=null){
+     img =CachHelper.getData(key: 'photo');
+    }
+    else
+      img ="";
+    // print(img);
     return Drawer(
       width: 250,
       backgroundColor:
@@ -41,12 +52,26 @@ class Drawer_Screen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10,left: 40,right: 40),
-                      child: Container(
+                      child:
+                      img!="null"?
+                      Container(
                         width: 120,
                         height: 120,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: ColorApp.color3,
+                            image: DecorationImage(
+                              image:
+                              MemoryImage(base64Decode(img)),
+                              fit: BoxFit.fill,
+                            )
+                        ),
+                      ): Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: ColorApp.color3,
                         ),
                       ),
                     ),

@@ -157,6 +157,7 @@ class _AddEmergencyState extends State<AddEmergency> {
                       height: 15,
                     ),
                     textfromfilde(
+                      count: 10,
                       size: 13,
                       hint: 'Enter your number',
                       controller: contact,
