@@ -94,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   value: selected_language,
                   dropdownColor: ColorApp.colorback,
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                  items: ["English".tr(), "Arabic".tr()]
+                  items: ["English", "Arabic"]
                       .map((e) => DropdownMenuItem(
                             child: Text("$e"),
                             value: e,

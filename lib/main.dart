@@ -38,23 +38,22 @@ void main() async {
   await CachHelper.init();
   Widget widget;
   if (CachHelper.gettoken(key: "token") == null) {
-    widget = signin();
+    widget = AddAnimal();
   } else {
     token = CachHelper.gettoken(key: "token");
     role_id = CachHelper.getData(key: "role_id");
     print(token);
     print(role_id);
 
-    widget = Layout();
+    widget = AddAnimal();
   }
-  if(CachHelper.getData(key: "isdark")!=null){
-    dark=CachHelper.getData(key: "isdark");
-  }
-  else
-    dark=false;
+  if (CachHelper.getData(key: "isdark") != null) {
+    dark = CachHelper.getData(key: "isdark");
+  } else
+    dark = false;
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('en')],
+        supportedLocales: [Locale('en'),Locale('ar')],
         path: 'assets/translation',
         fallbackLocale: Locale('en'),
         child: MyApp(startwidget: widget)),
@@ -75,7 +74,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => PostsCubit()),
         BlocProvider(create: (BuildContext context) => UserCubit()),
         BlocProvider(create: (BuildContext context) => EmergencyCubit()),
-        BlocProvider(create: (BuildContext context) => AppCubit()..changthem(dark),
+        BlocProvider(
+          create: (BuildContext context) => AppCubit()..changthem(dark),
         ),
       ],
       child: BlocConsumer<AppCubit, AppSates>(
@@ -88,50 +88,62 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color2),
 
               // colorSchemeSeed:ColorApp.color2 ,
-                brightness: Brightness.light,
-                tabBarTheme: TabBarTheme(
-                  unselectedLabelColor: Colors.grey[400],
-                  labelColor: ColorApp.color2,
-                    dividerHeight: 0.5,
-                    indicatorColor:ColorApp.color2,
+              brightness: Brightness.light,
+              tabBarTheme: TabBarTheme(
+                unselectedLabelColor: Colors.grey[400],
+                labelColor: ColorApp.color2,
+                dividerHeight: 0.5,
+                indicatorColor: ColorApp.color2,
+              ),
+              cardTheme: CardTheme(
+                  shadowColor: ColorApp.colorback, color: ColorApp.colorback),
+              canvasColor: Colors.grey[700],
+              scaffoldBackgroundColor: ColorApp.colorback,
+
+              appBarTheme: AppBarTheme(
+                backgroundColor: Colors.white,
+                titleTextStyle: TextStyle(color: ColorApp.color2),
+              ),
+
+              textTheme: TextTheme(
+                subtitle1: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
                 ),
-                cardTheme: CardTheme(shadowColor:ColorApp.colorback ,color:ColorApp.colorback ),
-                canvasColor: Colors.grey[700],
-                scaffoldBackgroundColor: ColorApp.colorback,
-
-                appBarTheme: AppBarTheme(
-                  backgroundColor: Colors.white,
-                  titleTextStyle: TextStyle(color: ColorApp.color2),
-                ),
-
-                textTheme: TextTheme(
-
-                  subtitle1: TextStyle(color: Colors.black ,
-                    fontSize: 14,fontFamily: 'text normal',
-                    fontWeight: FontWeight.w100,),
-                  subtitle2: TextStyle(color: Colors.white ,
+                subtitle2: TextStyle(
+                    color: Colors.white,
                     fontSize: 14,
-                    fontWeight: FontWeight.w100,fontFamily: 'text normal'),
-                  headline2: TextStyle(color: ColorApp.color1 ,
-                    fontSize: 25,fontFamily: 'text normal',
-                    fontWeight: FontWeight.w100,),
-                  headline4: TextStyle(color: ColorApp.color2 ,
-                    fontSize: 18,fontFamily: 'text normal',
-                    fontWeight: FontWeight.w100,),
-                  headline1: TextStyle(fontSize: 18,
-                      color: ColorApp.color2, fontFamily: 'text normal'),
-                  headline5: TextStyle(
-                      color: ColorApp.color2, fontFamily: 'text normal'),
-                  headline6: TextStyle(color: Colors.black ,
-                    fontSize: 18,fontFamily: 'text normal',
-                    fontWeight: FontWeight.w100,),
-                  headline3: TextStyle(
-                      color: ColorApp.color2, fontFamily: "title",fontSize: 35),
-
-
+                    fontWeight: FontWeight.w100,
+                    fontFamily: 'text normal'),
+                headline2: TextStyle(
+                  color: ColorApp.color1,
+                  fontSize: 25,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
                 ),
-
-
+                headline4: TextStyle(
+                  color: ColorApp.color2,
+                  fontSize: 18,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                headline1: TextStyle(
+                    fontSize: 18,
+                    color: ColorApp.color2,
+                    fontFamily: 'text normal'),
+                headline5: TextStyle(
+                    color: ColorApp.color2, fontFamily: 'text normal'),
+                headline6: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                headline3: TextStyle(
+                    color: ColorApp.color2, fontFamily: "title", fontSize: 35),
+              ),
             ),
 
             ////////////////////////dark
@@ -141,39 +153,49 @@ class MyApp extends StatelessWidget {
                   unselectedLabelColor: Colors.grey[600],
                   labelColor: ColorApp.colorback,
                   dividerHeight: 0.5,
-                  indicatorColor:ColorApp.color2
-              ),
-
-              cardTheme: CardTheme(shadowColor: Colors.grey[700],color:Colors.grey[600] ),
+                  indicatorColor: ColorApp.color2),
+              cardTheme: CardTheme(
+                  shadowColor: Colors.grey[700], color: Colors.grey[600]),
               canvasColor: Colors.grey[700],
               scaffoldBackgroundColor: Colors.grey[850],
               dialogBackgroundColor: Colors.grey,
-
               textTheme: TextTheme(
-                headline4: TextStyle(color: Colors.black ,
-                fontSize: 18,fontFamily: 'text normal',
-                fontWeight: FontWeight.w100,),
-          subtitle2: TextStyle(color: Colors.white ,
-          fontSize: 14,fontFamily: 'text normal',
-          fontWeight: FontWeight.w100,),
-                subtitle1: TextStyle(color: Colors.black ,
-                  fontSize: 14,fontFamily: 'text normal',
-                  fontWeight: FontWeight.w100,),
-                headline6: TextStyle(color: Colors.white ,
-                  fontSize: 18,fontFamily: 'text normal',
-                  fontWeight: FontWeight.w100,),
-                headline2: TextStyle(color: Colors.white ,
-                  fontSize: 20,fontFamily: 'text normal',
-                  fontWeight: FontWeight.w100,),
-
-
-                headline5: TextStyle(color: ColorApp.color, fontFamily: 'text normal'),
+                headline4: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                subtitle2: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                subtitle1: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                headline6: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                headline2: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'text normal',
+                  fontWeight: FontWeight.w100,
+                ),
+                headline5:
+                    TextStyle(color: ColorApp.color, fontFamily: 'text normal'),
               ),
-
-
-
             ),
-            themeMode:AppCubit.get(context).isdark ? ThemeMode.dark : ThemeMode.light,
+            themeMode:
+                AppCubit.get(context).isdark ? ThemeMode.dark : ThemeMode.light,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
