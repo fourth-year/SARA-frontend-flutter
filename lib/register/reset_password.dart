@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -50,7 +51,7 @@ class _reset_passworeState extends State<reset_passwore> {
                             image: AssetImage("assets/images/Reset password.png"),
                             height: 220,),
                           SizedBox(height: 15,),
-                          text(text1: 'Create New Password',
+                          text(text1: 'Create New Password'.tr(),
                             size: 25,
                             font: "title",
                             fontWeight: FontWeight.w100,
@@ -60,14 +61,14 @@ class _reset_passworeState extends State<reset_passwore> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0,right: 18,left: 18),
                             child: text(
-                              text1: 'create new password  and please never shere it with anyone for safe use.',
+                              text1: 'create new password  and please never shere it with anyone for safe use.'.tr(),
                               size: 15,
                               fontWeight: FontWeight.normal,),
                           ),
                           SizedBox(height: 20,),
                           Padding(
                             padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 5.0),
-                            child: textfromfilde(hint:'Your Password',
+                            child: textfromfilde(hint:'Your Password'.tr(),
                               controller: passwordcontroller,
                               color: ColorApp.color,
                               prefix: Icon(Icons.lock_rounded),
@@ -81,7 +82,7 @@ class _reset_passworeState extends State<reset_passwore> {
 
                               validate: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "please enter your password";
+                                  return "please enter your password".tr();
                                 }
                                 return null;
                               },
@@ -94,7 +95,7 @@ class _reset_passworeState extends State<reset_passwore> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 text(
-                                  text1: 'this field must contain at least 8 characters',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
+                                  text1: 'this field must contain at least 8 characters'.tr(),color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
                                 ),
                               ],
                             ),
@@ -103,7 +104,7 @@ class _reset_passworeState extends State<reset_passwore> {
 
                           Padding(
                             padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 5.0,top: 10),
-                            child: textfromfilde(hint:'Confirm  Password',
+                            child: textfromfilde(hint:'Confirm Password'.tr(),
                               controller: c_passwordcontroller,
                               color: ColorApp.color,
                               prefix: Icon(Icons.lock_rounded),
@@ -117,7 +118,7 @@ class _reset_passworeState extends State<reset_passwore> {
 
                               validate: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "please enter your password";
+                                  return "please enter your password".tr();
                                 }
                                 return null;
                               },
@@ -130,7 +131,7 @@ class _reset_passworeState extends State<reset_passwore> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 text(
-                                  text1: 'this field must contain at least 8 characters',color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
+                                  text1: 'this field must contain at least 8 characters'.tr(),color: ColorApp.color2,size: 12,fontWeight: FontWeight.w100,
                                 ),
                               ],
                             ),
@@ -165,7 +166,7 @@ class _reset_passworeState extends State<reset_passwore> {
                                             passError = true;});
                                           }
                                           },
-                                                                   text: "Update Password",
+                                                                   text: "Update Password".tr(),
                                                                    w: 180,
                                                                    h: 45,
                                                                    r: 10,

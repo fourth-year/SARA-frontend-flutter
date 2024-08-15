@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -43,7 +44,7 @@ class forgetPassword extends StatelessWidget {
                         image: AssetImage("assets/images/Forgot password.png"),
                         height: 200,),
                       SizedBox(height: 15,),
-                      text(text1: 'Find Your Account',
+                      text(text1: 'Find Your Account'.tr(),
                         size: 30,
                         font: "title",
                         fontWeight: FontWeight.w100,
@@ -54,7 +55,7 @@ class forgetPassword extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0,right: 18,left: 18),
                         child: text(
-                          text1: 'please enter your email address to search for your account',
+                          text1: 'please enter your email address to search for your account'.tr(),
                           size: 15,
                           fontWeight: FontWeight.normal,),
                       ),
@@ -62,13 +63,13 @@ class forgetPassword extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(
                             left: 18.0, right: 18.0, bottom: 18.0),
-                        child: textfromfilde(hint: 'Your Email  ',
+                        child: textfromfilde(hint: 'Your Email  '.tr(),
                           controller: emailcontroller,
                           color: ColorApp.color,
                           prefix: Icon(Icons.email_rounded),
                           validate: (value) {
                             if (value == null || value.isEmpty) {
-                              return "please enter your email ";
+                              return "please enter your email".tr();
                             }
                             return null;
                           },
@@ -78,7 +79,7 @@ class forgetPassword extends StatelessWidget {
                         condition:state is! ForgetLoadingState,
                         fallback: (context)=>Center(child: CircularProgressIndicator(),),
                         builder: (context) =>defaultButton(
-                          text: "Search",
+                          text: "Search".tr(),
                           w: 130,
                           h: 45,
                           r: 10,

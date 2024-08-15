@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class Wallet extends StatelessWidget {
           title: text(
             themestyle: Theme.of(context).textTheme.headline5,
 
-            text1: 'Account Balance',
+            text1: 'Account Balance'.tr(),
           color: ColorApp.color2,
           size: 22,
                   ),
@@ -43,7 +44,7 @@ class Wallet extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: text(text1: "You have the following amount in your account :"
+                  child: text(text1: "You have the following amount in your account :".tr()
                   ,themestyle: Theme.of(context).textTheme.headline6,),
                 ),
                 // Container(
@@ -87,7 +88,7 @@ class Wallet extends StatelessWidget {
           Scaffold(
             appBar: AppBar(
               title: text(
-                text1: 'Account Balance',
+                text1: 'Account Balance'.tr(),
                 color: ColorApp.color2,
                 size: 22,
               ),

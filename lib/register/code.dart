@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -43,7 +44,7 @@ class code extends StatelessWidget {
       Image(
       image: AssetImage("assets/images/Forgot password.png"),height: 200,),
       SizedBox(height: 15,),
-      text(text1: 'Enter Code ',size: 30,font: "title",
+      text(text1: 'Enter Code '.tr(),size: 30,font: "title",
       fontWeight: FontWeight.w100,
       color: ColorApp.color2,),
       // text(text1: 'please enter your email address to search for your account ',),
@@ -51,17 +52,17 @@ class code extends StatelessWidget {
       SizedBox(height: 4,),
       Padding(
       padding: const EdgeInsets.all(10.0),
-      child: text(text1: 'please enter Code sent to ${email}  ',size: 15,fontWeight: FontWeight.normal,),
+      child: text(text1: 'please enter Code sent to ${email}  '.tr(),size: 15,fontWeight: FontWeight.normal,),
       ),
       SizedBox(height: 20,),
       Padding(
       padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 18.0),
-      child: textfromfilde(hint:'Code*',
+      child: textfromfilde(hint:'Code*'.tr(),
       controller:codecontroller ,
       color: ColorApp.color,
       validate: (value) {
       if (value == null || value.isEmpty) {
-      return "please enter code";
+      return "please enter code".tr();
       }
       return null;
       },
@@ -74,7 +75,7 @@ class code extends StatelessWidget {
        onTap: (){
             registerCubit.get(context).codecheke(code: codecontroller.text);
               },
-      text: "Submit", w: 130,
+      text: "Submit".tr(), w: 130,
       h: 45,
       r:10 ,
       s: 20,
@@ -85,9 +86,9 @@ class code extends StatelessWidget {
       child: Center(child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-      text(text1: "Not Receive Code?",size: 14,fontWeight: FontWeight.w100,color: Colors.black45,),
+      text(text1: "Not Receive Code?".tr(),size: 14,fontWeight: FontWeight.w100,color: Colors.black45,),
       textButton(
-      text: "Resend",
+      text: "Resend".tr(),
       onTap: (){
       })
       ],

@@ -95,7 +95,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Unable to send',
+                'Unable to send'.tr(),
                 style: TextStyle(
                   color: Color.fromARGB(255, 59, 1, 1),
                   fontFamily: 'Inter',
@@ -114,7 +114,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
         return Scaffold(
           appBar: AppBar(
             title: text(
-              text1: "Join Us",
+              text1: "Join Us".tr(),
               color: ColorApp.color2,
               themestyle: Theme.of(context).textTheme.headline5,
               size: 22,
@@ -140,7 +140,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                   children: [
                     text(
                       text1:
-                          "\"Volunteering is not just about giving time, it's about giving hope and making a difference in the lives of other\"",
+                          "\"Volunteering is not just about giving time, it's about giving hope and making a difference in the lives of other\"".tr(),
                       size: 18,
                       color: ColorApp.color2,
                       fontWeight: FontWeight.w400,
@@ -151,7 +151,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                     ),
                     text(
                       text1:
-                          "We are very happy about your interest in joining us.\nPlease enter the required information",
+                          "We are very happy about your interest in joining us.\nPlease enter the required information".tr(),
                       themestyle: Theme.of(context).textTheme.headline1,
                     ),
                     SizedBox(
@@ -160,13 +160,13 @@ class _JoinUsPageState extends State<JoinUsPage> {
                     textfromfilde(
                       // size: 13,
 
-                      hint: 'Enter your age',
+                      hint: 'Enter your age'.tr(),
                       controller: age,
                       type: TextInputType.name,
                       color: Color.fromARGB(255, 219, 229, 244),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Please enter the age";
+                          return "Please enter the age".tr();
                         }
                       },
                     ),
@@ -174,7 +174,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       height: 15,
                     ),
                     text(
-                      text1: "Tell us a bit about your skills and experience",
+                      text1: "Tell us a bit about your skills and experience".tr(),
                       themestyle: Theme.of(context).textTheme.headline1,
                     ),
                     SizedBox(
@@ -188,7 +188,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide.none),
-                        hintText: 'type...',
+                        hintText: 'type...'.tr(),
                         hintStyle:
                             TextStyle(fontSize: 14, color: Colors.black87),
                         filled: true,
@@ -198,7 +198,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Required";
+                          return "Required".tr();
                         }
                       },
                     ),
@@ -206,7 +206,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       height: 15,
                     ),
                     text(
-                      text1: "Please specify a time that suits you",
+                      text1: "Please specify a time that suits you".tr(),
                       themestyle: Theme.of(context).textTheme.headline1,
                     ),
                     SizedBox(
@@ -219,13 +219,13 @@ class _JoinUsPageState extends State<JoinUsPage> {
                           child: textfromfilde(
                             size: 13,
                             readonly: true,
-                            hint: 'Start Time',
+                            hint: 'Start Time'.tr(),
                             controller: start_time,
                             type: TextInputType.name,
                             color: Color.fromARGB(255, 219, 229, 244),
                             validate: (value) {
                               if (value == null || value.isEmpty) {
-                                return "Required";
+                                return "Required".tr();
                               }
                             },
                             ontap: () {
@@ -241,13 +241,13 @@ class _JoinUsPageState extends State<JoinUsPage> {
                           child: textfromfilde(
                             size: 13,
                             readonly: true,
-                            hint: 'End Time',
+                            hint: 'End Time'.tr(),
                             controller: end_time,
                             type: TextInputType.name,
                             color: Color.fromARGB(255, 219, 229, 244),
                             validate: (value) {
                               if (value == null || value.isEmpty) {
-                                return "Required";
+                                return "Required".tr();
                               }
                             },
                             ontap: () {
@@ -275,7 +275,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
                                     PostsCubit.get(context).selectendtime);
                           }
                         },
-                        text: "Send",
+                        text: "Send".tr(),
                         textColor: Colors.white,
                         color: ColorApp.color2,
                         h: 50,

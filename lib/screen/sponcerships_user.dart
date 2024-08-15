@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +36,7 @@ class _sponcership_userState extends State<sponcership_user> {
         return Scaffold(
             appBar: AppBar(title: text(
               themestyle: Theme.of(context).textTheme.headline5,
-              text1:"Your Sponcerships",color: ColorApp.color2,
+              text1:"Your Sponcerships".tr(),color: ColorApp.color2,
               size: 22,),
               leading: IconButton(onPressed: () {
                 Navigator.pop(
@@ -135,7 +136,7 @@ class _sponcership_userState extends State<sponcership_user> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           text(
-                            text1: "Name animal:${model!.animal.name}",
+                            text1: "Name animal:${model!.animal.name}".tr(),
                             size: 18,
                             fontWeight: FontWeight.w200,
                           ),
@@ -143,12 +144,12 @@ class _sponcership_userState extends State<sponcership_user> {
                             height: 5.0,
                           ),
                           text(
-                            text1: " the Type : ${model.animal.type}",
+                            text1: " the Type : ${model.animal.type}".tr(),
                             size: 16,
                             fontWeight: FontWeight.normal,
                           ),
                           text(
-                            text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}",
+                            text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}".tr(),
                             size: 16,
                             fontWeight: FontWeight.normal,
                           ),

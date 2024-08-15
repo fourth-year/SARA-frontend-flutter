@@ -15,6 +15,7 @@ import 'package:sara_front/register/reset_password.dart';
 import 'package:sara_front/register/signin.dart';
 import 'package:sara_front/register/signup.dart';
 import 'package:sara_front/screen/Emergencies.dart';
+import 'package:sara_front/screen/Jops.dart';
 import 'package:sara_front/screen/Settings.dart';
 import 'package:sara_front/screen/add_animals.dart';
 import 'package:sara_front/screen/add_emergency.dart';
@@ -38,14 +39,14 @@ void main() async {
   await CachHelper.init();
   Widget widget;
   if (CachHelper.gettoken(key: "token") == null) {
-    widget = AddAnimal();
+    widget = SettingsPage();
   } else {
     token = CachHelper.gettoken(key: "token");
     role_id = CachHelper.getData(key: "role_id");
     print(token);
     print(role_id);
 
-    widget = AddAnimal();
+    widget = SettingsPage();
   }
   if (CachHelper.getData(key: "isdark") != null) {
     dark = CachHelper.getData(key: "isdark");
@@ -53,7 +54,7 @@ void main() async {
     dark = false;
   runApp(
     EasyLocalization(
-        supportedLocales: [Locale('en'),Locale('ar')],
+        supportedLocales: [Locale('en'), Locale('ar')],
         path: 'assets/translation',
         fallbackLocale: Locale('en'),
         child: MyApp(startwidget: widget)),

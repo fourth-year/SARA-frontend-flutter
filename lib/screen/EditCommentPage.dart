@@ -51,7 +51,7 @@ class EditCommentPage extends StatelessWidget {
                             empty = false;
                         },
                         decoration: InputDecoration(
-                            hintText: 'type what you want ...',
+                            hintText: 'type what you want ...'.tr(),
                             border: UnderlineInputBorder(
                                 borderSide: BorderSide.none)),
                         //  expands: true,
@@ -78,7 +78,7 @@ class EditCommentPage extends StatelessWidget {
                                     id: CachHelper.getData(key: "post_id")),
                               ));
                         },
-                        text: 'Cancel',
+                        text: 'Cancel'.tr(),
                         color: Color.fromARGB(255, 240, 239, 239),
                         h: 50,
                         w: 100,
@@ -102,7 +102,7 @@ class EditCommentPage extends StatelessWidget {
                                     id: CachHelper.getData(key: "post_id")),
                               ));
                         },
-                        text: 'Update',
+                        text: 'Update'.tr(),
                         h: 50,
                         w: 100,
                         color: ColorApp.color2,

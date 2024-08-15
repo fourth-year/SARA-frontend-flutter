@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -103,7 +104,7 @@ class _Update_AnimalState extends State<Update_Animal> {
           content: Row(
             children: [
               Text(
-                'Updated successfully',
+                'Updated successfully'.tr(),
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Inter',
@@ -124,7 +125,7 @@ class _Update_AnimalState extends State<Update_Animal> {
       if (state is UpdateAnimalErrorState) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
-            'Update Failed',
+            'Update Failed'.tr(),
             style: TextStyle(
               color: ColorApp.color2,
               fontFamily: 'Inter',
@@ -156,7 +157,7 @@ class _Update_AnimalState extends State<Update_Animal> {
           title: text(
             themestyle: Theme.of(context).textTheme.headline5,
 
-            text1: 'Update the animal info',
+            text1: 'Update the animal info'.tr(),
             size: 22,
             color: ColorApp.color2,
           ),
@@ -230,13 +231,13 @@ class _Update_AnimalState extends State<Update_Animal> {
                     height: 28,
                   ),
                   textfromfilde(
-                    hint: 'Enter the name of the animal',
+                    hint: 'Enter the name of the animal'.tr(),
                     controller: name,
                     type: TextInputType.name,
                     color: ColorApp.color,
                     validate: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please enter the name";
+                        return "Please enter the name".tr();
                       }
                     },
                   ),
@@ -244,13 +245,13 @@ class _Update_AnimalState extends State<Update_Animal> {
                     height: 18,
                   ),
                   textfromfilde(
-                    hint: 'Enter the age of the animal ',
+                    hint: 'Enter the age of the animal'.tr(),
                     controller: age,
                     type: TextInputType.number,
                     color: ColorApp.color,
                     validate: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please enter the age";
+                        return "Please enter the age".tr();
                       }
                     },
                   ),
@@ -258,7 +259,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                     height: 18,
                   ),
                   textfromfilde(
-                    hint: "Date",
+                    hint: "Date".tr(),
                     controller: Date,
                     ontap: () {
                       _selectDateTime(context);
@@ -268,7 +269,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                     prefix: Icon(Icons.calendar_today),
                     validate: (value) {
                       if (value == null || value.isEmpty) {
-                        return "Please enter the date";
+                        return "Please enter the date".tr();
                       } else
                         return null;
                     },
@@ -308,7 +309,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                     child: DropdownButtonFormField(
                         isExpanded: true,
                         hint: Text(
-                          'Choose the health status of the animal',
+                          'Choose the health status of the animal'.tr(),
                           style:
                               TextStyle(color: ColorApp.color1, fontSize: 15),
                         ),
@@ -326,7 +327,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                         value: selected_Health,
                         dropdownColor: ColorApp.colorback,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
-                        items: ["healthy", "unhealthy", "under treatment"]
+                        items: ["healthy".tr, "unhealthy".tr(), "under treatment".tr()]
                             .map((e) => DropdownMenuItem(
                                   child: Text("$e"),
                                   value: e,
@@ -344,7 +345,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                     padding: const EdgeInsets.only(top: 18),
                     child: DropdownButtonFormField(
                         hint: Text(
-                          'Choose the type of the animal',
+                          'Choose the type of the animal'.tr(),
                           style:
                               TextStyle(color: ColorApp.color1, fontSize: 15),
                         ),
@@ -364,23 +365,23 @@ class _Update_AnimalState extends State<Update_Animal> {
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         items: [
                           DropdownMenuItem(
-                            child: Text("Cat"),
+                            child: Text("Cat".tr()),
                             value: 1,
                           ),
                           DropdownMenuItem(
-                            child: Text("Dog"),
+                            child: Text("Dog".tr()),
                             value: 2,
                           ),
                           DropdownMenuItem(
-                            child: Text("Bird"),
+                            child: Text("Bird".tr()),
                             value: 3,
                           ),
                           DropdownMenuItem(
-                            child: Text("Horse"),
+                            child: Text("Horse".tr()),
                             value: 4,
                           ),
                           DropdownMenuItem(
-                            child: Text("Donkey"),
+                            child: Text("Donkey".tr()),
                             value: 5,
                           )
                         ],
@@ -400,7 +401,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                             children: [
                               text(
                                 text1:
-                                    'this field must contain at least 8 characters',
+                                    'this field must contain at least 8 characters'.tr(),
                                 color: ColorApp.color2,
                                 size: 12,
                                 fontWeight: FontWeight.w100,
@@ -415,7 +416,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                     padding: const EdgeInsets.only(top: 18),
                     child: DropdownButtonFormField(
                       hint: Text(
-                        'Choose the Departement',
+                        'Choose the Departement'.tr(),
                         style: TextStyle(color: ColorApp.color1, fontSize: 15),
                       ),
                       iconSize: 40,
@@ -432,25 +433,25 @@ class _Update_AnimalState extends State<Update_Animal> {
                       value: selected_Dep,
                       dropdownColor: ColorApp.colorback,
                       borderRadius: BorderRadius.all(Radius.circular(30)),
-                      items: const [
+                      items:[
                         DropdownMenuItem(
-                          child: Text("Department_1"),
+                          child: Text("Department_1".tr()),
                           value: 1,
                         ),
                         DropdownMenuItem(
-                          child: Text("Department_2"),
+                          child: Text("Department_2".tr()),
                           value: 2,
                         ),
                         DropdownMenuItem(
-                          child: Text("Department_3"),
+                          child: Text("Department_3".tr()),
                           value: 3,
                         ),
                         DropdownMenuItem(
-                          child: Text("Department_4"),
+                          child: Text("Department_4".tr()),
                           value: 4,
                         ),
                         DropdownMenuItem(
-                          child: Text("Department_5"),
+                          child: Text("Department_5".tr()),
                           value: 5,
                         )
                       ],
@@ -471,7 +472,7 @@ class _Update_AnimalState extends State<Update_Animal> {
                             children: [
                               text(
                                 text1:
-                                    'this field must contain at least 8 characters',
+                                    'this field must contain at least 8 characters'.tr(),
                                 color: ColorApp.color2,
                                 size: 12,
                                 fontWeight: FontWeight.w100,
@@ -539,7 +540,7 @@ class _Update_AnimalState extends State<Update_Animal> {
 
                         print(AnimalCubit.get(context).selectDate);
                       },
-                      text: "Update",
+                      text: "Update".tr(),
                       textColor: Colors.white,
                       color: ColorApp.color2,
                     ),

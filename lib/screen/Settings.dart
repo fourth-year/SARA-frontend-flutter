@@ -22,19 +22,19 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: text(
           themestyle: Theme.of(context).textTheme.headline5,
-
           text1: 'Settings'.tr(),
           size: 28,
           color: ColorApp.color2,
         ),
-
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-
-        }, icon: Padding(
-          padding: const EdgeInsets.only(left: 20.0),
-          child: Icon(Icons.arrow_back_ios),
-        ),),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Icon(Icons.arrow_back_ios),
+          ),
+        ),
       ),
       body: Padding(
         padding:
@@ -55,15 +55,13 @@ class _SettingsPageState extends State<SettingsPage> {
                       size: 20,
                     ),
                     trailing: Switch(
-                      activeColor:Colors.blue,
+                        activeColor: Colors.blue,
                         value: AppCubit.get(context).isdark,
                         onChanged: (value) {
-                      setState(() {
-                        AppCubit.get(context).changthem(value);
-
-                      });
-
-                    }),
+                          setState(() {
+                            AppCubit.get(context).changthem(value);
+                          });
+                        }),
                   ),
                 ),
               ),
@@ -76,14 +74,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     style: TextStyle(color: ColorApp.color1, fontSize: 13),
                   ),
                   iconSize: 40,
-                  icon: Icon(Icons.arrow_drop_down_rounded,
-
-    color:
-    Theme.of(context).brightness == Brightness.light
-    ? ColorApp.color2// لون المظهر الخفيف
-        : Colors.grey[800] ?? ColorApp.color2,
-
-
+                  icon: Icon(
+                    Icons.arrow_drop_down_rounded,
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? ColorApp.color2 // لون المظهر الخفيف
+                        : Colors.grey[800] ?? ColorApp.color2,
                   ),
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(
@@ -101,8 +96,6 @@ class _SettingsPageState extends State<SettingsPage> {
                           ))
                       .toList(),
                   onChanged: (value) {
-                    // AppCubit.get(context).Select_Language(value);
-                    // selected_language = AppCubit.get(context).Language;
                     if (context.locale.languageCode == "en") {
                       context.setLocale(Locale('ar'));
                     } else {

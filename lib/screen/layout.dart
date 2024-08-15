@@ -47,7 +47,7 @@ class _LayoutState extends State<Layout> {
                           AnimalCubit.get(context).curentindex == 0
                               ? SizedBox()
                               : text(
-                                  text1: 'animals',
+                                  text1: 'animals'.tr(),
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
                                 )
@@ -68,7 +68,7 @@ class _LayoutState extends State<Layout> {
                           AnimalCubit.get(context).curentindex == 1
                               ? SizedBox()
                               : text(
-                                  text1: 'home',
+                                  text1: 'home'.tr(),
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
                                   color: Colors.white,
@@ -93,7 +93,7 @@ class _LayoutState extends State<Layout> {
                               : text(
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
-                                  text1: 'emegance',
+                                  text1: 'emegance'.tr(),
                                   color: Colors.white,
                                   size: 14,
                                   fontWeight: FontWeight.w100,
@@ -116,7 +116,7 @@ class _LayoutState extends State<Layout> {
                               : text(
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
-                                  text1: 'task',
+                                  text1: 'task'.tr(),
                                   color: Colors.white,
                                   size: 14,
                                   fontWeight: FontWeight.w100,
@@ -139,7 +139,7 @@ class _LayoutState extends State<Layout> {
                           AnimalCubit.get(context).curentindex == 0
                               ? SizedBox()
                               : text(
-                                  text1: 'animals',
+                                  text1: 'animals'.tr(),
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
                                 )
@@ -160,7 +160,7 @@ class _LayoutState extends State<Layout> {
                           AnimalCubit.get(context).curentindex == 1
                               ? SizedBox()
                               : text(
-                                  text1: 'home',
+                                  text1: 'home'.tr(),
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
                                   color: Colors.white,
@@ -185,7 +185,7 @@ class _LayoutState extends State<Layout> {
                               : text(
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
-                                  text1: 'emegance',
+                                  text1: 'emegance'.tr(),
                                   color: Colors.white,
                                   size: 14,
                                   fontWeight: FontWeight.w100,
@@ -208,7 +208,7 @@ class _LayoutState extends State<Layout> {
                               : text(
                                   themestyle:
                                       Theme.of(context).textTheme.subtitle2,
-                                  text1: 'more',
+                                  text1: 'more'.tr(),
                                   color: Colors.white,
                                   size: 14,
                                   fontWeight: FontWeight.w100,

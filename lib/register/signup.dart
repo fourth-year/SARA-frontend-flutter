@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -84,7 +85,7 @@ class _signupState extends State<signup> {
         if (state is SignupErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
-              'Please ensure of the entered information',
+              'Please ensure of the entered information'.tr(),
               style: TextStyle(
                 color: ColorApp.color2,
                 fontFamily: 'Inter',
@@ -125,7 +126,7 @@ class _signupState extends State<signup> {
                   // ),
                   SizedBox(height: 80,),
                   text(
-                    text1: 'Register',
+                    text1: 'Register'.tr(),
                     themestyle: Theme.of(context).textTheme.headline3,
 
                     size: 35,
@@ -134,7 +135,7 @@ class _signupState extends State<signup> {
                     color: ColorApp.color2,
                   ),
                   text(
-                    text1: 'Create your new accout ',
+                    text1: 'Create your new accout'.tr(),
                     themestyle: Theme.of(context).textTheme.headline4,
 
                     size: 15,
@@ -189,13 +190,13 @@ class _signupState extends State<signup> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 18.0),
                     child: textfromfilde(
-                      hint: 'Full Name',
+                      hint: 'Full Name'.tr(),
                       controller: namecontroller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.person),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your name ";
+                          return "please enter your name".tr();
                         }
                         return null;
                       },
@@ -205,14 +206,14 @@ class _signupState extends State<signup> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 18.0),
                     child: textfromfilde(
-                      hint: 'Your Email',
+                      hint: 'Your Email'.tr(),
                       controller: emailcontroller,
                       color: ColorApp.color,
                       type: TextInputType.emailAddress,
                       prefix: Icon(Icons.email_rounded),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your email ";
+                          return "please enter your email".tr();
                         }
                         return null;
                       },
@@ -222,7 +223,7 @@ class _signupState extends State<signup> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 18.0),
                     child: textfromfilde(
-                      hint: 'Your Password',
+                      hint: 'Your Password'.tr(),
                       controller: passwordcontroller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.lock_rounded),
@@ -234,12 +235,12 @@ class _signupState extends State<signup> {
                       suffix: registerCubit.get(context).suffix,
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your password";
+                          return "please enter your password".tr();
                         }
 
                         else {
                           if (passwordcontroller.text.length < 8) {
-                            return "this field must contain at least 8 characters";
+                            return "this field must contain at least 8 characters".tr();
                           }}
 
                           return null;
@@ -253,7 +254,7 @@ class _signupState extends State<signup> {
                       bottom: 18.0,
                     ),
                     child: textfromfilde(
-                      hint: 'Confirm  Password',
+                      hint: 'Confirm Password'.tr(),
                       controller: password1controller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.lock_rounded),
@@ -265,12 +266,12 @@ class _signupState extends State<signup> {
                       suffix: registerCubit.get(context).suffix_c,
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your password";
+                          return "please enter your password".tr();
                         }
 
                         else {
                           if (password1controller.text.length < 8) {
-                            return "this field must contain at least 8 characters";
+                            return "this field must contain at least 8 characters".tr();
                           }}
                         },
                     ),
@@ -283,7 +284,7 @@ class _signupState extends State<signup> {
                       bottom: 18.0,
                     ),
                     child: textfromfilde(
-                      hint: 'Address',
+                      hint: 'Address'.tr(),
                       controller: addresscontroller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.location_on_sharp),
@@ -293,7 +294,7 @@ class _signupState extends State<signup> {
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 10.0),
                     child: textfromfilde(
-                      hint: 'Your Phone ',
+                      hint: 'Your Phone'.tr(),
                       count: 10,
                       controller: phonecontroller,
                       type: TextInputType.phone,
@@ -301,7 +302,7 @@ class _signupState extends State<signup> {
                       prefix: Icon(Icons.phone),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your phone";
+                          return "please enter your phone".tr();
                         }
                         return null;
                       },
@@ -331,7 +332,7 @@ class _signupState extends State<signup> {
                                       .type_gender("female");
                                 },
                                 w: 140,
-                                text: "female",
+                                text: "female".tr(),
                                 textColor: registerCubit.get(context).f_gender,
                                 color: ColorApp.color4),
                             SizedBox(width: 10),
@@ -340,7 +341,7 @@ class _signupState extends State<signup> {
                                 registerCubit.get(context).type_gender("male");
                                 gender = "female";
                               },
-                              text: "male",
+                              text: "male".tr(),
                               textColor: registerCubit.get(context).m_gender,
                               color: ColorApp.color4,
                               w: 140,
@@ -357,7 +358,7 @@ class _signupState extends State<signup> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               text(
-                                text1: 'chose the gender',
+                                text1: 'chose the gender'.tr(),
                                 color: ColorApp.color2,
                                 size: 12,
                                 fontWeight: FontWeight.w100,
@@ -401,7 +402,7 @@ class _signupState extends State<signup> {
 
                             }
                           },
-                          text: "Create Account",
+                          text: "Create Account".tr(),
                           w: 150,
                           h: 45,
                           r: 10,
@@ -417,11 +418,11 @@ class _signupState extends State<signup> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       text(
-                        text1: "Already have an account?",
+                        text1: "Already have an account?".tr(),
                         size: 14,
                       ),
                       textButton(
-                          text: "Log in",
+                          text: "Log in".tr(),
                           onTap: () {
                             Navigator.push(
                                 context,

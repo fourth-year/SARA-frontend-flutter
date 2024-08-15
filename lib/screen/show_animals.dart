@@ -461,32 +461,32 @@ class _Show_AnimalsState extends State<Show_Animals>
                           // ),
                           if (model!.animaltypeId == 1)
                             text(
-                              text1: " Cat",
+                              text1: " Cat".tr(),
                               size: 14,
                               fontWeight: FontWeight.normal,
                               themestyle: Theme.of(context).textTheme.subtitle1,
                             ),
                           if (model!.animaltypeId == 2)
                             text( themestyle: Theme.of(context).textTheme.subtitle1,
-                              text1: " Dog",
+                              text1: " Dog".tr(),
                               size: 14,
                               fontWeight: FontWeight.normal,
                             ),
                           if (model!.animaltypeId == 3)
                             text(themestyle: Theme.of(context).textTheme.subtitle1,
-                              text1: " Bird",
+                              text1: " Bird".tr(),
                               size: 14,
                               fontWeight: FontWeight.normal,
                             ),
                           if (model!.animaltypeId == 4)
                             text(themestyle: Theme.of(context).textTheme.subtitle1,
-                              text1: " Horse",
+                              text1: " Horse".tr(),
                               size: 14,
                               fontWeight: FontWeight.normal,
                             ),
                           if (model!.animaltypeId == 5)
                             text(themestyle: Theme.of(context).textTheme.subtitle1,
-                              text1: "Type : Donkey",
+                              text1: "Type : Donkey".tr(),
                               size: 14,
                               fontWeight: FontWeight.normal,
                             ),

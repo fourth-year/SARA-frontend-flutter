@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/components/colors.dart';
@@ -46,7 +47,7 @@ class signin extends StatelessWidget {
                   content: Row(
                     children: [
                       Text(
-                        'You have successfully logged in',
+                        'You have successfully logged in'.tr(),
                         style: TextStyle(
                           color: Colors.black,
                           fontFamily: 'Inter',
@@ -72,7 +73,7 @@ class signin extends StatelessWidget {
             if (state is LoginErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(
-                  'Please ensure of the entered information',
+                  'Please ensure of the entered information'.tr(),
                   style: TextStyle(
                     color: ColorApp.color2,
                     fontFamily: 'Inter',
@@ -122,24 +123,24 @@ class signin extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 35,),
-                  text(text1: 'Welcome Back',size: 35,font: "title",
+                  text(text1: 'Welcome Back'.tr(),size: 35,font: "title",
                     fontWeight: FontWeight.w100,
                     themestyle: Theme.of(context).textTheme.headline3,
                     color: ColorApp.color2,),
                   SizedBox(height: 4,),
-                  text(text1: 'Login to your account',size: 15,fontWeight: FontWeight.normal,
+                  text(text1: 'Login to your account'.tr(),size: 15,fontWeight: FontWeight.normal,
                     themestyle: Theme.of(context).textTheme.headline4,
                   ),
                   SizedBox(height: 20,),
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 18.0),
-                    child: textfromfilde(hint:'Your Email',
+                    child: textfromfilde(hint:'Your Email'.tr(),
                       controller:emailcontroller ,
                       color: ColorApp.color,
                       prefix: Icon(Icons.person),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your email or phone";
+                          return "please enter your email or phone".tr();
                         }
 
 
@@ -152,7 +153,7 @@ class signin extends StatelessWidget {
 
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 8.0),
-                    child: textfromfilde(hint:'Your Password',
+                    child: textfromfilde(hint:'Your Password'.tr(),
                       controller: passwordcontroller,
                       color: ColorApp.color,
                       prefix: Icon(Icons.lock_rounded),
@@ -166,11 +167,11 @@ class signin extends StatelessWidget {
 
                       validate: (value) {
                         if (value == null || value.isEmpty) {
-                          return "please enter your password";
+                          return "please enter your password".tr();
                         }
     else {
     if (passwordcontroller.text.length < 8) {
-    return "this field must contain at least 8 characters";
+    return "this field must contain at least 8 characters".tr();
     }}
                       },
                     ),
@@ -178,7 +179,7 @@ class signin extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      textButton(text: "forgot password?", onTap:() {
+                      textButton(text: "forgot password?".tr(), onTap:() {
                         Navigator.push(context,MaterialPageRoute(builder: (context) => forgetPassword(),));
                       }),
                     ],
@@ -191,7 +192,7 @@ class signin extends StatelessWidget {
                         condition:state is! LoginLoadingState,
                         fallback: (context)=>Center(child: CircularProgressIndicator(),),
                         builder: (context)=>  defaultButton(
-                          text: "Sign In",
+                          text: "Sign In".tr(),
                           w: 130,
                           h: 45,
                           r:10 ,
@@ -220,9 +221,9 @@ class signin extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      text(text1: "Don't have an account?",size: 14,themestyle: Theme.of(context).textTheme.subtitle1,),
+                      text(text1: "Don't have an account?".tr(),size: 14,themestyle: Theme.of(context).textTheme.subtitle1,),
                       textButton(
-                          text: "Sign Up",
+                          text: "Sign Up".tr(),
                           onTap: (){
                             Navigator.push(context,MaterialPageRoute(builder: (context) => signup(),));
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -31,7 +30,7 @@ class Emergencies extends StatelessWidget {
             drawer: Drawer_Screen(),
             appBar: AppBar(
               title: Text(
-                'Emergencies',
+                'Emergencies'.tr(),
                 style: TextStyle(fontSize: 20),
               ),
 
@@ -123,7 +122,7 @@ class Emergencies extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "Address:",
+                                            "Address:".tr(),
                                             style: TextStyle(
                                                 color: ColorApp.color2,
                                                 fontSize: 16,
@@ -145,7 +144,7 @@ class Emergencies extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "Contact:",
+                                            "Contact:".tr(),
                                             style: TextStyle(
                                                 color: ColorApp.color2,
                                                 fontSize: 16,
@@ -164,7 +163,7 @@ class Emergencies extends StatelessWidget {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Description:",
+                                        "Description:".tr(),
                                         style: TextStyle(
                                           color: ColorApp.color2,
                                           fontFamily: "text normal",
@@ -205,7 +204,7 @@ class Emergencies extends StatelessWidget {
             Scaffold(
               appBar: AppBar(),
               body: Center(
-                  child: text(text1: "is empty",)
+                  child: text(text1: "is empty".tr(),)
               ),
             );
           }
@@ -214,7 +213,7 @@ class Emergencies extends StatelessWidget {
             drawer: Drawer_Screen(),
             appBar: AppBar(
               title: Text(
-                'Emergencies',
+                'Emergencies'.tr(),
                 style: TextStyle(fontSize: 20),
               ),
             ),
@@ -246,8 +245,7 @@ class Emergencies extends StatelessWidget {
                                         child: EmergencyCubit.get(context)
                                                     .get_all_emergencies!
                                                     .data[index]
-                                                    .photo !=
-                                                null
+                                                    .photo !=null
                                             ? ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(15),
@@ -341,16 +339,16 @@ class Emergencies extends StatelessWidget {
                                                   "processed")
                                                   ? PopupMenuItem(
                                                 child:
-                                                Text('In process'),
+                                                Text('In process'.tr()),
                                                 value: "In_process",
                                               )
                                                   : PopupMenuItem(
                                                 child:
-                                                Text('processed'),
+                                                Text('processed'.tr()),
                                                 value: "processed",
                                               ),
                                               PopupMenuItem(
-                                                child: Text('Delete'),
+                                                child: Text('Delete'.tr()),
                                                 value: "3",
                                               ),
                                             ],
@@ -363,7 +361,7 @@ class Emergencies extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "Address:",
+                                            "Address:".tr(),
                                             style: TextStyle(
                                                 color: ColorApp.color2,
                                                 fontSize: 16,
@@ -385,7 +383,7 @@ class Emergencies extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            "Contact:",
+                                            "Contact:".tr(),
                                             style: TextStyle(
                                                 color: ColorApp.color2,
                                                 fontSize: 16,
@@ -404,7 +402,7 @@ class Emergencies extends StatelessWidget {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Description:",
+                                        "Description:".tr(),
                                         style: TextStyle(
                                           color: ColorApp.color2,
                                           fontFamily: "text normal",

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _sessionState extends State<session> {
         return Scaffold(
             appBar: AppBar(
               title: text(
-                text1: "Sessions",
+                text1: "Sessions".tr(),
                 themestyle: Theme.of(context).textTheme.headline5,
 
                 color: ColorApp.color2,
@@ -72,7 +73,7 @@ class _sessionState extends State<session> {
                                       UserCubit.get(context).type_select("all");
                                     },
                                     w: 140,
-                                    text: "All ",
+                                    text: "All ".tr(),
                                     textColor: UserCubit.get(context).f_gender,
                                     color: ColorApp.color4),
                                 SizedBox(width: 10),
@@ -81,7 +82,7 @@ class _sessionState extends State<session> {
                                     UserCubit.get(context).type_select("your");
                                     select = "your";
                                   },
-                                  text: "your",
+                                  text: "your".tr(),
                                   textColor: UserCubit.get(context).m_gender,
                                   color: ColorApp.color4,
                                   w: 140,
@@ -185,7 +186,7 @@ class _sessionState extends State<session> {
                     child: Row(
                       children: [
                         text(
-                          text1: " the time : ",
+                          text1: " the time : ".tr(),
                           size: 18,
                           fontWeight: FontWeight.w100,
                         ),
@@ -195,7 +196,7 @@ class _sessionState extends State<session> {
                           fontWeight: FontWeight.normal,
                         ),
                         text(
-                          text1: " in ",
+                          text1: " in ".tr(),
                           size: 18,
                           fontWeight: FontWeight.normal,
                         ),
@@ -218,7 +219,7 @@ class _sessionState extends State<session> {
                                   .infinity, // Take up the full width of the screen
                               alignment: Alignment.center,
                               child: textButton(
-                                text: "Join the Session",
+                                text: "Join the Session".tr(),
                                 size: 18,
                                 onTap: () {
                                   UserCubit.get(context)
@@ -237,7 +238,7 @@ class _sessionState extends State<session> {
                         .infinity, // Take up the full width of the screen
                     alignment: Alignment.center,
                     child: textButton(
-                      text: "Already Joined",
+                      text: "Already Joined".tr(),
                       size: 18,
                       onTap: () {},
                       color: Colors.grey,
@@ -298,7 +299,7 @@ class _sessionState extends State<session> {
                     child: Row(
                       children: [
                         text(
-                          text1: " the time : ",
+                          text1: " the time : ".tr(),
                           size: 18,
                           fontWeight: FontWeight.w100,
                         ),
@@ -308,7 +309,7 @@ class _sessionState extends State<session> {
                           fontWeight: FontWeight.normal,
                         ),
                         text(
-                          text1: " in ",
+                          text1: " in ".tr(),
                           size: 18,
                           fontWeight: FontWeight.normal,
                         ),

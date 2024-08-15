@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Like error',
+                'Like error'.tr(),
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Inter',
@@ -49,7 +50,7 @@ class _HomeState extends State<Home> {
         }
       },
       builder: (context, state) {
-        if (   PostsCubit.get(context).get_allPosts != null) {
+        if (PostsCubit.get(context).get_allPosts != null) {
           print(PostsCubit.get(context).get_allPosts?.data.length);
 
           return Scaffold(
@@ -62,9 +63,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             drawerEdgeDragWidth: 0,
-
             drawer: Drawer_Screen(),
-
             body: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -81,19 +80,6 @@ class _HomeState extends State<Home> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Row(
-                              //   mainAxisAlignment: MainAxisAlignment.end,
-                              //   children: [
-                              //     Padding(
-                              //       padding: const EdgeInsets.only(
-                              //           top: 10, right: 10),
-                              //       child: Icon(
-                              //         Icons.more_horiz_outlined,
-                              //         size: 25,
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 15, right: 10, left: 10),
@@ -107,8 +93,8 @@ class _HomeState extends State<Home> {
                                   trimLines: 3,
                                   trimMode: TrimMode.Line,
                                   colorClickableText: ColorApp.color2,
-                                  trimCollapsedText: 'Show more',
-                                  trimExpandedText: 'Show less',
+                                  trimCollapsedText: 'Show more'.tr(),
+                                  trimExpandedText: 'Show less'.tr(),
                                   moreStyle: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -150,22 +136,24 @@ class _HomeState extends State<Home> {
                                             .isLiked) {
                                           PostsCubit.get(context).removeLike(
                                             post_id: PostsCubit.get(context)
-                                                .get_allPosts
-                                                !.data[index]
+                                                .get_allPosts!
+                                                .data[index]
                                                 .id,
                                           );
                                         } else {
-                                          dynamic id =CachHelper.getData(key: "id");
+                                          dynamic id =
+                                              CachHelper.getData(key: "id");
                                           print(id);
-                                          print( PostsCubit()
+                                          print(PostsCubit()
                                               .get_allPosts
                                               ?.data[index]
                                               .id);
                                           PostsCubit.get(context).addLike(
                                             post_id: PostsCubit.get(context)
-                                                .get_allPosts
-                                                !.data[index]
-                                                .id,id: int.parse(id),
+                                                .get_allPosts!
+                                                .data[index]
+                                                .id,
+                                            id: int.parse(id),
                                           );
                                         }
                                         setState(() {});
@@ -244,7 +232,7 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(15.0),
               child: Center(
                   child: Text(
-                'There are no Posts',
+                'There are no Posts'.tr(),
                 style: TextStyle(fontSize: 17),
               )),
             ),

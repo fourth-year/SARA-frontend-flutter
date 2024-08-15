@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sara_front/network/cach_helper.dart';
@@ -36,7 +37,7 @@ class _vaccinationState extends State<vaccination> {
           {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
-                'Error happened, try again',
+                'Error happened, try again'.tr(),
                 style: TextStyle(
                   color: ColorApp.color2,
                   fontFamily: 'Inter',
@@ -84,7 +85,7 @@ class _vaccinationState extends State<vaccination> {
               title: text(
                 themestyle: Theme.of(context).textTheme.headline5,
 
-                text1: 'Vaccination',
+                text1: 'Vaccination'.tr(),
                 color: ColorApp.color2,
                 size: 22,
               ),
@@ -131,7 +132,7 @@ class _vaccinationState extends State<vaccination> {
                 title: text(
                   themestyle: Theme.of(context).textTheme.headline5,
 
-                  text1: 'Vaccination',
+                  text1: 'Vaccination'.tr(),
                   color: ColorApp.color2,
                   size: 22,
                 ),
@@ -177,7 +178,7 @@ class _vaccinationState extends State<vaccination> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             text(
-                              text1: "Name : ${model!.name}",
+                              text1: "Name : ${model!.name}".tr(),
                               size: 20,
                               fontWeight: FontWeight.w200,
                             ),
@@ -185,7 +186,7 @@ class _vaccinationState extends State<vaccination> {
                               height: 5.0,
                             ),
                             text(
-                              text1: " the time  : 9:00 am",
+                              text1: "the time  : 9:00 am".tr(),
                               size: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -200,34 +201,34 @@ class _vaccinationState extends State<vaccination> {
                   child: GestureDetector(
                     onTap: () {
                       dynamic dep;
-                      if (model.name == "Department 1") {
+                      if (model.name == "Department 1".tr()) {
                         dep = 1;
                       }
-                      if (model.name == "Department 2") {
+                      if (model.name == "Department 2".tr()) {
                         dep = 2;
                       }
-                      if (model.name == "Department 3") {
+                      if (model.name == "Department 3".tr()) {
                         dep = 3;
                       }
-                      if (model.name == "Department 4") {
+                      if (model.name == "Department 4".tr()) {
                         dep = 4;
                       }
-                      if (model.name == "Department 5") {
+                      if (model.name == "Department 5".tr()) {
                         dep = 5;
                       }
-                      if (model.name == "Department 6") {
+                      if (model.name == "Department 6".tr()) {
                         dep = 6;
                       }
-                      if (model.name == "Department 7") {
+                      if (model.name == "Department 7".tr()) {
                         dep = 7;
                       }
-                      if (model.name == "Department 8") {
+                      if (model.name == "Department 8".tr()) {
                         dep = 8;
                       }
-                      if (model.name == "Department 9") {
+                      if (model.name == "Department 9".tr()) {
                         dep = 9;
                       }
-                      if (model.name == "Department 10") {
+                      if (model.name == "Department 10".tr()) {
                         dep = 10;
                       }
 
@@ -270,7 +271,7 @@ class _vaccinationState extends State<vaccination> {
             content: Padding(
               padding: const EdgeInsets.all(5.0),
               child: text(
-                text1: 'Are you sure you can complete the task?',
+                text1: 'Are you sure you can complete the task?'.tr(),
                 color: ColorApp.color2,
               ),
             ),
@@ -279,12 +280,12 @@ class _vaccinationState extends State<vaccination> {
                 borderSide: BorderSide.none),
             actions: [
               textButton(
-                  text: 'Cancel',
+                  text: 'Cancel'.tr(),
                   onTap: () {
                     Navigator.pop(context);
                   }),
               textButton(
-                  text: 'yes',
+                  text: 'yes'.tr(),
                   color: ColorApp.color2,
                   onTap: () {
                     AnimalCubit.get(context).Can_vaccination(id_dep: i);
