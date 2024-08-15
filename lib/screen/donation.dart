@@ -103,7 +103,6 @@ class donation extends StatelessWidget {
 
                             return "please enter the amount".tr();
                           }
-                          else if (amountcontroller.text)
                           return null;
                         },
 
