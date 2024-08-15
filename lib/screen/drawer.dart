@@ -17,6 +17,7 @@ import 'package:sara_front/screen/wallet.dart';
 import '../components/text.dart';
 import '../components/textButton.dart';
 import '../cubits/User/cubit.dart';
+import '../cubits/cubits_animals/cubit.dart';
 import '../register/signin.dart';
 import 'donation.dart';
 
@@ -391,6 +392,7 @@ class Drawer_Screen extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (context) => signin()),
                     );
+                    AnimalCubit.get(context).curentindex=0;
                   })
             ],
           ),

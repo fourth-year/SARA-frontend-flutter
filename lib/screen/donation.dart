@@ -37,6 +37,7 @@ class donation extends StatelessWidget {
             // closeIconColor: Colors.black,
             backgroundColor: ColorApp.colorback,
           ));
+          amountcontroller.clear();
         }
 
         if (state is DonationErrorState) {
@@ -94,14 +95,18 @@ class donation extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 18.0,right: 18.0,bottom: 25.0),
                       child: textfromfilde(hint:'enter the amount '.tr(),
+                        type: TextInputType.number,
                         controller:amountcontroller ,
                         color: Color.fromARGB(255, 219, 229, 244),
                         validate: (value) {
                           if (value == null || value.isEmpty) {
+
                             return "please enter the amount".tr();
                           }
+                          else if (amountcontroller.text)
                           return null;
                         },
+
                       ),
                     ),
                       

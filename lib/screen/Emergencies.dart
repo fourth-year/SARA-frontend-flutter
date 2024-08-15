@@ -78,8 +78,7 @@ class Emergencies extends StatelessWidget {
                                         child: EmergencyCubit.get(context)
                                             .get_all_emergencies!
                                             .data[index]
-                                            .photo !=
-                                            null
+                                            .photo !=null
                                             ? ClipRRect(
                                           borderRadius:
                                           BorderRadius.circular(15),
@@ -201,6 +200,16 @@ class Emergencies extends StatelessWidget {
           );
         }
         else if (role_id == '4' && EmergencyCubit.get(context).get_all_emergencies != null) {
+          if(EmergencyCubit.get(context).get_all_emergencies!.data.isEmpty ){
+
+            Scaffold(
+              appBar: AppBar(),
+              body: Center(
+                  child: text(text1: "is empty",)
+              ),
+            );
+          }
+
           return Scaffold(
             drawer: Drawer_Screen(),
             appBar: AppBar(
@@ -428,14 +437,12 @@ class Emergencies extends StatelessWidget {
               ),
             ),
           );
-        } else {
+        } else
+        {
           return Scaffold(
             appBar: AppBar(),
             body: Center(
-              child: Text(
-                'There are no emergencies',
-                style: TextStyle(fontSize: 17),
-              ),
+              child: CircularProgressIndicator()
             ),
           );
         }

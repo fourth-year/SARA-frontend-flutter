@@ -9,9 +9,11 @@ import 'package:sara_front/screen/Emergencies.dart';
 import 'package:sara_front/screen/more.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
+import '../../models/DepName.dart';
 import '../../models/GetAnimalByType.dart';
 import '../../models/GetVaccination.dart';
 import '../../models/TypeModel.dart';
+import '../../screen/AllAnimal.dart';
 import '../../screen/Jops.dart';
 import '../../screen/add_animals.dart';
 import '../../screen/home.dart';
@@ -193,14 +195,14 @@ class AnimalCubit extends Cubit<AnimalStates> {
 ///////////////////// Layout.
   int curentindex = 0;
   List<Widget> screen = [
-    Show_Animals(),
+    ShowAllAnimals(),
     Home(),
     Emergencies(),
     Jops(),
   ];
 
   List<Widget> screen_user = [
-    Show_Animals(),
+    ShowAllAnimals(),
     Home(),
     Emergencies(),
     more(),
@@ -318,6 +320,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
   }
 
   /////////////////////////////////// type
+  Map<int, String> typeMap = {};
 
   TypeModel? Type_Model;
   List<String>? typeNames;
@@ -326,12 +329,49 @@ class AnimalCubit extends Cubit<AnimalStates> {
     DioHelper.getData(
       url: baseurl + "/animaltypes/getall",
     ).then((value) {
+      // typeNames!.clear();
       Type_Model = TypeModel.fromJson(value.data);
      typeNames = Type_Model?.data.map((datum) => datum.type).toList();
+
+      Type_Model?.data.forEach((datum) {
+        typeMap[datum.id] = datum.type;
+      });
 
       // Print the list of type names
       print(typeNames);
       print(Type_Model?.status);
+      emit(GetAnimalByIdSuccessState());
+    }).catchError((erroe) {
+      print(erroe.toString());
+      emit(GetAnimalByIdErrorState());
+    });
+  }
+///////////////////////////////////////////////// dap
+
+
+  List<String>? department;
+  Map<int, String> departmentMap = {};
+
+  AllDepModel? Dep_Model;
+  Future<void> All_Dep() async {
+    emit(AnimalLoadingState());
+    DioHelper.getData(
+      url: baseurl + "/departments/getall",
+    ).then((value) {
+      Dep_Model = AllDepModel.fromJson(value.data);
+      department = Dep_Model?.data.map((datum) => datum.name).toList();
+
+      // Create a map of department IDs to names
+      // departmentMap!.clear();
+      Dep_Model?.data.forEach((datum) {
+        departmentMap[datum.id] = datum.name;
+     });
+
+      print(departmentMap);
+
+      // Print the list of type names
+      print(department);
+      print(Dep_Model?.status);
       emit(GetAnimalByIdSuccessState());
     }).catchError((erroe) {
       print(erroe.toString());

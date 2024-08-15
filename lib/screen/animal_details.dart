@@ -14,16 +14,16 @@ import 'package:sara_front/screen/layout.dart';
 import 'package:sara_front/screen/update_animal.dart';
 
 class AnimalDetails extends StatefulWidget {
-  AnimalDetails({super.key,required this.id});
+  AnimalDetails({super.key, required this.id});
   int id;
 
   @override
-  State<AnimalDetails> createState() => _AnimalDetailsState( id: id);
+  State<AnimalDetails> createState() => _AnimalDetailsState(id: id);
 }
 
 class _AnimalDetailsState extends State<AnimalDetails> {
   _AnimalDetailsState({required this.id});
-    int id ;
+  int id;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size;
@@ -72,32 +72,34 @@ class _AnimalDetailsState extends State<AnimalDetails> {
           ));
         }
 
-        if (state is adoptionsSuccessState){
-          adoptionSuccessDialog(context,id);
+        if (state is adoptionsSuccessState) {
+          adoptionSuccessDialog(context, id);
         }
       },
       builder: (context, state) {
         return Builder(builder: (context) {
-          if (AnimalCubit.get(context).get_Animal_By_id!=null) {
+          if (AnimalCubit.get(context).get_Animal_By_id != null) {
             return Scaffold(
               appBar: AppBar(
-                  title: text(
-                    themestyle: Theme.of(context).textTheme.headline5,
-                    text1: 'Animal Details',
-                    color: ColorApp.color2,
-                    size: 22,
-                  ),
+                title: text(
+                  themestyle: Theme.of(context).textTheme.headline5,
+                  text1: 'Animal Details',
+                  color: ColorApp.color2,
+                  size: 22,
+                ),
                 leading: IconButton(
-                onPressed: () {
-
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (BuildContext context) => Layout()),
-                  );
-                }, icon: Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 20),
-                  child: Icon(Icons.arrow_back_ios),
-                ),),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Layout()),
+                    );
+                  },
+                  icon: Padding(
+                    padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    child: Icon(Icons.arrow_back_ios),
+                  ),
+                ),
               ),
               body: SingleChildScrollView(
                 child: Column(
@@ -115,18 +117,28 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: AnimalCubit.get(context).get_Animal_By_id!.data.photo != null
-                              ? Image(height: 75,width: 400,fit: BoxFit.fill,
-                            image: MemoryImage(base64Decode(AnimalCubit.get(context).get_Animal_By_id!.data.photo)),
-                          )
+                          child: AnimalCubit.get(context)
+                                      .get_Animal_By_id!
+                                      .data
+                                      .photo !=
+                                  null
+                              ? Image(
+                                  height: 75,
+                                  width: 400,
+                                  fit: BoxFit.fill,
+                                  image: MemoryImage(base64Decode(
+                                      AnimalCubit.get(context)
+                                          .get_Animal_By_id!
+                                          .data
+                                          .photo)),
+                                )
                               : Image(
-                            image: AssetImage('assets/images/sara.png'),
-                            fit: BoxFit.fill,
-                          ),
+                                  image: AssetImage('assets/images/sara.png'),
+                                  fit: BoxFit.fill,
+                                ),
                         ),
                       ),
                     ),
-                
                     SizedBox(
                       height: 12,
                     ),
@@ -140,7 +152,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                 text1: 'Name :'.tr(),
                                 color: ColorApp.color2,
                                 size: 20,
-                                themestyle: Theme.of(context).textTheme.headline6,
+                                themestyle:
+                                    Theme.of(context).textTheme.headline6,
                               ),
                               SizedBox(
                                 width: 10,
@@ -148,8 +161,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               Text(
                                 '${AnimalCubit.get(context).get_Animal_By_id?.data.name}',
                                 style: Theme.of(context).textTheme.headline6,
-                
-                          )
+                              )
                             ],
                           ),
                           SizedBox(
@@ -158,8 +170,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                           Row(
                             children: [
                               text(
-                                themestyle: Theme.of(context).textTheme.headline6,
-                
+                                themestyle:
+                                    Theme.of(context).textTheme.headline6,
                                 text1: 'type :'.tr(),
                                 color: ColorApp.color2,
                                 size: 20,
@@ -167,20 +179,39 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               SizedBox(
                                 width: 10,
                               ),
-                              Text(
-                                AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==1?
-                                'Cats'.tr()
-                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==2?
-                                "Dogs".tr()
-                                    : AnimalCubit.get(context).get_Animal_By_id?.data.animaltypeId==3?
-                                "Birds".tr()
-                
-                                    : "Horses".tr()
-                
-                                ,
-                                style:Theme.of(context).textTheme.headline6,
-                
-                          )
+                              text(
+                                text1: AnimalCubit.get(context)
+                                    .typeNames![AnimalCubit.get(context)
+                                            .get_Animal_By_id!
+                                            .data
+                                            .animaltypeId -
+                                        1]
+                                    .tr(),
+                                themestyle:
+                                    Theme.of(context).textTheme.headline6,
+                              ),
+                              // Text(
+                              //   AnimalCubit.get(context)
+                              //               .get_Animal_By_id
+                              //               ?.data
+                              //               .animaltypeId ==
+                              //           1
+                              //       ? 'Cats'.tr()
+                              //       : AnimalCubit.get(context)
+                              //                   .get_Animal_By_id
+                              //                   ?.data
+                              //                   .animaltypeId ==
+                              //               2
+                              //           ? "Dogs".tr()
+                              //           : AnimalCubit.get(context)
+                              //                       .get_Animal_By_id
+                              //                       ?.data
+                              //                       .animaltypeId ==
+                              //                   3
+                              //               ? "Birds".tr()
+                              //               : "Horses".tr(),
+                              //   style: Theme.of(context).textTheme.headline6,
+                              // )
                             ],
                           ),
                           SizedBox(
@@ -188,8 +219,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                           ),
                           Row(
                             children: [
-                              text(  themestyle: Theme.of(context).textTheme.headline6,
-                
+                              text(
+                                themestyle:
+                                    Theme.of(context).textTheme.headline6,
                                 text1: 'Age :'.tr(),
                                 color: ColorApp.color2,
                                 size: 20,
@@ -199,19 +231,18 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               ),
                               Text(
                                 '${AnimalCubit.get(context).get_Animal_By_id?.data.age}',
-                                style:Theme.of(context).textTheme.headline6,
-                          )
+                                style: Theme.of(context).textTheme.headline6,
+                              )
                             ],
                           ),
                           SizedBox(
                             height: 12,
                           ),
-                         
                           Row(
                             children: [
                               text(
-                                themestyle: Theme.of(context).textTheme.headline6,
-                
+                                themestyle:
+                                    Theme.of(context).textTheme.headline6,
                                 text1: 'health :'.tr(),
                                 color: ColorApp.color2,
                                 size: 20,
@@ -222,63 +253,100 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               Text(
                                 '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
                                 style: Theme.of(context).textTheme.headline6,
-                
-                          )
+                              )
                             ],
                           ),
-                
                           SizedBox(
                             height: 12,
                           ),
-                          role_id=="2"?
+                          role_id == "4"
+                              ? Column(
+                                children: [
+                                  Row(
+                                      children: [
+                                        text(
+                                          themestyle:
+                                              Theme.of(context).textTheme.headline6,
+                                          text1: 'Department :'.tr(),
+                                          color: ColorApp.color2,
+                                          size: 20,
+                                        ),
+                                        SizedBox(
+                                          width: 12,
+                                        ),
+                                        text(text1: AnimalCubit.get(context).departmentMap[AnimalCubit.get(context).get_Animal_By_id
+                                            ?.data
+                                            .departmentId]?? '',themestyle:   Theme.of(context).textTheme.headline6,),
+
+                                        // Text(
+                                        //   AnimalCubit.get(context)
+                                        //               .get_Animal_By_id
+                                        //               ?.data
+                                        //               .departmentId ==
+                                        //           1
+                                        //       ? 'Department_1'.tr()
+                                        //       : AnimalCubit.get(context)
+                                        //                   .get_Animal_By_id
+                                        //                   ?.data
+                                        //                   .departmentId ==
+                                        //               2
+                                        //           ? "Department_2".tr()
+                                        //           : AnimalCubit.get(context)
+                                        //                       .get_Animal_By_id
+                                        //                       ?.data
+                                        //                       .departmentId ==
+                                        //                   3
+                                        //               ? "Department_3".tr()
+                                        //               : AnimalCubit.get(context)
+                                        //                           .get_Animal_By_id
+                                        //                           ?.data
+                                        //                           .departmentId ==
+                                        //                       4
+                                        //                   ? 'Department_4'.tr()
+                                        //                   : AnimalCubit.get(context)
+                                        //                               .get_Animal_By_id
+                                        //                               ?.data
+                                        //                               .departmentId ==
+                                        //                           5
+                                        //                       ? "Department_5".tr()
+                                        //                       : AnimalCubit.get(context)
+                                        //                                   .get_Animal_By_id
+                                        //                                   ?.data
+                                        //                                   .departmentId ==
+                                        //                               6
+                                        //                           ? 'Department_6'
+                                        //                           : AnimalCubit.get(context)
+                                        //                                       .get_Animal_By_id
+                                        //                                       ?.data
+                                        //                                       .departmentId ==
+                                        //                                   7
+                                        //                               ? "Department_7"
+                                        //                               : AnimalCubit.get(context)
+                                        //                                           .get_Animal_By_id
+                                        //                                           ?.data
+                                        //                                           .departmentId ==
+                                        //                                       8
+                                        //                                   ? 'Department_8'
+                                        //                                   : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId ==
+                                        //                                           9
+                                        //                                       ? "Department_9"
+                                        //                                       : "Department_10",
+                                        //   style:
+                                        //       Theme.of(context).textTheme.headline6,
+                                        // ),
+
+                                      ],
+                                    ), SizedBox(
+                                    height: 12,
+                                  ),
+                                ],
+                              )
+                              : SizedBox(),
                           Row(
                             children: [
                               text(
-                                themestyle: Theme.of(context).textTheme.headline6,
-                
-                                text1: 'Department :'.tr(),
-                                color: ColorApp.color2,
-                                size: 20,
-                              ),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              Text(
-                                AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==1?
-                                'Department_1'.tr()
-                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==2?
-                                "Department_2".tr()
-                                    : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==3?
-                                "Department_3".tr()
-                                    : AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==4?
-                                'Department_4'.tr()
-                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==5?
-                                "Department_5".tr()
-                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==6?
-                                'Department_6'
-                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==7?
-                                "Department_7":
-                                AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==8?
-                                'Department_8'
-                                    :  AnimalCubit.get(context).get_Animal_By_id?.data.departmentId==9?
-                                "Department_9"
-                                    : "Department_10"
-                                ,
-                                style:Theme.of(context).textTheme.headline6,
-                
-                          ),
-                              SizedBox(
-                                height: 12,
-                              ),
-                            ],
-                          )
-                          :SizedBox(),
-                
-                          Row(
-                            children: [
-                              text(
-                                themestyle: Theme.of(context).textTheme.headline6,
-                
+                                themestyle:
+                                    Theme.of(context).textTheme.headline6,
                                 text1: 'Entry Date :'.tr(),
                                 color: ColorApp.color2,
                                 size: 20,
@@ -288,24 +356,23 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                               ),
                               Text(
                                 '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.year}-'
-                                    '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.month}-'
-                                    '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.day}',
-                                style:Theme.of(context).textTheme.headline6,
-                
-                          )
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.month}-'
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.entryDate.day}',
+                                style: Theme.of(context).textTheme.headline6,
+                              )
                             ],
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 45, top: 40,right: 45),
-                      child:
-                      role_id == "2"||role_id == "4"
+                      padding:
+                          const EdgeInsets.only(left: 45, top: 40, right: 45),
+                      child: role_id == "2" || role_id == "4"
                           ? Row(
                               children: [
                                 defaultButton(
-                                  w: screenWidth.width/3,
+                                  w: screenWidth.width / 3,
                                   onTap: () {
                                     Navigator.push(
                                       context,
@@ -322,10 +389,10 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                   textColor: ColorApp.color2,
                                 ),
                                 SizedBox(
-                                  width: 30,
+                                  width: 20,
                                 ),
                                 defaultButton(
-                                    w: screenWidth.width/3,
+                                  w: screenWidth.width / 3,
                                   onTap: () {
                                     _openAnimatedDialog(context);
                                   },
@@ -335,48 +402,57 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                 )
                               ],
                             )
-                          : AnimalCubit.get(context).get_Animal_By_id!.data.adoptions.isEmpty?
-                      Row(
-                              children: [
-                                defaultButton(
-                                  onTap: () {
-                                    AnimalCubit.get(context).adoptions
-                                      (animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id);
-                                  },
-                                  text: 'adoptions'.tr(),
-                                  color: ColorApp.color,
-                                  textColor: ColorApp.color2,
-                                ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                defaultButton(
-                                  onTap: () {
-                                    print(' ffffffffffff');
-                                    AnimalCubit.get(context).sponcership(
-                                        animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id, balance: 150000);
-                                  },
-                                  text: 'sponcerships'.tr(),
-                                  color: ColorApp.color,
-                                  textColor: ColorApp.color2,
+                          : AnimalCubit.get(context)
+                                  .get_Animal_By_id!
+                                  .data
+                                  .adoptions
+                                  .isEmpty
+                              ? Row(
+                                  children: [
+                                    defaultButton(
+                                      onTap: () {
+                                        AnimalCubit.get(context).adoptions(
+                                            animal_id: AnimalCubit.get(context)
+                                                .get_Animal_By_id!
+                                                .data
+                                                .id);
+                                      },
+                                      text: 'adoptions'.tr(),
+                                      color: ColorApp.color,
+                                      textColor: ColorApp.color2,
+                                    ),
+                                    SizedBox(
+                                      width: 30,
+                                    ),
+                                    defaultButton(
+                                      onTap: () {
+                                        print(' ffffffffffff');
+                                        AnimalCubit.get(context).sponcership(
+                                            animal_id: AnimalCubit.get(context)
+                                                .get_Animal_By_id!
+                                                .data
+                                                .id,
+                                            balance: 150000);
+                                      },
+                                      text: 'sponcerships'.tr(),
+                                      color: ColorApp.color,
+                                      textColor: ColorApp.color2,
+                                    )
+                                  ],
                                 )
-                              ],
-                            )
-                          :SizedBox(
-                
-                      ),
-                            // :  defaultButton(
-                            // onTap: () {
-                            //   AnimalCubit.get(context).sponcership(
-                            //       animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
-                            //       , balance: 150000);
-                            //
-                            //
-                            // },
-                            // text: 'sponcerships'.tr(),
-                            // color: ColorApp.color3,
-                            // textColor: ColorApp.color2,
-                            // )
+                              : SizedBox(),
+                      // :  defaultButton(
+                      // onTap: () {
+                      //   AnimalCubit.get(context).sponcership(
+                      //       animal_id: AnimalCubit.get(context).get_Animal_By_id!.data.id
+                      //       , balance: 150000);
+                      //
+                      //
+                      // },
+                      // text: 'sponcerships'.tr(),
+                      // color: ColorApp.color3,
+                      // textColor: ColorApp.color2,
+                      // )
                     ),
                   ],
                 ),
@@ -464,9 +540,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
           child: AlertDialog(
             backgroundColor: ColorApp.colorback,
             title: Row(
-              children: [
-
-              ],
+              children: [],
             ),
             content: Text('Are you sure you want to delete this animal?'.tr()),
             shape: OutlineInputBorder(
@@ -486,10 +560,11 @@ class _AnimalDetailsState extends State<AnimalDetails> {
 
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>AnimalDetails (id: id,)),);
-
-
-
+                      MaterialPageRoute(
+                          builder: (context) => AnimalDetails(
+                                id: id,
+                              )),
+                    );
                   })
             ],
           ),
@@ -498,7 +573,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
     );
   }
 
-  adoptionSuccessDialog(BuildContext context,int id ) {
+  adoptionSuccessDialog(BuildContext context, int id) {
     return showGeneralDialog(
       context: context,
       barrierDismissible: false,
@@ -512,7 +587,8 @@ class _AnimalDetailsState extends State<AnimalDetails> {
           scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
           child: AlertDialog(
             backgroundColor: ColorApp.colorback,
-            content: Text('Your request has been registered. We will contact you to complete the procedures'),
+            content: Text(
+                'Your request has been registered. We will contact you to complete the procedures'),
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none),
@@ -524,16 +600,18 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                       AnimalCubit.get(context).getanimal_Byid(id);
 
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>AnimalDetails (id: id,)),);
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AnimalDetails(
+                                  id: id,
+                                )),
+                      );
                     }),
               ),
-
             ],
           ),
         );
       },
     );
   }
-
 }
