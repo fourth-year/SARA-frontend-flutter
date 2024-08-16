@@ -3,7 +3,7 @@
 class AllAnimals {
   bool success;
   String message;
-  List<Datum> data;
+  List<Datuma> data;
 
   AllAnimals({
     required this.success,
@@ -14,7 +14,7 @@ class AllAnimals {
   factory AllAnimals.fromJson(Map<String, dynamic> json) => AllAnimals(
     success: json["success"],
     message: json["message"],
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+    data: List<Datuma>.from(json["data"].map((x) => Datuma.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -24,7 +24,7 @@ class AllAnimals {
   };
 }
 
-class Datum {
+class Datuma {
   int id;
   String name;
   int age;
@@ -35,7 +35,7 @@ class Datum {
   int departmentId;
   int animaltypeId;
 
-  Datum({
+  Datuma({
     required this.id,
     required this.name,
     required this.age,
@@ -47,7 +47,7 @@ class Datum {
     required this.animaltypeId,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Datuma.fromJson(Map<String, dynamic> json) => Datuma(
     id: json["id"],
     name: json["name"],
     age: json["age"],

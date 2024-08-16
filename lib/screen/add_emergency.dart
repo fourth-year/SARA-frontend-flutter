@@ -115,7 +115,7 @@ class _AddEmergencyState extends State<AddEmergency> {
               Navigator.pop(context);
 
             }, icon: Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: const EdgeInsets.only(left: 20.0,right: 20),
               child: Icon(Icons.arrow_back_ios),
             ),),
 

@@ -31,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Navigator.pop(context);
           },
           icon: Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0,right: 20),
             child: Icon(Icons.arrow_back_ios),
           ),
         ),

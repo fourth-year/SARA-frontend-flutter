@@ -23,6 +23,7 @@ import 'states.dart';
 class AnimalCubit extends Cubit<AnimalStates> {
   AnimalCubit() : super(AnimalInitialState());
   static AnimalCubit get(context) => BlocProvider.of(context);
+  List<Datuma> get_serch=[] ;
 
 /////////////////////// add animals
   void addAnimal({
@@ -149,11 +150,19 @@ class AnimalCubit extends Cubit<AnimalStates> {
   AllAnimals? allanimals;
 
   Future<void> getAllAnimal() async {
+    get_serch=[];
+
     emit(AnimalLoadingState());
     DioHelper.getData(
       url: baseurl + "/animals/getall",
     ).then((value) {
       allanimals = AllAnimals.fromJson(value.data);
+
+      ////////
+
+      allanimals!.data!.forEach((element) {
+        get_serch.add(element);});
+      ///////
       print(allanimals?.success);
       emit(GetAnimalSuccessState());
     }).catchError((erroe) {
@@ -324,6 +333,7 @@ class AnimalCubit extends Cubit<AnimalStates> {
 
   TypeModel? Type_Model;
   List<String>? typeNames;
+
   Future<void> All_Type_Model() async {
     emit(AnimalLoadingState());
     DioHelper.getData(
@@ -361,8 +371,6 @@ class AnimalCubit extends Cubit<AnimalStates> {
       Dep_Model = AllDepModel.fromJson(value.data);
       department = Dep_Model?.data.map((datum) => datum.name).toList();
 
-      // Create a map of department IDs to names
-      // departmentMap!.clear();
       Dep_Model?.data.forEach((datum) {
         departmentMap[datum.id] = datum.name;
      });
@@ -378,6 +386,32 @@ class AnimalCubit extends Cubit<AnimalStates> {
       emit(GetAnimalByIdErrorState());
     });
   }
+
+
+  ////////////////////////////////
+  List<Datuma> searchResults = [];
+Future<void> serch_name (dynamic name)async{
+  searchResults=[];
+  searchResults.clear();
+
+  if(name.isEmpty){  searchResults.clear();
+  }
+  {
+    emit(SerchState());
+    print("aaaaaaaaaaaaaaaaaaaa${get_serch.length}");
+
+    get_serch.forEach((element) {
+      if (element.name.toLowerCase().contains(name.toLowerCase())) {
+        searchResults.add(element);
+      }
+      emit(SerchSuccessState(searchResults));
+    });
+    print("aaaaaaaaaaaaaaaaaaaa${searchResults.length}");
+    print(searchResults.length);
+  }
+
+}
+
 
 
 }

@@ -22,7 +22,7 @@ class _LayoutState extends State<Layout> {
         // key: _layoutScaffoldKey ,
 
         bottomNavigationBar: CurvedNavigationBar(
-            height: 65,
+            height: 70,
             index: AnimalCubit.get(context).curentindex,
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             buttonBackgroundColor: ColorApp.color2,

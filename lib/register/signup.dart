@@ -308,6 +308,26 @@ class _signupState extends State<signup> {
                       },
                     ),
                   ),
+
+                  showError
+                      ? Padding(
+                    padding: const EdgeInsets.only(left: 40.0,right: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        text(
+                          text1: 'chose the gender'.tr(),
+                          color: ColorApp.color2,
+                          size: 12,
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ],
+                    ),
+                  )
+                      : SizedBox(
+                    height: 10,
+                  ),
+
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 18.0, right: 18.0, bottom: 0),
@@ -351,25 +371,10 @@ class _signupState extends State<signup> {
                       ),
                     ),
                   ),
-                  showError
-                      ? Padding(
-                          padding: const EdgeInsets.only(left: 40.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              text(
-                                text1: 'chose the gender'.tr(),
-                                color: ColorApp.color2,
-                                size: 12,
-                                fontWeight: FontWeight.w100,
-                              ),
-                            ],
-                          ),
-                        )
-                      : SizedBox(
-                          height: 10,
-                        ),
 
+                   SizedBox(
+              height: 10,
+            ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5),
                     child: Center(

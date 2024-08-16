@@ -94,7 +94,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
       },
       builder: (BuildContext context, state) {
         return Scaffold(
-          backgroundColor: ColorApp.colorback,
+          // backgroundColor: ColorApp.colorback,
           appBar: AppBar(
             title: text(text1: 'Update Profile'.tr(),themestyle: Theme.of(context).textTheme.headline5,
               size: 22,
@@ -152,7 +152,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           height: 150,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: ColorApp.color,
+                              // color: ColorApp.color,
 
                           ),
                         ),
@@ -318,15 +318,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           ),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      text(
-                        text1: "reset password?".tr(),
-                        size: 14,
-                      ),
-                    ],
-                  )
+
                 ],
               ),
             ),

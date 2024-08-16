@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import '../../models/AllAnimalmodel.dart';
+
 abstract class AnimalStates {}
 
 class AnimalInitialState extends AnimalStates {}
@@ -56,5 +58,12 @@ class sponcershipSuccessState extends AnimalStates {}
 class sponcershipErrorState extends AnimalStates {
   late dynamic error;
   sponcershipErrorState(this.error);
+
+}
+
+class SerchState extends AnimalStates {}
+class SerchSuccessState extends AnimalStates {
+  final List<Datuma> results;
+  SerchSuccessState(this.results);
 
 }

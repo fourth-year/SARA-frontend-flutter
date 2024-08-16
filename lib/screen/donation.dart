@@ -100,8 +100,10 @@ class donation extends StatelessWidget {
                         color: Color.fromARGB(255, 219, 229, 244),
                         validate: (value) {
                           if (value == null || value.isEmpty) {
-
                             return "please enter the amount".tr();
+                          }
+                          if (!RegExp(r'^\d+$').hasMatch(value)) {
+                            return 'Invalid input. Please enter a valid number.'.tr();
                           }
                           return null;
                         },
@@ -116,7 +118,7 @@ class donation extends StatelessWidget {
                           condition:state is! DonationLoadingState,
                           fallback: (context)=>Center(child: CircularProgressIndicator(),),
                           builder: (context)=>  defaultButton(
-                            text: " Done".tr(),
+                            text: "Done".tr(),
                             w: 130,
                             h: 45,
                             r:10 ,

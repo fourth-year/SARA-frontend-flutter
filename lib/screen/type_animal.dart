@@ -27,6 +27,13 @@ int id_type;
       builder: (context,state){
         return  Scaffold(
           appBar: AppBar(
+            leading: IconButton(onPressed: () {
+              Navigator.pop(
+                  context);
+            }, icon: Padding(
+              padding: const EdgeInsets.only(left: 20.0,right: 20),
+              child: Icon(Icons.arrow_back_ios),
+            ),),
             title: text(
               text1: type.tr(),
               themestyle: Theme

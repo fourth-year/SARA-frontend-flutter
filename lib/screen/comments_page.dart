@@ -92,8 +92,11 @@ class _CommentsPageState extends State<CommentsPage> {
                           return Container(
                             width: 400,
                             decoration: BoxDecoration(
+                              color: Theme.of(context).brightness == Brightness.light
+                                  ? Colors.grey[200] // لون المظهر الخفيف
+                                  : Colors.grey[700] ?? ColorApp.color3,
                               borderRadius: BorderRadius.circular(12),
-                              color: Color.fromARGB(255, 240, 239, 239),
+                              // color: Color.fromARGB(255, 240, 239, 239),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,15 +179,16 @@ class _CommentsPageState extends State<CommentsPage> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                      top: 5, right: 10, left: 10, bottom: 10),
+                                      top: 5, right: 20, left: 20, bottom: 10),
                                   child: ReadMoreText(
                                     isExpandable: true,
                                     PostsCubit.get(context)
                                         .get_allComments!
                                         .data[index]
                                         .comment,
-                                    style: TextStyle(),
-                                    trimLines: 3,
+                                    style:Theme.of(context).textTheme.subtitle1,
+
+                          trimLines: 3,
                                     trimMode: TrimMode.Line,
                                     colorClickableText: ColorApp.color2,
                                     trimCollapsedText: 'Show more'.tr(),
@@ -227,6 +231,7 @@ class _CommentsPageState extends State<CommentsPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: TextFormField(
+                              style: Theme.of(context).textTheme.subtitle1,
                               controller: comment,
                               onChanged: (value) {
                                 if (value == null || value.isEmpty) {
@@ -242,11 +247,14 @@ class _CommentsPageState extends State<CommentsPage> {
                               },
                               decoration: InputDecoration(
                                   hintText: 'type what you want ...'.tr(),
+                                  hintStyle:Theme.of(context).textTheme.subtitle1,
+
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide.none)),
                               //  expands: true,
                               minLines: 1,
                               maxLines: 10,
+
                             ),
                           ),
                         ),

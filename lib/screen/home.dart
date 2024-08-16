@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
                           width: 500,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: Color.fromARGB(255, 240, 239, 239),
+                            // color: Color.fromARGB(255, 240, 239, 239),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,20 +109,33 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              // PostsCubit.get(context)
-                              //     .get_allPosts!
-                              //     .data[index].photo!=null?
-                              // Container(
-                              //     decoration: BoxDecoration(
-                              //         borderRadius: BorderRadius.circular(20),
-                              //         image: DecorationImage(
-                              //           image:
-                              //           MemoryImage(base64Decode( PostsCubit.get(context)
-                              //               .get_allPosts!
-                              //               .data[index].photo!)),
-                              //           fit: BoxFit.fill,
-                              //         )))
-                              //     :SizedBox(),
+
+                              PostsCubit.get(context)
+                                  .get_allPosts!
+                                  .data[index].photo!=null?
+                              Column(
+                                children: [
+                                  SizedBox(height: 15,),
+                                  Container(
+
+                                    decoration: BoxDecoration(
+
+                                      // borderRadius: BorderRadius.circular(20),
+                                        image: DecorationImage(
+                                          image:
+                                          MemoryImage(base64Decode( PostsCubit.get(context)
+                                              .get_allPosts!
+                                              .data[index].photo!)),
+                                          fit: BoxFit.fill,
+                                        )),
+                                    // width: 100,
+                                    height: 150,
+                                  ),
+                                  SizedBox(height: 10,),
+
+                                ],
+                              )
+                                  :SizedBox(),
 
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
@@ -217,7 +230,7 @@ class _HomeState extends State<Home> {
                           ),
                         );
                       },
-                      separatorBuilder: (context, index) => SizedBox(height: 8),
+                      separatorBuilder: (context, index) => Divider(),
                       itemCount:
                           PostsCubit.get(context).get_allPosts!.data.length,
                     ),

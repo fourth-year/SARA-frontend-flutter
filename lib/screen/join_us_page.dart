@@ -123,7 +123,10 @@ class _JoinUsPageState extends State<JoinUsPage> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_ios),
+              icon: Padding(
+                padding: const EdgeInsets.only(left: 20.0,right: 20),
+                child: Icon(Icons.arrow_back_ios),
+              ),
             ),
             // title: Text(
             //   "Join Us",
@@ -161,8 +164,9 @@ class _JoinUsPageState extends State<JoinUsPage> {
                       // size: 13,
 
                       hint: 'Enter your age'.tr(),
+
                       controller: age,
-                      type: TextInputType.name,
+                      type: TextInputType.number,
                       color: Color.fromARGB(255, 219, 229, 244),
                       validate: (value) {
                         if (value == null || value.isEmpty) {
@@ -180,17 +184,21 @@ class _JoinUsPageState extends State<JoinUsPage> {
                     SizedBox(
                       height: 5,
                     ),
+
+
                     TextFormField(
                       controller: job_title,
                       minLines: 2,
                       maxLines: 8,
+                      style:Theme.of(context).textTheme.subtitle1,
                       decoration: InputDecoration(
+
                         border: OutlineInputBorder(
+
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide.none),
                         hintText: 'type...'.tr(),
-                        hintStyle:
-                            TextStyle(fontSize: 14, color: Colors.black87),
+                        hintStyle:Theme.of(context).textTheme.subtitle1,
                         filled: true,
                         fillColor: Color.fromARGB(255, 219, 229, 244),
                         contentPadding: EdgeInsets.only(
@@ -305,7 +313,7 @@ class _JoinUsPageState extends State<JoinUsPage> {
         return ScaleTransition(
           scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
           child: AlertDialog(
-            backgroundColor: ColorApp.colorback,
+            // backgroundColor: ColorApp.colorback,
             title: text(text1: 'Thank you'.tr()),
             content: Text(
                 'your request has been sent successfully...\nYou will receive an email notification upon approval.'

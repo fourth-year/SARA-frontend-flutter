@@ -221,6 +221,9 @@ class _AddAnimalState extends State<AddAnimal> {
                       if (value == null || value.isEmpty) {
                         return "Please enter the age".tr();
                       }
+                      if (!RegExp(r'^\d+$').hasMatch(value)) {
+                        return 'Invalid input. Please enter a valid number.'.tr();
+                      }
                     },
                   ),
                   SizedBox(
@@ -282,15 +285,23 @@ class _AddAnimalState extends State<AddAnimal> {
                         dropdownColor: ColorApp.colorback,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         items: [
-                          "healthy".tr(),
-                          "unhealthy".tr(),
-                          "under treatment".tr()
-                        ]
-                            .map((e) => DropdownMenuItem(
-                                  child: Text("$e"),
-                                  value: e,
-                                ))
-                            .toList(),
+                          // "healthy".tr(),
+                          // "unhealthy".tr(),
+                          // "under treatment".tr()
+
+                          DropdownMenuItem(
+                            child: Text("healthy".tr()),
+                            value: "healthy",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("unhealthy".tr()),
+                            value: "unhealthy",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("under treatment".tr()),
+                            value: "under treatment",
+                          )
+                        ],
                         onChanged: (value) {
                           AnimalCubit.get(context).selecthealth(value);
                           selected_Health =
@@ -331,12 +342,14 @@ class _AddAnimalState extends State<AddAnimal> {
                         dropdownColor: ColorApp.colorback,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         items: [
-                          for (String typeName
-                              in AnimalCubit.get(context).typeNames ?? [])
+                          for (int typenum
+                              in AnimalCubit.get(context).typeMap?.keys ?? [])
                             DropdownMenuItem(
-                              child: Text(typeName),
-                              value: AnimalCubit.get(context).typeNames!.indexOf(typeName)+1,
-                            ),
+                                child: Text(
+                                    "${(AnimalCubit.get(context).typeMap?[typenum])}"
+                                            .tr() ??
+                                        ''),
+                                value: typenum),
 
                           // DropdownMenuItem(
                           //   child: Text("Cats".tr()),
@@ -409,23 +422,19 @@ class _AddAnimalState extends State<AddAnimal> {
                             borderSide: BorderSide.none,
                           )),
                       value: selected_Dep,
-                      dropdownColor:
-                          Theme.of(context).brightness == Brightness.light
-                              ? ColorApp.colorback // لون المظهر الخفيف
-                              : Theme.of(context).cardColor,
+                      dropdownColor: ColorApp.colorback, // لون المظهر الخفيف
+
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       items: [
-                        // for (String dName
-                        // in AnimalCubit.get(context).department ?? [])
-                        //   DropdownMenuItem(
-                        //     child: Text(dName),
-                        //     value: AnimalCubit.get(context).department!.indexOf(dName)+1,
-                        //   ),
-
-                    for (int departmentId in AnimalCubit.get(context).departmentMap?.keys ?? [])
-            DropdownMenuItem(
-        child: Text(AnimalCubit.get(context).departmentMap?[departmentId] ?? ''),
-      value: departmentId),
+                        for (int departmentId
+                            in AnimalCubit.get(context).departmentMap?.keys ??
+                                [])
+                          DropdownMenuItem(
+                              child: Text(
+                                  "${(AnimalCubit.get(context).departmentMap?[departmentId])}"
+                                          .tr() ??
+                                      ''),
+                              value: departmentId),
 
                         // DropdownMenuItem(
                         //   child: Text("Department_1".tr()),

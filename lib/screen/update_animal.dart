@@ -39,6 +39,9 @@ class _Update_AnimalState extends State<Update_Animal> {
 
     var selected_Dep = model?.departmentId;
 
+    if(model!.photo!=null)
+    image64=model!.photo;
+
     DateTime? selectedDate;
 
     String? selectdate;
@@ -55,6 +58,7 @@ class _Update_AnimalState extends State<Update_Animal> {
     AnimalCubit.get(context).selectdate('${model?.entryDate.year}-'
         '${model?.entryDate.month}-'
         '${model?.entryDate.day}');
+
 
     ////////////////////// function image
     Future<void> _openImagePicker() async {
@@ -253,6 +257,9 @@ class _Update_AnimalState extends State<Update_Animal> {
                       if (value == null || value.isEmpty) {
                         return "Please enter the age".tr();
                       }
+                      if (!RegExp(r'^\d+$').hasMatch(value)) {
+                        return 'Invalid input. Please enter a valid number.'.tr();
+                      }
                     },
                   ),
                   SizedBox(
@@ -327,12 +334,18 @@ class _Update_AnimalState extends State<Update_Animal> {
                         value: selected_Health,
                         dropdownColor: ColorApp.colorback,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
-                        items: ["healthy".tr, "unhealthy".tr(), "under treatment".tr()]
-                            .map((e) => DropdownMenuItem(
-                                  child: Text("$e"),
-                                  value: e,
-                                ))
-                            .toList(),
+                        items: [ DropdownMenuItem(
+                          child: Text("healthy".tr()),
+                          value: "healthy",
+                        ),
+                          DropdownMenuItem(
+                            child: Text("unhealthy".tr()),
+                            value: "unhealthy",
+                          ),
+                          DropdownMenuItem(
+                            child: Text("under treatment".tr()),
+                            value: "under treatment",)],
+
                         onChanged: (value) {
                           AnimalCubit.get(context).selecthealth(value);
                           selected_Health =
@@ -364,26 +377,32 @@ class _Update_AnimalState extends State<Update_Animal> {
                         dropdownColor: ColorApp.colorback,
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         items: [
-                          DropdownMenuItem(
-                            child: Text("Cat".tr()),
-                            value: 1,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Dog".tr()),
-                            value: 2,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Bird".tr()),
-                            value: 3,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Horse".tr()),
-                            value: 4,
-                          ),
-                          DropdownMenuItem(
-                            child: Text("Donkey".tr()),
-                            value: 5,
-                          )
+                          for (int typenum
+                          in AnimalCubit.get(context).typeMap?.keys ?? [])
+                            DropdownMenuItem(
+                                child: Text("${(AnimalCubit.get(context).typeMap?[typenum])}".tr() ?? ''),
+                                value: typenum),
+
+                          // DropdownMenuItem(
+                          //   child: Text("Cat".tr()),
+                          //   value: 1,
+                          // ),
+                          // DropdownMenuItem(
+                          //   child: Text("Dog".tr()),
+                          //   value: 2,
+                          // ),
+                          // DropdownMenuItem(
+                          //   child: Text("Bird".tr()),
+                          //   value: 3,
+                          // ),
+                          // DropdownMenuItem(
+                          //   child: Text("Horse".tr()),
+                          //   value: 4,
+                          // ),
+                          // DropdownMenuItem(
+                          //   child: Text("Donkey".tr()),
+                          //   value: 5,
+                          // )
                         ],
                         onChanged: (value) {
                           AnimalCubit.get(context).Select_type(value);
@@ -434,26 +453,31 @@ class _Update_AnimalState extends State<Update_Animal> {
                       dropdownColor: ColorApp.colorback,
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       items:[
-                        DropdownMenuItem(
-                          child: Text("Department_1".tr()),
-                          value: 1,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Department_2".tr()),
-                          value: 2,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Department_3".tr()),
-                          value: 3,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Department_4".tr()),
-                          value: 4,
-                        ),
-                        DropdownMenuItem(
-                          child: Text("Department_5".tr()),
-                          value: 5,
-                        )
+                        // DropdownMenuItem(
+                        //   child: Text("Department_1".tr()),
+                        //   value: 1,
+                        // ),
+                        // DropdownMenuItem(
+                        //   child: Text("Department_2".tr()),
+                        //   value: 2,
+                        // ),
+                        // DropdownMenuItem(
+                        //   child: Text("Department_3".tr()),
+                        //   value: 3,
+                        // ),
+                        // DropdownMenuItem(
+                        //   child: Text("Department_4".tr()),
+                        //   value: 4,
+                        // ),
+                        // DropdownMenuItem(
+                        //   child: Text("Department_5".tr()),
+                        //   value: 5,
+                        // )
+
+                        for (int departmentId in AnimalCubit.get(context).departmentMap?.keys ?? [])
+                          DropdownMenuItem(
+                              child: Text("${(AnimalCubit.get(context).departmentMap?[departmentId])}".tr() ?? ''),
+                              value: departmentId),
                       ],
                       onChanged: (value) {
                         AnimalCubit.get(context).Select_Dep(value);

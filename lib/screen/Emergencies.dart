@@ -110,7 +110,7 @@ class Emergencies extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "${EmergencyCubit.get(context).get_all_emergencies!.data[index].emerStatus}",
+                                            "${EmergencyCubit.get(context).get_all_emergencies!.data[index].emerStatus}".tr(),
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(fontSize: 16),
                                           ),
@@ -124,7 +124,6 @@ class Emergencies extends StatelessWidget {
                                           Text(
                                             "Address:".tr(),
                                             style: TextStyle(
-                                                color: ColorApp.color2,
                                                 fontSize: 16,
                                                 fontFamily: "text normal"),
                                           ),
@@ -146,7 +145,6 @@ class Emergencies extends StatelessWidget {
                                           Text(
                                             "Contact:".tr(),
                                             style: TextStyle(
-                                                color: ColorApp.color2,
                                                 fontSize: 16,
                                                 fontFamily: "text normal"),
                                           ),
@@ -165,7 +163,6 @@ class Emergencies extends StatelessWidget {
                                       Text(
                                         "Description:".tr(),
                                         style: TextStyle(
-                                          color: ColorApp.color2,
                                           fontFamily: "text normal",
                                           fontSize: 15,
                                         ),
@@ -280,7 +277,7 @@ class Emergencies extends StatelessWidget {
 
                                           Center(
                                             child: Text(
-                                              "${EmergencyCubit.get(context).get_all_emergencies!.data[index].emerStatus}",
+                                              "${EmergencyCubit.get(context).get_all_emergencies!.data[index].emerStatus}".tr(),
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),
                                             ),
@@ -355,68 +352,76 @@ class Emergencies extends StatelessWidget {
                                           )
                                         ],
                                       ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Address:".tr(),
-                                            style: TextStyle(
-                                                color: ColorApp.color2,
-                                                fontSize: 16,
-                                                fontFamily: "text normal"),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Container(
-                                            decoration: BoxDecoration(),
-                                            child: Text(
-                                              "${EmergencyCubit.get(context).get_all_emergencies!.data[index]!.address}",
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 15.0,right: 15),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Address:".tr(),
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontFamily: "text normal"),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Container(
+                                                  decoration: BoxDecoration(),
+                                                  child: Text(
+                                                    "${EmergencyCubit.get(context).get_all_emergencies!.data[index]!.address}",
+                                                    style: TextStyle(fontSize: 14),
+                                                  ),
+                                                ),
+
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Contact:".tr(),
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontFamily: "text normal"),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  " ${EmergencyCubit.get(context).get_all_emergencies!.data[index].contact}",
+                                                  style: TextStyle(fontSize: 14),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              "Description:".tr(),
+                                              style: TextStyle(
+                                                fontFamily: "text normal",
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              "${EmergencyCubit.get(context).get_all_emergencies!.data[index].description}",
+                                              maxLines: 10,
+                                              overflow: TextOverflow.ellipsis,
                                               style: TextStyle(fontSize: 14),
                                             ),
-                                          ),
-
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Contact:".tr(),
-                                            style: TextStyle(
-                                                color: ColorApp.color2,
-                                                fontSize: 16,
-                                                fontFamily: "text normal"),
-                                          ),
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                          Text(
-                                            " ${EmergencyCubit.get(context).get_all_emergencies!.data[index].contact}",
-                                            style: TextStyle(fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "Description:".tr(),
-                                        style: TextStyle(
-                                          color: ColorApp.color2,
-                                          fontFamily: "text normal",
-                                          fontSize: 15,
+                                          ],
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        "${EmergencyCubit.get(context).get_all_emergencies!.data[index].description}",
-                                        maxLines: 10,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(fontSize: 14),
                                       ),
                                     ],
                                   ),

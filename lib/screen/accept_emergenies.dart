@@ -64,7 +64,7 @@ class AcceptEmergenies extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Layout(),));
                 },
                 icon: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
+                  padding: const EdgeInsets.only(left: 20.0,right: 20),
                   child: Icon(Icons.arrow_back_ios),
                 ),
               ),
@@ -147,7 +147,7 @@ class AcceptEmergenies extends StatelessWidget {
                                             height: 5,
                                           ),
                                           Text(
-                                            "Description of the emergency situation :".tr(),
+                                            "Description:".tr(),
                                             style: TextStyle(
                                                 color: ColorApp.color2,
                                                 fontFamily: "text normal",

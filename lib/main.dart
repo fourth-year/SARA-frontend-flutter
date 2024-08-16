@@ -39,14 +39,14 @@ void main() async {
   await CachHelper.init();
   Widget widget;
   if (CachHelper.gettoken(key: "token") == null) {
-    widget = SettingsPage();
+    widget = signin();
   } else {
     token = CachHelper.gettoken(key: "token");
     role_id = CachHelper.getData(key: "role_id");
     print(token);
     print(role_id);
 
-    widget = SettingsPage();
+    widget = Layout();
   }
   if (CachHelper.getData(key: "isdark") != null) {
     dark = CachHelper.getData(key: "isdark");
@@ -87,7 +87,6 @@ class MyApp extends StatelessWidget {
             title: ' S.A.R.A',
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: ColorApp.color2),
-
               // colorSchemeSeed:ColorApp.color2 ,
               brightness: Brightness.light,
               tabBarTheme: TabBarTheme(
@@ -115,7 +114,7 @@ class MyApp extends StatelessWidget {
                 ),
                 subtitle2: TextStyle(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: FontWeight.w100,
                     fontFamily: 'text normal'),
                 headline2: TextStyle(
@@ -156,7 +155,7 @@ class MyApp extends StatelessWidget {
                   dividerHeight: 0.5,
                   indicatorColor: ColorApp.color2),
               cardTheme: CardTheme(
-                  shadowColor: Colors.grey[700], color: Colors.grey[600]),
+              shadowColor: Colors.grey[700], color: Colors.grey[900]),
               canvasColor: Colors.grey[700],
               scaffoldBackgroundColor: Colors.grey[850],
               dialogBackgroundColor: Colors.grey,
@@ -169,7 +168,7 @@ class MyApp extends StatelessWidget {
                 ),
                 subtitle2: TextStyle(
                   color: Colors.white,
-                  fontSize: 14,
+                  fontSize: 12,
                   fontFamily: 'text normal',
                   fontWeight: FontWeight.w100,
                 ),
@@ -179,6 +178,10 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'text normal',
                   fontWeight: FontWeight.w100,
                 ),
+                headline1: TextStyle(
+                    fontSize: 18,
+                    color: ColorApp.color,
+                    fontFamily: 'text normal'),
                 headline6: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -191,6 +194,8 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'text normal',
                   fontWeight: FontWeight.w100,
                 ),
+                headline3: TextStyle(
+                    color: ColorApp.color2, fontFamily: "title", fontSize: 35),
                 headline5:
                     TextStyle(color: ColorApp.color, fontFamily: 'text normal'),
               ),

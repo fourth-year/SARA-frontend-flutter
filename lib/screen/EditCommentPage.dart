@@ -38,8 +38,9 @@ class EditCommentPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      color: Color.fromARGB(255, 240, 239, 239),
-                    ),
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.grey[200] // لون المظهر الخفيف
+                          : Colors.grey[700] ?? ColorApp.color3,                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: TextFormField(

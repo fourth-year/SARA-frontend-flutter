@@ -178,7 +178,7 @@ class _vaccinationState extends State<vaccination> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             text(
-                              text1: "Name : ${model!.name}".tr(),
+                              text1: "Name :".tr()+"${model!.name}".tr(),
                               size: 20,
                               fontWeight: FontWeight.w200,
                             ),
@@ -186,7 +186,7 @@ class _vaccinationState extends State<vaccination> {
                               height: 5.0,
                             ),
                             text(
-                              text1: "the time  : 9:00 am".tr(),
+                              text1: "the time  : ".tr(),
                               size: 16,
                               fontWeight: FontWeight.normal,
                             ),
@@ -201,36 +201,38 @@ class _vaccinationState extends State<vaccination> {
                   child: GestureDetector(
                     onTap: () {
                       dynamic dep;
-                      if (model.name == "Department 1".tr()) {
-                        dep = 1;
-                      }
-                      if (model.name == "Department 2".tr()) {
-                        dep = 2;
-                      }
-                      if (model.name == "Department 3".tr()) {
-                        dep = 3;
-                      }
-                      if (model.name == "Department 4".tr()) {
-                        dep = 4;
-                      }
-                      if (model.name == "Department 5".tr()) {
-                        dep = 5;
-                      }
-                      if (model.name == "Department 6".tr()) {
-                        dep = 6;
-                      }
-                      if (model.name == "Department 7".tr()) {
-                        dep = 7;
-                      }
-                      if (model.name == "Department 8".tr()) {
-                        dep = 8;
-                      }
-                      if (model.name == "Department 9".tr()) {
-                        dep = 9;
-                      }
-                      if (model.name == "Department 10".tr()) {
-                        dep = 10;
-                      }
+                      dep= AnimalCubit.get(context).departmentMap!.keys.firstWhere((key) =>
+                      AnimalCubit.get(context).departmentMap?[key] == model.name );
+                      // if (model.name == "Department 1".tr()) {
+                      //   dep = 1;
+                      // }
+                      // if (model.name == "Department 2".tr()) {
+                      //   dep = 2;
+                      // }
+                      // if (model.name == "Department 3".tr()) {
+                      //   dep = 3;
+                      // }
+                      // if (model.name == "Department 4".tr()) {
+                      //   dep = 4;
+                      // }
+                      // if (model.name == "Department 5".tr()) {
+                      //   dep = 5;
+                      // }
+                      // if (model.name == "Department 6".tr()) {
+                      //   dep = 6;
+                      // }
+                      // if (model.name == "Department 7".tr()) {
+                      //   dep = 7;
+                      // }
+                      // if (model.name == "Department 8".tr()) {
+                      //   dep = 8;
+                      // }
+                      // if (model.name == "Department 9".tr()) {
+                      //   dep = 9;
+                      // }
+                      // if (model.name == "Department 10".tr()) {
+                      //   dep = 10;
+                      // }
 
                       openFeedingDialog(context, dep);
                       print(model.name);

@@ -75,6 +75,11 @@ class _AnimalDetailsState extends State<AnimalDetails> {
         if (state is adoptionsSuccessState) {
           adoptionSuccessDialog(context, id);
         }
+        if (state is sponcershipSuccessState) {
+          sponcershipDialog(context, id);
+        }
+
+
       },
       builder: (context, state) {
         return Builder(builder: (context) {
@@ -83,7 +88,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
               appBar: AppBar(
                 title: text(
                   themestyle: Theme.of(context).textTheme.headline5,
-                  text1: 'Animal Details',
+                  text1: 'Animal Details'.tr(),
                   color: ColorApp.color2,
                   size: 22,
                 ),
@@ -143,7 +148,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                       height: 12,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 50),
+                      padding: const EdgeInsets.only(left: 50,right: 50),
                       child: Column(
                         children: [
                           Row(
@@ -180,13 +185,9 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                 width: 10,
                               ),
                               text(
-                                text1: AnimalCubit.get(context)
-                                    .typeNames![AnimalCubit.get(context)
-                                            .get_Animal_By_id!
-                                            .data
-                                            .animaltypeId -
-                                        1]
-                                    .tr(),
+                                text1: "${AnimalCubit.get(context).typeMap[AnimalCubit.get(context).get_Animal_By_id
+                                    ?.data
+                                    .animaltypeId]}".tr()?? '',
                                 themestyle:
                                     Theme.of(context).textTheme.headline6,
                               ),
@@ -251,7 +252,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                 width: 10,
                               ),
                               Text(
-                                '${AnimalCubit.get(context).get_Animal_By_id?.data.health}',
+                                '${AnimalCubit.get(context).get_Animal_By_id?.data.health}'.tr(),
                                 style: Theme.of(context).textTheme.headline6,
                               )
                             ],
@@ -274,9 +275,10 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                         SizedBox(
                                           width: 12,
                                         ),
-                                        text(text1: AnimalCubit.get(context).departmentMap[AnimalCubit.get(context).get_Animal_By_id
+                                        text(text1: "${AnimalCubit.get(context).departmentMap[AnimalCubit.get(context).get_Animal_By_id
                                             ?.data
-                                            .departmentId]?? '',themestyle:   Theme.of(context).textTheme.headline6,),
+                                            .departmentId]}".tr()?? '',
+                                          themestyle:   Theme.of(context).textTheme.headline6,),
 
                                         // Text(
                                         //   AnimalCubit.get(context)
@@ -417,7 +419,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                                 .data
                                                 .id);
                                       },
-                                      text: 'adoptions'.tr(),
+                                      text: 'adoption'.tr(),
                                       color: ColorApp.color,
                                       textColor: ColorApp.color2,
                                     ),
@@ -434,7 +436,7 @@ class _AnimalDetailsState extends State<AnimalDetails> {
                                                 .id,
                                             balance: 150000);
                                       },
-                                      text: 'sponcerships'.tr(),
+                                      text: 'sponsership'.tr(),
                                       color: ColorApp.color,
                                       textColor: ColorApp.color2,
                                     )
@@ -539,21 +541,15 @@ class _AnimalDetailsState extends State<AnimalDetails> {
           scale: Tween<double>(begin: 0.5, end: 1.0).animate(a1),
           child: AlertDialog(
             backgroundColor: ColorApp.colorback,
-            title: Row(
-              children: [],
-            ),
-            content: Text('Are you sure you want to delete this animal?'.tr()),
+
+            content: Text('Your request has been registered and will be processed.A guarantee amount of 150,000 will be deducted upon approval'.tr()),
             shape: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(16),
                 borderSide: BorderSide.none),
             actions: [
+
               textButton(
-                  text: 'Cancel'.tr(),
-                  onTap: () {
-                    Navigator.pop(context);
-                  }),
-              textButton(
-                  text: 'done'.tr(),
+                  text: 'OK'.tr(),
                   color: ColorApp.color2,
                   onTap: () {
                     AnimalCubit.get(context).getanimal_Byid(id);

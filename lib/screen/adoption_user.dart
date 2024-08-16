@@ -42,10 +42,13 @@ class _adoption_userState extends State<adoption_user> {
             leading: IconButton(onPressed: () {
               Navigator.pop(
                   context);
-            }, icon: Icon(Icons.arrow_back_ios),),),
+            }, icon: Padding(
+              padding: const EdgeInsets.only(left: 20.0,right: 20),
+              child: Icon(Icons.arrow_back_ios),
+            ),),),
           body:
           (    UserCubit.get(context)
-              .adoptionmodel!=null&& state is adoptionSuccessState)?
+              .adoptionmodel!=null)?
           Padding(
             padding: const EdgeInsets.all(8.0),
             child:
@@ -82,7 +85,7 @@ class _adoption_userState extends State<adoption_user> {
 
   Widget builditem(dynamic model, context, index) {
     return Padding(
-      padding: const EdgeInsets.all(3.0),
+      padding: const EdgeInsets.all(2.0),
       child: Container(
         height: 100,
         width: 520,
@@ -97,11 +100,11 @@ class _adoption_userState extends State<adoption_user> {
           borderOnForeground: false,
 
           child: Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(3.0),
             child: Container(
               decoration: BoxDecoration(
-                  color: ColorApp.colorback,
-                  borderRadius: BorderRadius.circular(16)),
+                  // color: ColorApp.colorback,
+                  borderRadius: BorderRadius.circular(20)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -138,31 +141,28 @@ class _adoption_userState extends State<adoption_user> {
                   ),
                   Expanded(
                     flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0, right: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          text(
-                            text1: "Name animal: ${model!.animal.name}".tr(),
-                            size: 18,
-                            fontWeight: FontWeight.w200,
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          text(
-                            text1: " the Type : ${model.animal.type}".tr(),
-                            size: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          text(
-                            text1: " the Date : ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}".tr(),
-                            size: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ],
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,                        children: [
+                        text(
+                          text1: "Name animal :".tr()+" ${model!.animal.name}".tr(),
+                          size: 18,
+                          fontWeight: FontWeight.w200,
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        text(
+                          text1: " the Type :".tr()+"${model.animal.type}".tr(),
+                          size: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        text(
+                          text1: "the Date :".tr()+" ${model.updatedAt.year}-${model.updatedAt.month}-${model.updatedAt.day}".tr(),
+                          size: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ],
                     ),
                   )
                 ],
